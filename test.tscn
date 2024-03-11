@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dply3e3nj1eih"]
+
+[ext_resource type="PackedScene" uid="uid://bv0jnokvmu1k1" path="res://enemy.tscn" id="1_uvcw5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0m1y"]
+size = Vector2(1131, 636)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="enemy" parent="." instance=ExtResource("1_uvcw5")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(425, -216)
+shape = SubResource("RectangleShape2D_s0m1y")
