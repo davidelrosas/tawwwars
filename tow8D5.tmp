@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlqfgh0sre6rd"]
+
+[ext_resource type="Texture2D" uid="uid://bofhmkckq7wab" path="res://assets/EmptySlot.png" id="2_r8btj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_744tp"]
+texture = ExtResource("2_r8btj")
+texture_region_size = Vector2i(256, 168)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -8)
+
+[sub_resource type="TileSet" id="TileSet_0g7p2"]
+tile_shape = 1
+tile_size = Vector2i(256, 120)
+sources/1 = SubResource("TileSetAtlasSource_744tp")
+
+[node name="Main" type="Node"]
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+position = Vector2(-3, 0)
+tile_set = SubResource("TileSet_0g7p2")
+format = 2
+layer_0/y_sort_enabled = true

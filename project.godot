@@ -11,6 +11,11 @@ config_version=5
 [application]
 
 config/name="Tawwwars"
-run/main_scene="res://node_2d.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://assets/icon.svg"
+run/main_scene="res://spawner.tscn"
+
+[autoload]
+
+SignalBus="*res://signal_bus.gd"
+

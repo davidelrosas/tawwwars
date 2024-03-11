@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlqfgh0sre6rd"]
+
+[ext_resource type="PackedScene" uid="uid://0lxfu5aonmcn" path="res://slot.tscn" id="1_50k3w"]
+[ext_resource type="PackedScene" uid="uid://cexhhctap8ncm" path="res://shop.tscn" id="2_aa8ov"]
+
+[node name="SlotSystem" type="Node"]
+
+[node name="SlotContainer" type="Node" parent="."]
+
+[node name="Slot" parent="SlotContainer" instance=ExtResource("1_50k3w")]
+position = Vector2(963, 101)
+
+[node name="Slot2" parent="SlotContainer" instance=ExtResource("1_50k3w")]
+position = Vector2(946, 510)
+
+[node name="Slot3" parent="SlotContainer" instance=ExtResource("1_50k3w")]
+position = Vector2(156, 517)
+
+[node name="Slot4" parent="SlotContainer" instance=ExtResource("1_50k3w")]
+position = Vector2(142, 108)
+
+[node name="Shop" parent="." instance=ExtResource("2_aa8ov")]
+visible = false
+position = Vector2(1623, 280)

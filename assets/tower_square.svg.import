@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6dpbjso6a55f"
-path="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+uid="uid://dv2c4038n41nv"
+path="res://.godot/imported/tower_square.svg-992e69176c2de9f502fcb2aae0450c08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.svg"
-dest_files=["res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"]
+source_file="res://assets/tower_square.svg"
+dest_files=["res://.godot/imported/tower_square.svg-992e69176c2de9f502fcb2aae0450c08.ctex"]
 
 [params]
 
