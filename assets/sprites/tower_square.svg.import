@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dv2c4038n41nv"
-path="res://.godot/imported/tower_square.svg-992e69176c2de9f502fcb2aae0450c08.ctex"
+path="res://.godot/imported/tower_square.svg-4c67f8d2d6479ed0a01b6ff065b99104.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tower_square.svg"
-dest_files=["res://.godot/imported/tower_square.svg-992e69176c2de9f502fcb2aae0450c08.ctex"]
+source_file="res://assets/sprites/tower_square.svg"
+dest_files=["res://.godot/imported/tower_square.svg-4c67f8d2d6479ed0a01b6ff065b99104.ctex"]
 
 [params]
 
