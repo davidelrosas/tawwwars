@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://scripts/shop_sc.gd" id="2_wk3dw"]
 
 [node name="Shop" type="Sprite2D"]
-position = Vector2(455, 327)
 scale = Vector2(1.72941, 1.47826)
 texture = ExtResource("1_y14ay")
 script = ExtResource("2_wk3dw")

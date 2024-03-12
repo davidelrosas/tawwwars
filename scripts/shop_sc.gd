@@ -1,6 +1,6 @@
 extends Sprite2D
 
-var towar1 = preload("res://structures/towar.tscn")
+var towar1 = preload("res://prefabs/towar.tscn")
 var slot_ref
 var counter = 0
 

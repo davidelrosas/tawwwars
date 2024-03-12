@@ -1,13 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://c4yxwfo6bf5tu"]
 
-[ext_resource type="Texture2D" uid="uid://ddlh7u6kjg6og" path="res://assets/sprites/watch_tower.svg" id="1_dy447"]
+[ext_resource type="Texture2D" uid="uid://ddlh7u6kjg6og" path="res://assets/sprites/watch_tower.svg" id="1_psjs0"]
 
 [node name="towar" type="StaticBody2D"]
-position = Vector2(484, 288)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -32)
-texture = ExtResource("1_dy447")
+texture = ExtResource("1_psjs0")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(1, -32)
