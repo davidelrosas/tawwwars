@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://scripts/slot_v3.gd" id="1_gq6yd"]
 
 [node name="Slot" type="Node2D"]
-position = Vector2(644, 294)
 script = ExtResource("1_gq6yd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
