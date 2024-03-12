@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bv0jnokvmu1k1"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_vfx00"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_wxudy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a07lg"]
 size = Vector2(82, 71)
@@ -8,9 +8,8 @@ size = Vector2(82, 71)
 [node name="enemy" type="Node2D"]
 
 [node name="body" type="RigidBody2D" parent="."]
-position = Vector2(300, 500)
 gravity_scale = 0.0
-script = ExtResource("1_vfx00")
+script = ExtResource("1_wxudy")
 
 [node name="Sprite2D" type="Sprite2D" parent="body"]
 scale = Vector2(0.1, 0.1)
