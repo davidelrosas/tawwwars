@@ -13,9 +13,9 @@ func spawn_enemy(spawnlist, target):
 		var spawngroup = x.split(":")
 		match spawngroup[0]:
 			"mob":
-				proto = preload("res://enemy.tscn")
+				proto = preload("res://scenes/enemy.tscn")
 			"mib":
-				proto = preload("res://enemy.tscn")
+				proto = preload("res://scenes/enemy.tscn")
 			_:
 				print("invalid enemy type")
 		for y in range(spawngroup[1].to_int()):

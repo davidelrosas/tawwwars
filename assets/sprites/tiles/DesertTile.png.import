@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ipxddgupjuh1"
-path="res://.godot/imported/Menu.png-0168ecb990c83f7a2a0783ea3d8e7e2f.ctex"
+uid="uid://se4cfdbipjhx"
+path="res://.godot/imported/DesertTile.png-8cadd9cf090dab8b9b58398b9ab08b54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Menu.png"
-dest_files=["res://.godot/imported/Menu.png-0168ecb990c83f7a2a0783ea3d8e7e2f.ctex"]
+source_file="res://assets/sprites/tiles/DesertTile.png"
+dest_files=["res://.godot/imported/DesertTile.png-8cadd9cf090dab8b9b58398b9ab08b54.ctex"]
 
 [params]
 

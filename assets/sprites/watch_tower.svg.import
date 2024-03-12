@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpnwbh14vxb57"
-path="res://.godot/imported/grass_random_grid.png-1963e187431af570eeb78564abf5eb18.ctex"
+uid="uid://ddlh7u6kjg6og"
+path="res://.godot/imported/watch_tower.svg-41d520e99661cad158fba86710a39aea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/grass_random_grid.png"
-dest_files=["res://.godot/imported/grass_random_grid.png-1963e187431af570eeb78564abf5eb18.ctex"]
+source_file="res://assets/sprites/watch_tower.svg"
+dest_files=["res://.godot/imported/watch_tower.svg-41d520e99661cad158fba86710a39aea.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
