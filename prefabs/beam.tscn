@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://2sa5dmxtcggh"]
+
+[ext_resource type="Script" path="res://scripts/Beam.gd" id="1_nlotm"]
+[ext_resource type="Texture2D" uid="uid://cnqa5b5afqqdf" path="res://assets/sprites/beams.png" id="2_ik3l1"]
+
+[node name="Beam" type="Node2D"]
+script = ExtResource("1_nlotm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(100, 0)
+rotation = 1.5708
+scale = Vector2(1.28635, 0.5)
+texture = ExtResource("2_ik3l1")
+region_enabled = true
+region_rect = Rect2(243.277, 101.7, 36.6344, 86.3081)
