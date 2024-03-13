@@ -2,4 +2,4 @@
 .godot/
 .vscode/
 *.tmp
-*[Tt]est*
+*[Tt]est*.tscn
