@@ -26,7 +26,7 @@ func spawn_enemy(spawnlist, target):
 				print("invalid enemy type")
 		for y in range(min(spawngroup[1].to_int(),n_can_spawn())):
 			var newmob = proto.instantiate()
-			newmob.position = spawnarea
+			newmob.global_position = spawnarea
 			newmob.target = enemy_target
 			spawned.push_back(newmob)
 			add_child(newmob)
