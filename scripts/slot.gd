@@ -1,7 +1,6 @@
 extends Node2D
 
 var slot_occ = false
-var new_towar
 var child_towar_ref
 
 func _on_button_pressed():
@@ -19,6 +18,7 @@ func _change_status(towar_ref):
 func _build_towar(towar, type, slot_ref):
 	if slot_ref == self:
 		
+		var new_towar
 		if (slot_occ == false):
 			
 			new_towar = towar.instantiate()
@@ -31,6 +31,6 @@ func _build_towar(towar, type, slot_ref):
 			
 		
 		else:
-			$".".remove_child(new_towar)
+			$".".remove_child(child_towar_ref)
 			slot_occ = false
 
