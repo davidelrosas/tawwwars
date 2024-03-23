@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddlh7u6kjg6og"
-path="res://.godot/imported/watch_tower.svg-41d520e99661cad158fba86710a39aea.ctex"
+uid="uid://dv2c4038n41nv"
+path="res://.godot/imported/tower_square.svg-eea6d413a2f77d73e1f870b6255e0e76.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/watch_tower.svg"
-dest_files=["res://.godot/imported/watch_tower.svg-41d520e99661cad158fba86710a39aea.ctex"]
+source_file="res://Towars/Sprites/tower_square.svg"
+dest_files=["res://.godot/imported/tower_square.svg-eea6d413a2f77d73e1f870b6255e0e76.ctex"]
 
 [params]
 
