@@ -22,8 +22,9 @@ enum towar_type {attack_towar,healing_towar,defense_towar}
 
 # effect function
 func effect_towar(effect : HealthEffect):
-	current_health = min(current_health+effect.power, max_health)
+	current_health = min(current_health - effect.power, max_health)
 	$HealthBar.value = current_health
+	
 	
 	if effect.power > 0:
 		takes_damage(effect)
