@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cexhhctap8ncm"]
+[gd_scene load_steps=6 format=3 uid="uid://cexhhctap8ncm"]
 
 [ext_resource type="Texture2D" uid="uid://ipxddgupjuh1" path="res://assets/sprites/Menu.png" id="1_y14ay"]
-[ext_resource type="Texture2D" uid="uid://ddlh7u6kjg6og" path="res://assets/sprites/watch_tower.svg" id="2_c4ptu"]
-[ext_resource type="Script" path="res://scripts/shop_sc.gd" id="2_wk3dw"]
+[ext_resource type="Texture2D" uid="uid://ddlh7u6kjg6og" path="res://Towars/Sprites/watch_tower.svg" id="2_c4ptu"]
+[ext_resource type="Script" path="res://scripts/shop.gd" id="2_pimw0"]
+[ext_resource type="Texture2D" uid="uid://c4nbwtqt7tsve" path="res://Towars/Sprites/tower_round_flag.svg" id="4_mb2bb"]
+[ext_resource type="Texture2D" uid="uid://dv2c4038n41nv" path="res://Towars/Sprites/tower_square.svg" id="5_nt43c"]
 
 [node name="Shop" type="Sprite2D"]
 scale = Vector2(1.72941, 1.47826)
 texture = ExtResource("1_y14ay")
-script = ExtResource("2_wk3dw")
+script = ExtResource("2_pimw0")
 
 [node name="Button" type="Button" parent="."]
 offset_left = -71.1225
@@ -21,4 +23,28 @@ position = Vector2(33.5374, 20.9706)
 scale = Vector2(0.35996, 0.336167)
 texture = ExtResource("2_c4ptu")
 
+[node name="Button2" type="Button" parent="."]
+offset_left = 2.0
+offset_top = -51.0
+offset_right = 65.0
+offset_bottom = -9.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Button2"]
+position = Vector2(28.0681, 18.5294)
+scale = Vector2(0.294643, 0.28125)
+texture = ExtResource("4_mb2bb")
+
+[node name="Button3" type="Button" parent="."]
+offset_left = -71.0
+offset_top = -4.0
+offset_right = -3.0
+offset_bottom = 36.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Button3"]
+position = Vector2(31.6802, 18.8824)
+scale = Vector2(0.254996, 0.244945)
+texture = ExtResource("5_nt43c")
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

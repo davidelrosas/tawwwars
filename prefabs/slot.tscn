@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://0lxfu5aonmcn"]
 
 [ext_resource type="Texture2D" uid="uid://cpnwbh14vxb57" path="res://assets/sprites/tiles/grass_random_grid.png" id="1_ag2de"]
-[ext_resource type="Script" path="res://scripts/slot_v3.gd" id="1_gq6yd"]
+[ext_resource type="Script" path="res://scripts/slot.gd" id="1_f4rhc"]
 
 [node name="Slot" type="Node2D"]
-script = ExtResource("1_gq6yd")
+script = ExtResource("1_f4rhc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 1)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dexir5vnmit2n"]
+
+[ext_resource type="Texture2D" uid="uid://cnqa5b5afqqdf" path="res://assets/sprites/beams.png" id="1_06mu5"]
+
+[node name="Sprite2D" type="Sprite2D"]
+position = Vector2(577, 289)
+rotation = -1.61202
+scale = Vector2(1, 1.09483)
+texture = ExtResource("1_06mu5")
+region_enabled = true
+region_rect = Rect2(82, 111, 24, 29)
