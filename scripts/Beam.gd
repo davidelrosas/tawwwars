@@ -22,4 +22,3 @@ func _ready():
 
 func _process(delta):
 	rotate(PI * delta * rps)
-	pass

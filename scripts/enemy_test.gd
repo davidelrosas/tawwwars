@@ -16,4 +16,3 @@ func _process(_delta):
 		body.apply_force(beam.position-position)
 	else:
 		body.rotation = 0
-	pass

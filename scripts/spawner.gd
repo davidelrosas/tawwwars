@@ -32,24 +32,23 @@ func spawn_enemy(spawnlist, target):
 			newmob_type = enemy_types[spawngroup[0]]
 		else:
 			print("trying to spawn invalid enemy type")
+			pass
 		for y in range(min(spawngroup[1].to_int(),n_can_spawn())):
 			var newmob = newmob_type.instantiate()
 			newmob.global_position = spawnarea
 			newmob.target = enemy_target
 			spawned.push_back(newmob)
 			add_child(newmob)
-	pass
 	
 func spread(enemylist):
+	#TODO
 	pass
 	
 func set_spawnschedule(schedule : String):
 	sp_sch = schedule.split("/")
-	pass
 	
 func _ready():
 	set_spawnschedule(spawn_schedule)
-	pass
 
 func _process(delta):
 	elapsed += delta
@@ -60,7 +59,4 @@ func _process(delta):
 		if curperiod < elapsed:
 			elapsed -= curperiod
 			spawn_enemy(cur[0],enemy_target)
-			schedule_index += 1
-			if loop_spawns and schedule_index >= sp_sch.size():
-				schedule_index -= sp_sch.size()
-	pass
+			schedule_index += 1 - (int(loop_spawns and schedule_index >= sp_sch.size())*sp_sch.size())
