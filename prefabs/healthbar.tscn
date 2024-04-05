@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ceogqelwduqjn"]
+[gd_scene load_steps=3 format=3 uid="uid://ceogqelwduqjn"]
 
 [ext_resource type="Texture2D" uid="uid://cuf3rhumpucfm" path="res://assets/sprites/health.png" id="1_3smqr"]
+[ext_resource type="Script" path="res://scripts/healthbar.gd" id="2_ubphg"]
 
 [node name="HealthBar" type="TextureProgressBar"]
 anchors_preset = -1
@@ -16,4 +17,7 @@ texture_under = ExtResource("1_3smqr")
 texture_progress = ExtResource("1_3smqr")
 tint_under = Color(0.827451, 0, 0, 1)
 tint_progress = Color(0, 0.517647, 0.156863, 1)
+script = ExtResource("2_ubphg")
 metadata/_edit_use_anchors_ = true
+
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

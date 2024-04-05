@@ -1,6 +1,6 @@
-extends "res://Towars/scripts/towar_class.gd"
+extends Towar
 
 
 func _ready():
-	towar_constructor(50,30,[10,10],towar_type.healing_towar)
+	towar_constructor(50,30,[10,10])
 

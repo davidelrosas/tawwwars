@@ -1,0 +1,64 @@
+const Name = {
+	model.Basicattack: "Attack Towar",
+	model.Obelisk : "Obelisk",
+	model.Bomber : "Bomber"
+}
+
+const Description = {
+	model.Basicattack : "A Towar that shoots a projectile",
+	model.Obelisk : "A Towar that shoots a lazer beam",
+	model.Bomber : "A Towar that does splash damage"
+	}
+
+const Cost = {
+	model.Basicattack: 200,
+	model.Obelisk : 500,
+	model.Bomber : 1000
+}
+
+const Sprite = {
+	model.Basicattack: preload("res://Towars/Sprites/watch_tower.svg"),
+	model.Obelisk : preload("res://Towars/Sprites/obelisk.svg"),
+	model.Bomber : preload("res://Towars/Sprites/turret.svg")
+}
+
+
+
+static func model_metadata() -> Dictionary:
+	var dict = {"script_path":"res://Towars/scripts/attack_towar_subclass.gd"}
+	for i in model.values():
+		dict[i] = {
+			"Name": Name[i],
+			"Description": Description[i],
+			"Cost": Cost[i],
+			"Sprite": Sprite[i]
+			}
+	return dict
+
+
+static func model_metadata(model, metadata : Array) -> Dictionary:
+	var dict = {}
+	for i in model.values():
+		for 
+		dict[i] = {
+			"Name": Name[i],
+			"Description": description[i],
+			"Cost": Cost[i],
+			"Sprite": sprite[i]
+			}
+	return dict
+	pass
+
+
+# catalog functions
+
+#region CATALOG FUNCTIONS
+static func get_catalog() -> Dictionary:
+	return towar_catalog
+
+static func register_models(towar_type : Towar.towar_type,towar_models : Dictionary):
+	towar_catalog[towar_type] = towar_models
+
+static func get_towar_models(towar_type : Towar.towar_type) -> Dictionary:
+	return towar_catalog[towar_type]
+#endregion

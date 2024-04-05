@@ -1,6 +1,7 @@
 extends Node2D
 
 var slot_occ = false
+var towar = preload("res://Towars/prefabs/base_towar.tscn")
 var child_towar_ref
 
 func _on_button_pressed():
@@ -15,7 +16,7 @@ func _change_status(towar_ref):
 		slot_occ = false
 
 
-func _build_towar(towar, type, slot_ref):
+func _build_towar(type, slot_ref):
 	if slot_ref == self:
 		
 		var new_towar
