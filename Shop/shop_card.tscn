@@ -1,0 +1,99 @@
+[gd_scene load_steps=5 format=3 uid="uid://82y40qqwq1r5"]
+
+[ext_resource type="Script" path="res://Shop/shop_card.gd" id="1_vrr1x"]
+[ext_resource type="Texture2D" uid="uid://se4cfdbipjhx" path="res://assets/sprites/tiles/DesertTile.png" id="2_b1kfi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vcr6f"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dhngs"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="Shop Card" type="Control"]
+layout_mode = 3
+anchor_left = 0.389
+anchor_top = 0.296
+anchor_right = 0.562
+anchor_bottom = 0.691
+offset_left = -448.128
+offset_top = -191.808
+offset_right = 504.576
+offset_bottom = 200.232
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vrr1x")
+
+[node name="frontside" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 192.0
+offset_right = 640.0
+offset_bottom = 448.0
+texture = ExtResource("2_b1kfi")
+
+[node name="Name" type="Label" parent="frontside"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 184.0
+offset_bottom = 63.0
+text = "Name"
+label_settings = SubResource("LabelSettings_vcr6f")
+horizontal_alignment = 1
+
+[node name="PriceTag" type="Label" parent="frontside"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 184.0
+offset_right = 108.0
+offset_bottom = 207.0
+text = "200"
+label_settings = SubResource("LabelSettings_dhngs")
+
+[node name="Create" type="Button" parent="frontside"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 208.0
+offset_right = 144.0
+offset_bottom = 240.0
+text = "Create"
+
+[node name="Sprite2D" type="Sprite2D" parent="frontside"]
+position = Vector2(96, 128)
+
+[node name="backside" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 448.0
+offset_top = 192.0
+offset_right = 640.0
+offset_bottom = 448.0
+texture = ExtResource("2_b1kfi")
+
+[node name="VScrollBar" type="VScrollBar" parent="backside"]
+layout_mode = 0
+offset_left = 192.0
+offset_right = 232.0
+offset_bottom = 256.0
+
+[node name="Description" type="RichTextLabel" parent="backside"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 184.0
+offset_bottom = 248.0
+text = "This is a tower or something idk"
+fit_content = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Flip" type="Button" parent="."]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 192.0
+offset_right = 640.0
+offset_bottom = 216.0
+text = "info"
+
+[connection signal="pressed" from="frontside/Create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="Flip" to="." method="_on_flip_pressed"]

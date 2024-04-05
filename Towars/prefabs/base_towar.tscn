@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Towars/scripts/towar_frame.gd" id="1_ansiv"]
 [ext_resource type="Texture2D" uid="uid://ddlh7u6kjg6og" path="res://Towars/Sprites/watch_tower.svg" id="2_slah7"]
-[ext_resource type="PackedScene" uid="uid://ceogqelwduqjn" path="res://Towars/prefabs/healthbar.tscn" id="3_hpuhp"]
+[ext_resource type="PackedScene" uid="uid://ceogqelwduqjn" path="res://prefabs/healthbar.tscn" id="3_hpuhp"]
 
 [node name="Base Towar" type="StaticBody2D"]
 position = Vector2(578, 357)

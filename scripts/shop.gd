@@ -1,16 +1,15 @@
 extends Sprite2D
 
-var towar = preload("res://Towars/prefabs/base_towar.tscn")
-
 var current_slot_ref
 var counter = 0
+var attack_towar_subclass = preload("res://Towars/scripts/attack_towar_subclass.gd")
 
 
 func _ready() -> void:
 	SignalBus.open_shop.connect(_open_shop)
 
 func _on_button_pressed():
-	SignalBus.build_towar.emit(towar,Towar.towar_type.attack_towar,current_slot_ref)
+	SignalBus.build_towar.emit(Towar.towar_type.ATTACK,current_slot_ref)
 
 func _on_button_2_pressed():
 	pass # Replace with function body.
