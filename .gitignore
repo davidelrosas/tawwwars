@@ -3,3 +3,5 @@
 .vscode/
 *.tmp
 *[Tt]est*.tscn
+*[Tt]est*.gd
+*[Tt]est*.txt
