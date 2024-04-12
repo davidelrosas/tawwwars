@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxeqangxny0jk"]
+
+[ext_resource type="PackedScene" uid="uid://bka2fncbyl472" path="res://prefabs/manapool.tscn" id="1_y6bhj"]
+
+[node name="levelalpha" type="Node2D"]
+position = Vector2(181, 170)
+
+[node name="Manapool" parent="." instance=ExtResource("1_y6bhj")]
+
+[node name="Pizza" parent="Manapool" index="1"]
+division = 7
+swing = 0.66
+angle = 3.0
+
+[editable path="Manapool"]

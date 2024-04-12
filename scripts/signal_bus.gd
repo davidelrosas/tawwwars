@@ -7,3 +7,7 @@ signal build_towar(towar_type,slot_ref)
 signal towar_death(towar_ref)
 
 signal towar_info()
+
+signal advance_beat(beat : int)
+
+signal advance_measure()
