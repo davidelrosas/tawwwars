@@ -17,4 +17,3 @@ func _process(delta):
 	var curspeed = linear_velocity.length_squared()
 	if curspeed > speed*speed:
 		linear_velocity *= (speed / sqrt(curspeed))
-	pass

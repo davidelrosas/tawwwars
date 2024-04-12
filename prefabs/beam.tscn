@@ -7,8 +7,6 @@
 script = ExtResource("1_nlotm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(100, 0)
-rotation = 1.5708
 scale = Vector2(1.28635, 0.5)
 texture = ExtResource("2_ik3l1")
 region_enabled = true
