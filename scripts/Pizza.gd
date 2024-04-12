@@ -28,9 +28,9 @@ func advance_beat():
 		reverse = !(reverse || full_circle)
 		beat = 0
 		SignalBus.advance_measure.emit()
+	interval = 60 as float / bpm * get_swing_multiplier()
 	SignalBus.advance_beat.emit(beat)
 	
-	interval = 120 / bpm * get_swing_multiplier()
 	
 	make_peegles()
 	queue_redraw()

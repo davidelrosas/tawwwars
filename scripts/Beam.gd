@@ -6,9 +6,6 @@ extends Node2D
 @export var radius : float = 100
 
 var rps : float = 0
-
-func set_speed(bpm, division):
-	rps = bpm as float / 60 as float / division as float
 	
 func beam_normal() -> Vector2:
 	return Vector2.from_angle(PI+rotation)
@@ -23,4 +20,4 @@ func _ready():
 	$"Sprite2D".position = Vector2(0,-radius)
 
 func _process(delta):
-	rotate(PI * delta * rps)
+	rotate(TAU * delta * rps)
