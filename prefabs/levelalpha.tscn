@@ -8,14 +8,8 @@ position = Vector2(181, 170)
 [node name="Manapool" parent="." instance=ExtResource("1_y6bhj")]
 
 [node name="Pizza" parent="Manapool" index="1"]
-<<<<<<< HEAD
-division = 6
-swing = 0.8
-bpm = 240
-=======
 division = 7
 swing = 0.66
->>>>>>> 8a42e7c (added rythm pizza and manapool, which combines it with beam)
-angle = 3.0
+angle = 5.0
 
 [editable path="Manapool"]
