@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=2 format=3 uid="uid://b06bwtjgru6py"]
+=======
+[gd_scene load_steps=2 format=3 uid="uid://dm5p42nxsryym"]
+>>>>>>> 8a42e7c (added rythm pizza and manapool, which combines it with beam)
 
 [ext_resource type="Script" path="res://scripts/Pizza.gd" id="1_m6iyw"]
 
