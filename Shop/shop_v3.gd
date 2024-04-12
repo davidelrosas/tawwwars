@@ -1,16 +1,16 @@
 extends CanvasLayer
 
 var shop_open : bool
-var shop_cycle : Towar.towar_type
 var card = preload("res://Shop/shop_card.tscn")
 
 
 func _ready():
+	switch()
 	pass
 
 func switch():
 	var new_card = card.instantiate()
-	new_card.set_card_info(Towar.towar_type.ATTACK,1)
+	new_card.set_info(Towar.towar_model.HEALER)
 	add_child(new_card)
 	pass
 

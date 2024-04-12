@@ -1,64 +1,57 @@
 class_name Towar
 
-extends Node
-
-#Member variables
-
-#Towar Propperties
-var max_health : float
-var current_health : float
-var towar_range : float
-var resistances = [0,0]
-
-
-# Constants
+extends BaseEntity
 
 # Towar Subclasses
+enum towar_model {TURRET,HEALER,WALL}
 
-enum towar_type {ATTACK,HEALING,DEFENSE}
+#variables
+var key_bind : ActionSetFinder.ActionSet
 
-const script_paths = {
-	towar_type.ATTACK : "res://Towars/scripts/attack_towar_subclass.gd",
-	towar_type.HEALING : "res://Towars/scripts/healing_towar_subclass.gd",
-	towar_type.DEFENSE : "res://Towars/scripts/defense_towar_subclass.gd"
-}
+#functions
+func _ready():
+	appearence.get_node("Healthbar").max_value = stats.max_health
+	appearence.get_node("Healthbar").value = stats.max_health
+	self.add_child(appearence)
+	set_meta(&"HealthComponent", self.get_child(0).get_node("Healthbar")) #register node
 
-# Functions
+func _input(event):
+	if event.is_action_pressed(ActionSetFinder.actionSetDict[key_bind]):
+		active.action(target_data,self)
 
-#region BASE TOWAR FUNCTIONALITY
-func effect(effect : HealthEffect):
-	current_health = min(current_health - effect.power, max_health)
-	
-	
-	if effect.power > 0:
-		takes_damage(effect)
-	
-	else:
-		receives_heal(effect)
-	
 
-#damage function
-func takes_damage(attack: HealthEffect):
-	if current_health <= 0:
-		pass
+# provides metadata on Towar models
+static func get_info(model : towar_model, entry : String):
+	var meta = Towar.new(model)
+	match entry:
+		"Name":
+			return meta.metadata.displayname
+		"Description":
+			return meta.metadata.description
+		"Cost":
+			return str(meta.metadata.cost)
+		"Icon":
+			return meta.metadata.icon
 
-#heal function
-func receives_heal(heal: HealthEffect):
-	pass
 
-# death function maybe useless
-func death():
-		SignalBus.towar_death.emit(self)
-		queue_free()
-
-# action function
-func action(something):
-	pass
-#endregion
 
 #class constructor 
-func _init(max_health1, towar_range1, resistances1):
-	max_health = max_health1
-	current_health = max_health1
-	resistances = resistances1
-	towar_range = towar_range1
+func _init(model : towar_model):
+	match model:
+		towar_model.TURRET:
+			stats = Stats.new(100,50,20)
+			metadata = Metadata.new(&"Basic Turret", "It shoots", 200, preload("res://Towars/Sprites/watch_tower.svg"))
+			appearence = preload("res://Towars/prefabs/base_towar.tscn").instantiate()
+			active = load(Action.script_paths[Action.action_list.SIMPLESHOT]).new()
+			key_bind = ActionSetFinder.ActionSet.ACTION_SET_1
+			
+		towar_model.HEALER:
+			stats = Stats.new(70,50,15)
+			metadata = Metadata.new(&"Healer", "It Heals", 400, preload("res://Towars/Sprites/tower_round_flag.svg"))
+			appearence = preload("res://Towars/prefabs/base_towar.tscn").instantiate()
+			
+		towar_model.WALL:
+			stats = Stats.new(200,30,50)
+			metadata = Metadata.new(&"Basic Wall", "It's just there", 500, preload("res://Towars/Sprites/tower_square.svg"))
+			appearence = preload("res://Towars/prefabs/base_towar.tscn").instantiate()
+
