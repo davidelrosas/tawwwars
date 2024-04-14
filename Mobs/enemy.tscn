@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://bv0jnokvmu1k1"]
+
+[ext_resource type="Script" path="res://Mobs/enemy.gd" id="1_vfx00"]
+[ext_resource type="Texture2D" uid="uid://8wjv06v5lrrj" path="res://assets/sprites/D28D7E3F-8FED-4903-A4FB-11C7031F8CF0.jpg" id="2_nu0yx"]
+[ext_resource type="PackedScene" uid="uid://ceogqelwduqjn" path="res://Components/healthbar.tscn" id="4_jfuvr"]
+[ext_resource type="Script" path="res://Components/HurtBox.gd" id="4_nsma8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a07lg"]
+size = Vector2(36, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0lcn"]
+size = Vector2(36, 36)
+
+[node name="body" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_vfx00")
+
+[node name="body#Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0426829, 0.05)
+texture = ExtResource("2_nu0yx")
+
+[node name="body#CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a07lg")
+one_way_collision_margin = 0.0
+
+[node name="Healthbar" parent="." instance=ExtResource("4_jfuvr")]
+offset_left = -27.0
+offset_top = -37.0
+offset_right = 101.0
+offset_bottom = -21.0
+scale = Vector2(0.419118, 0.459184)
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("4_nsma8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_q0lcn")
