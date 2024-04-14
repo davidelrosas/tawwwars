@@ -12,3 +12,4 @@ signal advance_beat(beat : int)
 
 signal advance_measure()
 
+signal pause_rythm()

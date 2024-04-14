@@ -6,12 +6,11 @@ extends BaseEntity
 enum towar_model {TURRET,HEALER,WALL}
 
 #variables
-var key_bind : ActionSetFinder.ActionSet
+var key_bind : InputManager.Combo
 
 func _input(event):
-	if event.is_action_pressed(ActionSetFinder.actionSetDict[key_bind]):
+	if event.is_action_pressed("Use"): #temporary
 		active.action(target_data,self)
-
 
 # provides metadata on Towar models
 static func get_info(model : towar_model, entry : String):
@@ -39,7 +38,6 @@ func _init(model : towar_model):
 			appearence = preload("res://Towars/prefabs/turret.tscn").instantiate()
 			team = team_id.PLAYER
 			active = load(Action.script_paths[Action.action_list.SIMPLESHOT]).new()
-			key_bind = ActionSetFinder.ActionSet.ACTION_SET_1
 			
 		towar_model.HEALER:
 			stats = Stats.new(70,50,15,15)
@@ -47,7 +45,6 @@ func _init(model : towar_model):
 			appearence = preload("res://Towars/prefabs/healer.tscn").instantiate()
 			team = team_id.PLAYER
 			active = load(Action.script_paths[Action.action_list.SIMPLESHOT]).new()
-			key_bind = ActionSetFinder.ActionSet.ACTION_SET_1
 			
 			
 		towar_model.WALL:
@@ -56,7 +53,6 @@ func _init(model : towar_model):
 			appearence = preload("res://Towars/prefabs/wall.tscn").instantiate()
 			team = team_id.PLAYER
 			active = load(Action.script_paths[Action.action_list.SIMPLESHOT]).new()
-			key_bind = ActionSetFinder.ActionSet.ACTION_SET_1
 	
 	#ASSEMBLING NODE TREE
 	super._init()

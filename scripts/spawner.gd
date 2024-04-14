@@ -15,8 +15,8 @@ var schedule_index = 0
 var spawned = []
 
 static var enemy_types = {
-	"mob" : preload("res://prefabs/enemy.tscn"),
-	"mib" : preload("res://prefabs/enemy.tscn")
+	"mob" : preload("res://Mobs/allen.tscn"),
+	"mib" : preload("res://Mobs/bossman.tscn")
 }
 
 func n_can_spawn() -> int:

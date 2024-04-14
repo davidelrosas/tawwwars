@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://i4b4wpe84aox"]
+
+[sub_resource type="GDScript" id="GDScript_61oxr"]
+script/source = "extends Resource
+
+@export_category(\"rythm\")
+@export var division : int = 4
+@export var swing : float = 0.5
+@export var bpm : int = 120
+
+@export_category(\"shape\")
+@export var angle : float = TAU
+@export var radius : int = 200"
+
+[resource]
+resource_local_to_scene = true
+resource_name = "pizza_properties"
+script = SubResource("GDScript_61oxr")
+division = 4
+swing = 0.5
+bpm = 120
+angle = 6.28319
+radius = 200
