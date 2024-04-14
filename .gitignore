@@ -4,7 +4,4 @@
 *.tmp
 *[Tt]est*.tscn
 *[Tt]est*.gd
-*[Tt]est*.txt
-scons
-extension_api.json
-godot-cpp
+*[Tt]est*.tscn
