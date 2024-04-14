@@ -12,26 +12,31 @@ var passive : Action
 
 #Node Part of the Entity
 var appearence : CollisionObject2D #Has A Child called Healthbar
+var healthbar : Control
+var hurtbox : HurtBox
 
 #Targeting System
 var target_data := Target.new()
+var team : team_id
+
+enum team_id {PLAYER, ENEMY}
 
 #region Health management functions
-func effect(effect : HealthEffect):
-	self.get_meta(&"HealthComponent").value = min(self.get_meta(&"HealthComponent").value - effect.power, self.get_meta(&"HealthComponent").max_value)
-	if effect.power > 0:
-		damage(effect)
+func effect(health_effect : HealthEffect):
+	healthbar.value = min(healthbar.value - health_effect.power, healthbar.max_value)
+	if health_effect.power > 0:
+		takes_damage(health_effect)
 	
 	else:
-		heal(effect)
-	
+		receives_heal(health_effect)
+
 #damage function
-func damage(attack: HealthEffect):
-	if self.get_meta(&"HealthComponent").value <= 0:
+func takes_damage(attack: HealthEffect):
+	if healthbar.value <= 0:
 		death()
 
 #heal function
-func heal(heal: HealthEffect):
+func receives_heal(heal: HealthEffect):
 	pass
 
 # death function
@@ -39,3 +44,19 @@ func death():
 	SignalBus.death.emit(self)
 	queue_free()
 #endregion
+
+
+# Constructor only to be called by subclasses
+func _init():
+	#Setting Healthbar
+	healthbar = appearence.get_node("Healthbar")
+	healthbar.max_value = stats.max_health
+	healthbar.value = stats.max_health
+	
+	#connecting Hurtbox
+	hurtbox = appearence.get_node("HurtBox")
+	hurtbox.owner_entity_ref = self
+	hurtbox.set_layer(team)
+	
+	add_child(appearence)
+	

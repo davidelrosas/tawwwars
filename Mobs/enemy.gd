@@ -2,7 +2,7 @@ extends RigidBody2D
 
 @export_group("Enemy properties")
 @export var target : Vector2 = Vector2(0,0)
-@export var speed = 1000
+@export var speed = 100
 @export var acceleration = 100
 
 func _ready():
@@ -17,4 +17,3 @@ func _process(delta):
 	var curspeed = linear_velocity.length_squared()
 	if curspeed > speed*speed:
 		linear_velocity *= (speed / sqrt(curspeed))
-	pass

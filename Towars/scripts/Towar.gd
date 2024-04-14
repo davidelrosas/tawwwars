@@ -8,13 +8,6 @@ enum towar_model {TURRET,HEALER,WALL}
 #variables
 var key_bind : ActionSetFinder.ActionSet
 
-#functions
-func _ready():
-	appearence.get_node("Healthbar").max_value = stats.max_health
-	appearence.get_node("Healthbar").value = stats.max_health
-	self.add_child(appearence)
-	set_meta(&"HealthComponent", self.get_child(0).get_node("Healthbar")) #register node
-
 func _input(event):
 	if event.is_action_pressed(ActionSetFinder.actionSetDict[key_bind]):
 		active.action(target_data,self)
@@ -37,21 +30,34 @@ static func get_info(model : towar_model, entry : String):
 
 #class constructor 
 func _init(model : towar_model):
+	
+	#TOWAR MODELS
 	match model:
 		towar_model.TURRET:
-			stats = Stats.new(100,50,20)
+			stats = Stats.new(100,50,20,15)
 			metadata = Metadata.new(&"Basic Turret", "It shoots", 200, preload("res://Towars/Sprites/watch_tower.svg"))
 			appearence = preload("res://Towars/prefabs/base_towar.tscn").instantiate()
+			team = team_id.PLAYER
 			active = load(Action.script_paths[Action.action_list.SIMPLESHOT]).new()
 			key_bind = ActionSetFinder.ActionSet.ACTION_SET_1
 			
 		towar_model.HEALER:
-			stats = Stats.new(70,50,15)
+			stats = Stats.new(70,50,15,15)
 			metadata = Metadata.new(&"Healer", "It Heals", 400, preload("res://Towars/Sprites/tower_round_flag.svg"))
 			appearence = preload("res://Towars/prefabs/base_towar.tscn").instantiate()
+			team = team_id.PLAYER
+			active = load(Action.script_paths[Action.action_list.SIMPLESHOT]).new()
+			key_bind = ActionSetFinder.ActionSet.ACTION_SET_1
+			
 			
 		towar_model.WALL:
-			stats = Stats.new(200,30,50)
+			stats = Stats.new(200,30,50,15)
 			metadata = Metadata.new(&"Basic Wall", "It's just there", 500, preload("res://Towars/Sprites/tower_square.svg"))
 			appearence = preload("res://Towars/prefabs/base_towar.tscn").instantiate()
-
+			team = team_id.PLAYER
+			active = load(Action.script_paths[Action.action_list.SIMPLESHOT]).new()
+			key_bind = ActionSetFinder.ActionSet.ACTION_SET_1
+	
+	#ASSEMBLING NODE TREE
+	super._init()
+	
