@@ -2,7 +2,7 @@ class_name Towar
 
 extends BaseEntity
 
-# Towar Subclasses
+# Towar models
 enum towar_model {TURRET,HEALER,WALL}
 
 #variables

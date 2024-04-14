@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ddlh7u6kjg6og" path="res://Towars/Sprites/watch_tower.svg" id="2_slah7"]
 [ext_resource type="PackedScene" uid="uid://ceogqelwduqjn" path="res://Components/healthbar.tscn" id="3_lg5mo"]
-[ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_nachk"]
+[ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_vqsyu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ojlbx"]
 radius = 29.0
@@ -26,7 +26,7 @@ offset_right = 63.0
 offset_bottom = -77.0
 
 [node name="HurtBox" type="Area2D" parent="."]
-script = ExtResource("3_nachk")
+script = ExtResource("3_vqsyu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -11)

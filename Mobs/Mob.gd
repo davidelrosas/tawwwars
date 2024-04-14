@@ -2,10 +2,8 @@ class_name Mob
 
 extends BaseEntity
 
-# Towar Subclasses
-enum hostile_mob {ALLEN, BOSSMAN}
-enum friendly_mob {}
-enum neutral_mob {}
+# Mob types
+enum mob_type {ALLEN, BOSSMAN}
 
 var AI
 
@@ -14,16 +12,16 @@ func _ready():
 
 
 #class constructor 
-func _init(model : hostile_mob):
+func _init(model : mob_type):
 	
-	#TOWAR MODELS
+	#MOB TYPES
 	match model:
-		hostile_mob.ALLEN:
+		mob_type.ALLEN:
 			stats = Stats.new(20,10,10,0)
 			appearence = preload("res://Mobs/enemy.tscn").instantiate()
 			team = team_id.ENEMY
 			
-		hostile_mob.BOSSMAN:
+		mob_type.BOSSMAN:
 			stats = Stats.new(200,50,50,0)
 			appearence = preload("res://Mobs/enemy.tscn").instantiate()
 			team = team_id.ENEMY

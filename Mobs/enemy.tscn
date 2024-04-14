@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Mobs/enemy.gd" id="1_vfx00"]
 [ext_resource type="Texture2D" uid="uid://8wjv06v5lrrj" path="res://assets/sprites/D28D7E3F-8FED-4903-A4FB-11C7031F8CF0.jpg" id="2_nu0yx"]
-[ext_resource type="Script" path="res://Components/HurtBox.gd" id="4_1th02"]
 [ext_resource type="PackedScene" uid="uid://ceogqelwduqjn" path="res://Components/healthbar.tscn" id="4_jfuvr"]
+[ext_resource type="Script" path="res://Components/HurtBox.gd" id="4_nsma8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a07lg"]
 size = Vector2(36, 36)
@@ -31,7 +31,7 @@ offset_bottom = -21.0
 scale = Vector2(0.419118, 0.459184)
 
 [node name="HurtBox" type="Area2D" parent="."]
-script = ExtResource("4_1th02")
+script = ExtResource("4_nsma8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("RectangleShape2D_q0lcn")

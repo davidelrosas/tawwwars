@@ -30,7 +30,7 @@ func set_impact_detection():
 	impact_detector.add_child(col_shape)
 	
 	#This can lead to some problems
-	impact_detector.collision_layer = 1
+	impact_detector.collision_layer = 0
 	impact_detector.collision_mask = 1
 	add_child(impact_detector)
 
