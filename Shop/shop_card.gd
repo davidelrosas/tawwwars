@@ -1,26 +1,20 @@
 extends Control
 
-var towar_type : Towar.towar_type
-var towar_model_id = 0
+var towar_model : Towar.towar_model
 var towar = preload("res://Towars/prefabs/base_towar.tscn")
 
 #Sets metadata of towar into card
-func set_card_info(type : Towar.towar_type, model_id):
-	towar_type = type
-	towar_model_id = model_id
-	var towar_subclass = load(Towar.script_paths[towar_type])
-	var towar_metadata = towar_subclass.metadata
+func set_info(towar_model : Towar.towar_model):
+	$frontside/Name.text = Towar.get_info(towar_model, "Name")
+	$backside/Description.text = Towar.get_info(towar_model, "Description")
+	$frontside/Sprite2D.texture = Towar.get_info(towar_model, "Icon")
+	$frontside/PriceTag.text = Towar.get_info(towar_model, "Cost")
 	
-	$frontside/Name.text = towar_metadata[towar_model_id]["Name"]
-	$backside/Description.text = towar_metadata[towar_model_id]["Description"]
-	$frontside/Sprite2D.texture = towar_metadata[towar_model_id]["Sprite"]
-	$frontside/PriceTag.text = str(towar_metadata[towar_model_id]["Cost"])
+	self.towar_model = towar_model
 
 #maybe use has_method()
 func _on_create_pressed():
-	var new_towar = towar.instantiate()
-	new_towar.set_data(towar_type, towar_model_id)
-	add_child(new_towar)
+	pass
 
 func _on_flip_pressed():
 	$backside.visible = not $backside.visible

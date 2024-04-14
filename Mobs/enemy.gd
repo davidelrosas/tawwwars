@@ -2,7 +2,7 @@ extends RigidBody2D
 
 @export_group("Enemy properties")
 @export var target : Vector2 = Vector2(0,0)
-@export var speed = 1000
+@export var speed = 100
 @export var acceleration = 100
 
 func _ready():

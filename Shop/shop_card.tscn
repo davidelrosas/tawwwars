@@ -11,14 +11,11 @@ font_color = Color(0, 0, 0, 1)
 
 [node name="Shop Card" type="Control"]
 layout_mode = 3
-anchor_left = 0.389
-anchor_top = 0.296
-anchor_right = 0.562
-anchor_bottom = 0.691
-offset_left = -448.128
-offset_top = -191.808
-offset_right = 504.576
-offset_bottom = 200.232
+anchor_left = 0.007
+anchor_right = 0.007
+offset_left = -8.064
+offset_right = 1143.94
+offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vrr1x")
