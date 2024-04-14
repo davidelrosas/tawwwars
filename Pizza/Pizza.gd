@@ -12,10 +12,10 @@ var selected : Vector2i = Vector2i(-1,-1)
 
 var paused : bool = true
 	
-var slices : Array = []
+var slices : Array[PizzaSlice] = []
 
-func advance_beat(beet:int):
-	beat = beet
+func advance_beat(beat:int):
+	self.beat = beat
 	queue_redraw()
 
 func _draw():
@@ -32,8 +32,8 @@ func pause():
 	paused = true
 	SignalBus.pause_rythm.emit()
 
-func get_beat_angle(beet : int = beat):
-	return pizza_slice_script.get_start_angle(beet)
+func get_beat_angle(beat : int = self.beat):
+	return pizza_slice_script.get_start_angle(beat)
 	
 func change_selection(selector_ : Vector2i = selector):
 	slices[selected.x].deselect(selected.y)

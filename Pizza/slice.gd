@@ -1,4 +1,5 @@
 extends Node2D
+class_name PizzaSlice
 
 var slots : PackedInt64Array = [0]
 var slot_flags : PackedByteArray = [2]
@@ -10,8 +11,8 @@ static var reverse : bool = false
 
 enum Slotflags {Selected = 1, Rest = 2, Towar = 4, Temporary = 8}
 
-static func get_start_angle(beet : int) -> float:
-	return pizzaprops.div_angle() * (beet+int(reverse))
+static func get_start_angle(beat : int) -> float:
+	return pizzaprops.div_angle() * (beat+int(reverse))
 	
 func on_subdiv():
 	queue_redraw()
@@ -27,10 +28,10 @@ func get_arc(radius) -> PackedVector2Array:
 		points.push_back(Vector2(0,-radius).rotated(pizzaprops.div_angle()*(float(x)/float(num_points)+beat)))
 	return points
 
-func _init(beet : int, pizza_props):
-	beat = beet
+func _init(beat : int, pizza_props):
+	self.beat = beat
 	pizzaprops = pizza_props
-	interval = 60 as float / pizzaprops.bpm * pizzaprops.get_swing_multiplier(beet)
+	interval = 60 as float / pizzaprops.bpm * pizzaprops.get_swing_multiplier(beat)
 	
 func get_radius(subbeat : float):
 	return lerp(100, pizzaprops.radius, subbeat/slots.size())
