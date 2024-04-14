@@ -36,7 +36,7 @@ func _init(model : towar_model):
 		towar_model.TURRET:
 			stats = Stats.new(100,50,20,15)
 			metadata = Metadata.new(&"Basic Turret", "It shoots", 200, preload("res://Towars/Sprites/watch_tower.svg"))
-			appearence = preload("res://Towars/prefabs/base_towar.tscn").instantiate()
+			appearence = preload("res://Towars/prefabs/turret.tscn").instantiate()
 			team = team_id.PLAYER
 			active = load(Action.script_paths[Action.action_list.SIMPLESHOT]).new()
 			key_bind = ActionSetFinder.ActionSet.ACTION_SET_1
@@ -44,7 +44,7 @@ func _init(model : towar_model):
 		towar_model.HEALER:
 			stats = Stats.new(70,50,15,15)
 			metadata = Metadata.new(&"Healer", "It Heals", 400, preload("res://Towars/Sprites/tower_round_flag.svg"))
-			appearence = preload("res://Towars/prefabs/base_towar.tscn").instantiate()
+			appearence = preload("res://Towars/prefabs/healer.tscn").instantiate()
 			team = team_id.PLAYER
 			active = load(Action.script_paths[Action.action_list.SIMPLESHOT]).new()
 			key_bind = ActionSetFinder.ActionSet.ACTION_SET_1
@@ -53,7 +53,7 @@ func _init(model : towar_model):
 		towar_model.WALL:
 			stats = Stats.new(200,30,50,15)
 			metadata = Metadata.new(&"Basic Wall", "It's just there", 500, preload("res://Towars/Sprites/tower_square.svg"))
-			appearence = preload("res://Towars/prefabs/base_towar.tscn").instantiate()
+			appearence = preload("res://Towars/prefabs/wall.tscn").instantiate()
 			team = team_id.PLAYER
 			active = load(Action.script_paths[Action.action_list.SIMPLESHOT]).new()
 			key_bind = ActionSetFinder.ActionSet.ACTION_SET_1

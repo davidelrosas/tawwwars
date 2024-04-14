@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsewkrv6pfjmr"]
+
+[ext_resource type="Texture2D" uid="uid://c4nbwtqt7tsve" path="res://Towars/Sprites/tower_round_flag.svg" id="1_r83kp"]
+[ext_resource type="PackedScene" uid="uid://ceogqelwduqjn" path="res://Components/healthbar.tscn" id="2_6yyny"]
+[ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_kqye3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q2i28"]
+radius = 21.0
+height = 78.0
+
+[node name="Healer" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, -13.5)
+scale = Vector2(0.992188, 0.789063)
+texture = ExtResource("1_r83kp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-65, -33)
+polygon = PackedVector2Array(40, 55, 63, 75, 95, 62, 87, 35, 49, 39)
+
+[node name="Healthbar" parent="." instance=ExtResource("2_6yyny")]
+offset_left = -44.0
+offset_top = -85.0
+offset_right = 84.0
+offset_bottom = -69.0
+scale = Vector2(0.694191, 0.932402)
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("3_kqye3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(5, 0)
+shape = SubResource("CapsuleShape2D_q2i28")

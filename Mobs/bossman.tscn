@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://d13q4omrgcpxp"]
+
+[ext_resource type="Script" path="res://Mobs/enemy.gd" id="1_xxfii"]
+[ext_resource type="Texture2D" uid="uid://b6dpbjso6a55f" path="res://assets/sprites/icon.svg" id="2_aa7vg"]
+[ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_5awgq"]
+[ext_resource type="PackedScene" uid="uid://ceogqelwduqjn" path="res://Components/healthbar.tscn" id="4_h5rs6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_klre2"]
+size = Vector2(28, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1102"]
+size = Vector2(28, 30)
+
+[node name="Node2D" type="RigidBody2D"]
+script = ExtResource("1_xxfii")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.301026, 9.53674e-07)
+scale = Vector2(0.223454, 0.247339)
+texture = ExtResource("2_aa7vg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_klre2")
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("3_5awgq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_a1102")
+
+[node name="Healthbar" parent="." instance=ExtResource("4_h5rs6")]
+offset_left = -27.0
+offset_top = -31.0
+offset_right = 101.0
+offset_bottom = -15.0
+scale = Vector2(0.452991, 0.5)

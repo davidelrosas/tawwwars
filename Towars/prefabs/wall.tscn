@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cx0o8i57nd6q0"]
+
+[ext_resource type="Texture2D" uid="uid://dv2c4038n41nv" path="res://Towars/Sprites/tower_square.svg" id="1_yyab5"]
+[ext_resource type="PackedScene" uid="uid://ceogqelwduqjn" path="res://Components/healthbar.tscn" id="2_1tqvn"]
+[ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_2eitk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q2i28"]
+radius = 46.0752
+height = 98.0792
+
+[node name="Wall" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, -13.5)
+scale = Vector2(0.992188, 0.789063)
+texture = ExtResource("1_yyab5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-66, -42)
+polygon = PackedVector2Array(26, 56, 63, 76, 112, 56, 112, 19, 28, 34)
+
+[node name="Healthbar" parent="." instance=ExtResource("2_1tqvn")]
+offset_left = -44.0
+offset_top = -85.0
+offset_right = 84.0
+offset_bottom = -69.0
+scale = Vector2(0.694191, 0.932402)
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("3_2eitk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(2, -12)
+rotation = -1.60466
+shape = SubResource("CapsuleShape2D_q2i28")

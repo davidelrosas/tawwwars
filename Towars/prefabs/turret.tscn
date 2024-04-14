@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnxxof6gl7yal"]
+
+[ext_resource type="Texture2D" uid="uid://7le0wukijing" path="res://Towars/Sprites/obelisk.svg" id="1_s3km8"]
+[ext_resource type="PackedScene" uid="uid://ceogqelwduqjn" path="res://Components/healthbar.tscn" id="2_k5e3p"]
+[ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_6c7bm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q2i28"]
+radius = 46.0752
+height = 98.0792
+
+[node name="Turret" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_s3km8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-65, -33)
+polygon = PackedVector2Array(40, 55, 63, 75, 95, 62, 87, 35, 49, 39)
+
+[node name="Healthbar" parent="." instance=ExtResource("2_k5e3p")]
+offset_left = -43.0
+offset_top = -74.0
+offset_right = 85.0
+offset_bottom = -58.0
+scale = Vector2(0.694191, 0.932402)
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("3_6c7bm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(5, 0)
+shape = SubResource("CapsuleShape2D_q2i28")

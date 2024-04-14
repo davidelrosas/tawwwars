@@ -1,10 +1,10 @@
 extends Node
 
 var towar = Towar.new(Towar.towar_model.TURRET)
-var mob = Mob.new(Mob.hostile_mob.BOSSMAN)
+var mob = Mob.new(Mob.mob_type.BOSSMAN)
 
 func _ready():
-	mob.position = Vector2(1000,1000)
+	mob.position = Vector2(100,100)
 	towar.position = Vector2(500,100)
 	add_child(towar)
 	add_child(mob)
