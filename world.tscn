@@ -7,4 +7,4 @@
 script = ExtResource("1_qq5de")
 
 [node name="spawner" parent="." instance=ExtResource("2_4bq0r")]
-position = Vector2(1094, 587)
+position = Vector2(1082, 575)
