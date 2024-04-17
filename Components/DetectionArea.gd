@@ -27,11 +27,8 @@ func _exited_range(appearence):
 	print(owner_entity.target_data.in_range)
 
 func _check_overlap(base_entity):
-	if has_overlapping_bodies():
-		if get_overlapping_bodies().has(base_entity.appearence):
-			if !owner_entity.target_data.in_range.has(base_entity):
-				owner_entity.target_data.in_range.append(base_entity)
-				print("beans")
+	if has_overlapping_bodies() && get_overlapping_bodies().has(base_entity.appearence) && !owner_entity.target_data.in_range.has(base_entity):
+			owner_entity.target_data.in_range.append(base_entity)
 
 func set_layer(mode : detection_mode = detection_mode.ENEMIESONLY):
 		match mode:

@@ -49,7 +49,6 @@ func death():
 	queue_free()
 #endregion
 
-	#print(target_data.in_range)
 #Constructor only to be called by subclasses
 func _init():
 	#Setting Healthbar
