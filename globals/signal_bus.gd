@@ -1,5 +1,3 @@
-dev:globals/signal_bus.gd
-
 extends Node
 
 signal open_shop(slot_position,slot_ref)
