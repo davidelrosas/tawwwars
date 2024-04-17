@@ -4,19 +4,19 @@ class_name PizzaSlice
 var subslices : Array[Subslice]
 var beat : int = 0
 
-var pp : PizzaProperties
+var pizza_properties : PizzaProperties
 	
 func on_subdiv():
 	queue_redraw()
 	
 func angle():
-	return pp.angle / Timelord.tempo.division
+	return pizza_properties.angle / Timelord.tempo.division
 	
 func is_active()->bool:
 	return self.beat == Timelord.back_beat()
 
 func get_arc(radius) -> PackedVector2Array:
-	var num_points : int = pp.get_arc_num_points(radius,angle())
+	var num_points : int = pizza_properties.get_arc_num_points(radius,angle())
 	var points : PackedVector2Array = PackedVector2Array()
 	for x in range(num_points+1):
 		points.push_back(Vector2(radius,0).rotated(angle()*(float(x)/float(num_points)+beat)))
@@ -24,18 +24,18 @@ func get_arc(radius) -> PackedVector2Array:
 
 func _init(beat : int, pizza_props : PizzaProperties):
 	self.beat = beat
-	pp = pizza_props
+	pizza_properties = pizza_props
 	
 func get_radius(subbeat : float):
-	return lerp(100, pp.radius, subbeat / subslices.size())
+	return lerp(100, pizza_properties.radius, subbeat / subslices.size())
 	
 func _draw():
 	for x in range(subslices.size()):
 		var r_start = get_radius(x)
 		var r_end = get_radius(x+1)
-		var bottom_arc = pp.get_arc(r_start,beat)
+		var bottom_arc = pizza_properties.get_arc(r_start,beat)
 		bottom_arc.reverse()   #polygon point order
-		var top_arc = pp.get_arc(r_end,beat)
+		var top_arc = pizza_properties.get_arc(r_end,beat)
 		
 		draw_colored_polygon(bottom_arc+top_arc,subslices[x].color)
 		draw_polyline(top_arc,Color(0,0,0),6,true)

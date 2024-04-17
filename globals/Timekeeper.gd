@@ -56,9 +56,6 @@ func from_the_top():
 	paused = true
 	pause_play()
 	
-func back_beat() -> int:
-	return (int(1&measure)*(tempo.division-beat-1))+(int(1&~measure)*(beat))
-
 func _process(delta):
 	if (!paused):
 		elapsed += delta

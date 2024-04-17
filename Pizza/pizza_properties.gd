@@ -18,6 +18,9 @@ func get_beat_angle(beat = Timelord.beat):
 	
 func slice_angle():
 	return angle / Timelord.tempo.division
+	
+func is_beat_reverse() -> bool:
+	return !is_full_circle() && (1 & Timelord.measure)
 
 func get_arc(radius,beat) -> PackedVector2Array:
 	var num_points : int = get_arc_num_points(radius,slice_angle())
