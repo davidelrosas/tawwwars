@@ -2,7 +2,7 @@ extends Node2D
 
 var elapsed = 0
 var spawnarea = global_position
-@export var enemy_target : Vector2 = Vector2(0,0)
+@export var enemy_target := Target.new()
 @export var concurrent_spawns : int = 10
 
 @export var spawn_schedule : String = "mob:3,mib:1#2/mob:1,mib:1#1"
@@ -23,7 +23,7 @@ func n_can_spawn() -> int:
 	return concurrent_spawns - spawned.size()
 
 # spawnlist example: "mob:3,orc:2"
-func spawn_enemy(spawnlist, target):
+func spawn_enemy(spawnlist, target : Target):
 	spawnlist = spawnlist.split(",")
 	var newmob_type
 	for x in spawnlist:
@@ -34,9 +34,9 @@ func spawn_enemy(spawnlist, target):
 			print("trying to spawn invalid enemy type")
 			pass
 		for y in range(min(spawngroup[1].to_int(),n_can_spawn())):
-			var newmob = newmob_type.instantiate()
+			var newmob = Mob.new(Mob.mob_type.ALLEN)
 			newmob.global_position = spawnarea
-			newmob.target = enemy_target
+			newmob.target_data.current = enemy_target.current
 			spawned.push_back(newmob)
 			add_child(newmob)
 	

@@ -17,6 +17,7 @@ func _on_area_entered(hitbox : HitBox):
 func _init():
 	collision_layer = 0
 	collision_mask = 2
+	monitorable = false
 
 func set_layer(team):
 	match team:

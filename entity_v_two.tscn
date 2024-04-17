@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxciwwj1ypv8s"]
+
+[ext_resource type="Script" path="res://testBaseEntityv2.0.gd" id="1_xpyio"]
+
+[node name="EntityVTwo" type="CharacterBody2D"]
+script = ExtResource("1_xpyio")
+det_area = Callable()
+texture = Object(GDScriptNativeClass,"script":null)
+
+PENIS = 12

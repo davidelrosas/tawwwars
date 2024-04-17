@@ -8,7 +8,7 @@
 radius = 46.0752
 height = 98.0792
 
-[node name="Wall" type="StaticBody2D"]
+[node name="Wall" type="CharacterBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.5, -13.5)
