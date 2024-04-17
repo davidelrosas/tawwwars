@@ -19,7 +19,7 @@ func _ready():
 
 
 func _input(event):
-	if event.is_action_pressed("ActionSet1"):
+	if event.is_action_pressed("Use"):
 		var towar4 = Towar.new(Towar.towar_model.WALL)
 		towar4.position = get_viewport().get_mouse_position()
 		add_child(towar4)
