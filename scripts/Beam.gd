@@ -5,7 +5,10 @@ extends Node2D
 @export var working_range : float = 800
 @export var radius : float = 100
 
-var rps : float = 0
+var radians_ps : float = 0
+
+func set_rps(rps : float):
+	radians_ps = TAU * rps
 	
 func beam_normal() -> Vector2:
 	return Vector2.from_angle(PI+rotation)
@@ -17,7 +20,7 @@ func in_zone(pos : Vector2) -> bool:
 	return (abs(angle_to(pos)) <= active_angle) and (pos-global_position).length_squared() < working_range*working_range
 	
 func _ready():
-	$"Sprite2D".position = Vector2(0,-radius)
+	$"Sprite2D".position = Vector2(radius,0)
 
 func _process(delta):
-	rotate(TAU * delta * rps)
+	rotate(radians_ps * delta )

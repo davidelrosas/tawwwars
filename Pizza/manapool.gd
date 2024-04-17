@@ -1,14 +1,11 @@
 extends Node2D
 
-func _ready():
-	SignalBus.advance_beat.connect(on_beat_advance)
-	SignalBus.pause_rythm.connect(on_beat_advance.bind(0))
-
-func on_beat_advance(beat : int):
+func on_beat_advance():
 	var pizza = $"Pizza"
 	var beam = $"Beam"
-	beam.rotation = pizza.get_beat_angle(beat)
-	beam.rps = pizza.get_rps()
+	beam.rotation = pizza.pizza_properties.get_beat_angle(pizza.back_beat()+int(pizza.pizza_properties.is_beat_reverse()))
+	beam.radians_ps = (1 - 2*int(pizza.pizza_properties.is_beat_reverse())) * (pizza.pizza_properties.angle / Timelord.tempo.division) / Timelord.interval()
 
-func _process(delta):
-	pass
+func _ready():
+	Timelord.advance_beat.connect(on_beat_advance)
+	Timelord.pause_rythm.connect(on_beat_advance.bind(0))
