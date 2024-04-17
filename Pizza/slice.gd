@@ -1,111 +1,83 @@
 extends Node2D
 class_name PizzaSlice
 
-var slots : PackedInt64Array = [0]
-var slot_flags : PackedByteArray = [2]
+var subslices : Array[Subslice]
 var beat : int = 0
-var subbeat : int = -1
-static var pizzaprops : pizza_properties
-var interval : float = 0
-static var reverse : bool = false
 
-enum Slotflags {Selected = 1, Rest = 2, Towar = 4, Temporary = 8}
-
-static func get_start_angle(beat : int) -> float:
-	return pizzaprops.div_angle() * (beat+int(reverse))
+var pp : PizzaProperties
 	
 func on_subdiv():
 	queue_redraw()
 	
-func on_pause():
-	subbeat = -1
-	queue_redraw()
+func angle():
+	return pp.angle / Timelord.tempo.division
+	
+func is_active()->bool:
+	return self.beat == Timelord.back_beat()
 
 func get_arc(radius) -> PackedVector2Array:
-	var num_points : int = pizzaprops.get_arc_num_points(radius,pizzaprops.div_angle())
+	var num_points : int = pp.get_arc_num_points(radius,angle())
 	var points : PackedVector2Array = PackedVector2Array()
 	for x in range(num_points+1):
-		points.push_back(Vector2(0,-radius).rotated(pizzaprops.div_angle()*(float(x)/float(num_points)+beat)))
+		points.push_back(Vector2(radius,0).rotated(angle()*(float(x)/float(num_points)+beat)))
 	return points
 
-func _init(beat : int, pizza_props):
+func _init(beat : int, pizza_props : PizzaProperties):
 	self.beat = beat
-	pizzaprops = pizza_props
-	interval = 60 as float / pizzaprops.bpm * pizzaprops.get_swing_multiplier(beat)
+	pp = pizza_props
 	
 func get_radius(subbeat : float):
-	return lerp(100, pizzaprops.radius, subbeat/slots.size())
-	
-func get_rps():
-	return pizzaprops.div_angle() / ( interval * TAU * (int(!reverse) - int(reverse)))
-
-func elapse(elapsed : float) -> float:
-	var tmp : int = floor(float(slots.size()) * (elapsed / interval))
-	if (tmp > subbeat && subbeat < slots.size()):
-		subbeat = tmp
-		on_subdiv()
-	if (elapsed >= interval):
-		elapsed -= interval
-		var next_beat : int = beat
-		if ((!beat&&reverse) || (beat == pizzaprops.division-1 && !reverse)) && !pizzaprops.is_full_circle():
-			reverse = !reverse
-		else:
-			next_beat = (next_beat+int(!reverse) - int(reverse)) % pizzaprops.division
-		subbeat = -1
-		SignalBus.advance_beat.emit(next_beat)
-	return elapsed
+	return lerp(100, pp.radius, subbeat / subslices.size())
 	
 func _draw():
-	for x in range(slots.size()):
+	for x in range(subslices.size()):
 		var r_start = get_radius(x)
 		var r_end = get_radius(x+1)
-		var bottom_arc = get_arc(r_start)
+		var bottom_arc = pp.get_arc(r_start,beat)
 		bottom_arc.reverse()   #polygon point order
-		var top_arc = get_arc(r_end)
-		var arccolor = Color(1,0,0).lerp(Color(0,1,0),x as float / slots.size() as float).lerp(Color(0,0,1),beat as float / pizzaprops.division as float)
-		if (slot_flags[x] & Slotflags.Selected || subbeat == x):
-			arccolor = arccolor.inverted()
-		draw_colored_polygon(bottom_arc+top_arc,arccolor)
+		var top_arc = pp.get_arc(r_end,beat)
+		
+		draw_colored_polygon(bottom_arc+top_arc,subslices[x].color)
 		draw_polyline(top_arc,Color(0,0,0),6,true)
 
-func slot_insert(index, id, flags):
-	slots.insert(index,id)
-	slot_flags.insert(index,flags)
+func update_subdivisions():
+	Timelord.subdivisions[beat] = subslices.size()
+
+func slot_insert(index, ss : Subslice):
+	subslices.insert(index,ss)
+	update_subdivisions()
 	
 func slot_delete(index):
-	slots.remove_at(index)
-	slot_flags.remove_at(index)
+	subslices.remove_at(index)
+	update_subdivisions()
 
 func select(selector : int) -> int:
-	var selection = clamp(selector,0,slots.size() * 2)
+	var selection = clamp(selector,0,subslices.size() * 2)
 	if (!(1&selection)):
-		slot_insert(selection/2,0,Slotflags.Selected | Slotflags.Temporary)
+		slot_insert(selection/2,Subslice.new(Subslice.Slotflags.Selected | Subslice.Slotflags.Temporary))
 	else:
-		slot_flags[selection/2] = Slotflags.Selected
+		subslices[selection/2].flags |= Subslice.Slotflags.Selected
 	queue_redraw()
 	return selection / 2
 
 func deselect(index : int):
-	if Slotflags.Temporary & slot_flags[index]:
+	if Subslice.Slotflags.Temporary & subslices[index].flags:
 		slot_delete(index)
 	else:
-		slot_flags[index] ^= Slotflags.Selected
+		subslices[index].flags ^= Subslice.Slotflags.Selected
 	queue_redraw()
 
 func deselect_all():
-	var iter = range(slots.size())
+	var iter = range(subslices.size())
 	iter.reverse()
 	for x in iter:
-		if Slotflags.Selected & slot_flags[x]:
+		if Subslice.Slotflags.Selected & subslices[x].flags:
 			deselect(x)
-		
-func on_advance_beat(_beat):
-	queue_redraw()
 
 func _ready():
 	modulate.a = 0.3
-	SignalBus.advance_beat.connect(on_advance_beat)
-	SignalBus.pause_rythm.connect(on_pause)
-	for x in range(3):
-		slot_insert(0,0,0)
+	Timelord.advance_subbeat.connect(on_subdiv)
+	var how_many = 4
+	for x in range(how_many):
+		slot_insert(0,Subslice.new(2))
 	z_index=-1

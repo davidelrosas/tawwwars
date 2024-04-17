@@ -5,14 +5,12 @@
 
 [sub_resource type="Resource" id="Resource_ov24t"]
 script = ExtResource("2_r16t5")
-division = 8
-swing = 0.5
-bpm = 120
 angle = 5.0
 inner_radius = 100
 radius = 200
 circle_res = 128
 
 [node name="Pizza" type="Node2D"]
+visible = false
 script = ExtResource("1_moaok")
 properties = SubResource("Resource_ov24t")
