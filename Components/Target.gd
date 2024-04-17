@@ -13,5 +13,5 @@ func find_closest(caster : BaseEntity) -> BaseEntity:
 	var acc = null
 	for i in in_range:
 		if acc == null || caster.appearence.global_position - i.appearence.global_position < caster.appearence.global_position - acc.appearence.global_position:
-				acc = i
+			acc = i
 	return acc
