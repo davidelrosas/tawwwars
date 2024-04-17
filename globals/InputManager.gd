@@ -1,6 +1,5 @@
 extends Node
 
-
 #rythm input
 class Combo:
 	var events : Array[InputEventAction]
@@ -13,7 +12,7 @@ var time_tolerance : float = 0.3
 func on_beat_change():
 	time_tolerance = min (time_tolerance,Timelord.interval()/8)
 
-signal subbeat_hit(actionBits, timing : float)
+signal subbeat_hit(actionBits : int, timing : float)
 
 signal miss()
 
