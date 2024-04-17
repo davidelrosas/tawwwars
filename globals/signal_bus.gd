@@ -7,3 +7,6 @@ signal build_towar(towar_model,slot_ref)
 signal death(ref)
 
 signal towar_info()
+
+signal entity_entered_tree(ref : BaseEntity)
+

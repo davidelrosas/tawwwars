@@ -14,12 +14,16 @@ var passive : Action
 var appearence : CollisionObject2D #Has A Child called Healthbar
 var healthbar : Control
 var hurtbox : HurtBox
+var det_area : DetectionArea
 
 #Targeting System
 var target_data := Target.new()
 var team : team_id
 
 enum team_id {PLAYER, ENEMY}
+
+func _enter_tree():
+	SignalBus.entity_entered_tree.emit(self)
 
 #region Health management functions
 func effect(health_effect : HealthEffect):
@@ -45,8 +49,7 @@ func death():
 	queue_free()
 #endregion
 
-
-# Constructor only to be called by subclasses
+#Constructor only to be called by subclasses
 func _init():
 	#Setting Healthbar
 	healthbar = appearence.get_node("Healthbar")
@@ -58,5 +61,19 @@ func _init():
 	hurtbox.owner_entity_ref = self
 	hurtbox.set_layer(team)
 	
+	#making appearence be in the correct layers
+	if appearence is RigidBody2D:
+		appearence.gravity_scale = 0
+	
+	if team == team_id.PLAYER:
+		appearence.collision_layer = 0b01001
+	else:
+		appearence.collision_layer = 0b10001
+		
+	#creating detection range radius
+	det_area = DetectionArea.new(stats.detection_range)
+	det_area.owner_entity = self
+	det_area.set_layer(stats.detection_mode)
+	appearence.add_child(det_area)
 	add_child(appearence)
 	

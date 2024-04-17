@@ -8,7 +8,7 @@
 radius = 21.0
 height = 78.0
 
-[node name="Healer" type="StaticBody2D"]
+[node name="Healer" type="CharacterBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.5, -13.5)
