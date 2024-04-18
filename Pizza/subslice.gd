@@ -1,9 +1,9 @@
-class_name Subslice
 
 enum Slotflags {Selected = 1, Rest = 2, Towar = 4, Temporary = 8}
 var flags : int
 var baseColor : Color
 var color : Color
+var towar : Towar = null
 
 func _init(flags : int, color = Color(0.1,0.1,0.1)):
 	self.flags = flags

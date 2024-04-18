@@ -18,7 +18,6 @@ signal miss()
 
 var __action_bits : int = 0
 var __action_timing : float = 0
-var __action_sent : bool = false
 
 var rest_timer : Timer = Timer.new()
 
@@ -41,12 +40,15 @@ func process_action(action_index : int):
 
 #other input
 
+signal pause_play()
+
 func _process(_delta):
-	for action in range(rythmActions.size()):
-		if Input.is_action_just_pressed(rythmActions[action]):
-			process_action(action)
+	if !Timelord.is_paused():
+		for action in range(rythmActions.size()):
+			if Input.is_action_just_pressed(rythmActions[action]):
+				process_action(action)
 	if (Input.is_action_just_pressed("Pause")):
-		Timelord.pause_play()
+		pause_play.emit()
 			
 
 func _ready():
