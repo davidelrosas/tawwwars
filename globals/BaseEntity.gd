@@ -10,7 +10,6 @@ extends CharacterBody2D
 
 # Information about entity and functionality
 var stats : Stats
-var metadata : Metadata
 var active : Action
 var passive : Action
 

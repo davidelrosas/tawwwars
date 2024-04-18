@@ -10,7 +10,7 @@ var mode : detection_mode
 func _entered_range(entity):
 	if entity != owner_entity:
 		owner_entity.target_data.in_range.append(entity)
-		print(owner_entity.metadata.displayname)
+		print(str(owner_entity.model))
 		print(owner_entity.target_data.in_range)
 
 func _exited_range(entity):
@@ -18,7 +18,7 @@ func _exited_range(entity):
 		owner_entity.target_data.in_range.erase(entity)
 		if owner_entity.target_data.current == entity:
 			owner_entity.target_data.current = null 
-	print(owner_entity.metadata.displayname)
+	print(str(owner_entity.model))
 	print(owner_entity.target_data.in_range)
 
 func _check_overlap(entity):

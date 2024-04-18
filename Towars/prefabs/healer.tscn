@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dc3vhxmdealy3"]
 
-[ext_resource type="Script" path="res://Towars/scripts/Towar.gd" id="1_qtue3"]
-[ext_resource type="Script" path="res://Healthbar.gd" id="2_1fsah"]
+[ext_resource type="Script" path="res://Towars/scripts/Towar.gd" id="1_jf8lr"]
+[ext_resource type="Script" path="res://Components/Healthbar.gd" id="2_1fsah"]
 [ext_resource type="Texture2D" uid="uid://c4nbwtqt7tsve" path="res://Towars/Sprites/tower_round_flag.svg" id="3_cwlue"]
 [ext_resource type="Script" path="res://Components/HurtBox.gd" id="4_aotgt"]
 [ext_resource type="Script" path="res://Components/DetectionArea.gd" id="5_dvlrr"]
@@ -13,7 +13,7 @@ height = 108.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_0j1g1"]
 
 [node name="Towar" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "hurtbox", "det_area")]
-script = ExtResource("1_qtue3")
+script = ExtResource("1_jf8lr")
 model = 1
 healthbar = NodePath("Healthbar")
 hurtbox = NodePath("HurtBox")

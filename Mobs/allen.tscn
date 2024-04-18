@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwde7meq2eur4"]
+[gd_scene load_steps=9 format=3 uid="uid://cwde7meq2eur4"]
 
-[ext_resource type="Script" path="res://Mobs/enemy.gd" id="1_d1617"]
+[ext_resource type="Script" path="res://Mobs/Mob.gd" id="1_lju6v"]
+[ext_resource type="Script" path="res://Components/Healthbar.gd" id="2_0wxyc"]
 [ext_resource type="Texture2D" uid="uid://8wjv06v5lrrj" path="res://assets/sprites/D28D7E3F-8FED-4903-A4FB-11C7031F8CF0.jpg" id="2_kxcbb"]
 [ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_7d0xc"]
-[ext_resource type="PackedScene" uid="uid://ceogqelwduqjn" path="res://Components/healthbar.tscn" id="4_2s0dk"]
+[ext_resource type="Script" path="res://Components/DetectionArea.gd" id="5_enyhm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klre2"]
 size = Vector2(28, 30)
@@ -11,9 +12,20 @@ size = Vector2(28, 30)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1102"]
 size = Vector2(28, 30)
 
-[node name="Node2D" type="RigidBody2D"]
-gravity_scale = 0.0
-script = ExtResource("1_d1617")
+[sub_resource type="CircleShape2D" id="CircleShape2D_jprk5"]
+
+[node name="Mob" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "hurtbox", "det_area")]
+script = ExtResource("1_lju6v")
+healthbar = NodePath("Healthbar")
+hurtbox = NodePath("HurtBox")
+det_area = NodePath("DetectionArea")
+
+[node name="Healthbar" type="TextureProgressBar" parent="."]
+offset_left = -38.0
+offset_top = -24.0
+offset_right = -22.0
+offset_bottom = -11.0
+script = ExtResource("2_0wxyc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.034439, 0.0415531)
@@ -28,9 +40,8 @@ script = ExtResource("3_7d0xc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("RectangleShape2D_a1102")
 
-[node name="Healthbar" parent="." instance=ExtResource("4_2s0dk")]
-offset_left = -27.0
-offset_top = -31.0
-offset_right = 101.0
-offset_bottom = -15.0
-scale = Vector2(0.452991, 0.5)
+[node name="DetectionArea" type="Area2D" parent="."]
+script = ExtResource("5_enyhm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_jprk5")

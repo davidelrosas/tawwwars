@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://f7icr6l1wimr"]
 
 [ext_resource type="Script" path="res://Towars/scripts/Towar.gd" id="1_rll5i"]
-[ext_resource type="Script" path="res://Healthbar.gd" id="2_ai7fi"]
+[ext_resource type="Script" path="res://Components/Healthbar.gd" id="2_ai7fi"]
 [ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_1dsoj"]
 [ext_resource type="Texture2D" uid="uid://dv2c4038n41nv" path="res://Towars/Sprites/tower_square.svg" id="3_h7yhv"]
 [ext_resource type="Script" path="res://Components/DetectionArea.gd" id="4_s6sdj"]
@@ -12,12 +12,9 @@ height = 88.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_muomo"]
 
-[node name="Towar" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "hurtbox", "det_area")]
+[node name="Towar" type="CharacterBody2D"]
 script = ExtResource("1_rll5i")
 model = 2
-healthbar = NodePath("Healthbar")
-hurtbox = NodePath("HurtBox")
-det_area = NodePath("DetectionArea")
 
 [node name="Healthbar" type="TextureProgressBar" parent="."]
 offset_left = -81.0
