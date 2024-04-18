@@ -38,17 +38,31 @@ func process_action(action_index : int):
 		print(__action_timing)
 	__action_bits |= 1<<action_index
 
-#other input
-
+#utility signals
 signal pause_play()
+
+signal toggle_pizza_selection()
+
+#utility input
+
+
+#pizza selection
+
+var pizza_selector : Vector2i = Vector2i(0,0)
+
+var utilityActions : Dictionary = {
+	"Pause" : func(): pause_play.emit(),
+	"TogglePizzaSelection": func(): toggle_pizza_selection.emit()
+}
 
 func _process(_delta):
 	if !Timelord.is_paused():
 		for action in range(rythmActions.size()):
 			if Input.is_action_just_pressed(rythmActions[action]):
 				process_action(action)
-	if (Input.is_action_just_pressed("Pause")):
-		pause_play.emit()
+	for action in utilityActions.keys():
+		if Input.is_action_just_pressed(action):
+			utilityActions[action].call()
 			
 
 func _ready():
