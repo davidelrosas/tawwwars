@@ -5,6 +5,7 @@ var description : String
 var cost : float
 var icon : CompressedTexture2D
 
+@warning_ignore("shadowed_variable")
 func _init(displayname : StringName, description : String, cost : float, icon : CompressedTexture2D):
 	self.displayname = displayname
 	self.description = description
