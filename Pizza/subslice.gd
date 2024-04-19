@@ -14,7 +14,6 @@ func _init(flags_in : int, subbeat_in : int, slice_in : PizzaSlice):
 	self.flags = flags_in
 	subbeat = subbeat_in
 	slice = slice_in
-	Timelord.advance_measure.connect(on_measure)
 	
 func _draw():
 	var r_start = slice.get_radius(subbeat)
@@ -25,14 +24,18 @@ func _draw():
 	
 	draw_colored_polygon(bottom_arc+top_arc,color)
 	draw_polyline(top_arc,Color(0,0,0),6,true)
+	
+func reset_next()->void:
+	await Timelord.advance_subbeat
+	color = baseColor
+	queue_redraw()
 
 func on_activation(actionbits:int,timing:float)->void:
 	baseColor = Color(actionbits&1,actionbits&2,actionbits&4)
-	
+	queue_redraw()
+	reset_next()
+
 func on_subbeat()->void:
 	color = baseColor.inverted()
-	await Timelord.advance_subbeat
-	color = baseColor
-
-func on_measure()->void:
-	baseColor = Color(0,0,0)
+	queue_redraw()
+	reset_next()

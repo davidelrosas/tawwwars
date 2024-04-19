@@ -7,7 +7,7 @@ class Combo:
 var rythmActions : PackedStringArray = ["ActionSet1","ActionSet2","ActionSet3","ActionSet4"] 
 
 const simultaneous_press : float = 0.03
-var time_tolerance : float = 0.3
+var time_tolerance : float = 0.2
 
 func on_beat_change():
 	time_tolerance = min (time_tolerance,Timelord.interval()/8)
