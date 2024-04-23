@@ -7,7 +7,7 @@ class Combo:
 var rythmActions : PackedStringArray = ["ActionSet1","ActionSet2","ActionSet3","ActionSet4"] 
 
 const simultaneous_press : float = 0.03
-var time_tolerance : float = 0.3
+var time_tolerance : float = 0.2
 
 func on_beat_change():
 	time_tolerance = min (time_tolerance,Timelord.interval()/8)
@@ -18,7 +18,6 @@ signal miss()
 
 var __action_bits : int = 0
 var __action_timing : float = 0
-var __action_sent : bool = false
 
 var rest_timer : Timer = Timer.new()
 
@@ -39,14 +38,31 @@ func process_action(action_index : int):
 		print(__action_timing)
 	__action_bits |= 1<<action_index
 
-#other input
+#utility signals
+signal pause_play()
+
+signal toggle_pizza_selection()
+
+#utility input
+
+
+#pizza selection
+
+var pizza_selector : Vector2i = Vector2i(0,0)
+
+var utilityActions : Dictionary = {
+	"Pause" : func(): pause_play.emit(),
+	"TogglePizzaSelection": func(): toggle_pizza_selection.emit()
+}
 
 func _process(_delta):
-	for action in range(rythmActions.size()):
-		if Input.is_action_just_pressed(rythmActions[action]):
-			process_action(action)
-	if (Input.is_action_just_pressed("Pause")):
-		Timelord.pause_play()
+	if !Timelord.is_paused():
+		for action in range(rythmActions.size()):
+			if Input.is_action_just_pressed(rythmActions[action]):
+				process_action(action)
+	for action in utilityActions.keys():
+		if Input.is_action_just_pressed(action):
+			utilityActions[action].call()
 			
 
 func _ready():
