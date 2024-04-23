@@ -19,8 +19,8 @@ var team : team_id
 
 enum team_id {PLAYER, ENEMY}
 
-func _enter_tree():
-	SignalBus.entity_entered_tree.emit(self)
+#func _enter_tree():
+	#SignalBus.entity_entered_tree.emit(self)
 
 #region Health management functions
 func effect(health_effect : HealthEffect):

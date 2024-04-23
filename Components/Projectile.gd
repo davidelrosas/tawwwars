@@ -40,10 +40,9 @@ func _physics_process(delta: float):
 	
 	else:
 		#appearence for now because node2d doesnt move only the appearence
-		look_at(target.global_position)
-		position = position.move_toward(target.global_position, speed*delta)
+		look_at(target.appearence.global_position)
+		position = position.move_toward(target.appearence.global_position, speed*delta)
 
 func _on_impact_detection(body : BaseEntity):
-	#dont like the get_parent() here
 	if hitbox.collision_layer == body.get_node("HurtBox").collision_mask:
 		queue_free()
