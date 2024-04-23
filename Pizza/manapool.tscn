@@ -21,7 +21,6 @@ swing = 0.5
 bpm = 60.0
 
 [node name="Manapool" type="Node2D"]
-position = Vector2(426, 242)
 script = ExtResource("1_uhudf")
 
 [node name="Beam" parent="." instance=ExtResource("1_jrlky")]

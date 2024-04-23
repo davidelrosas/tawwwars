@@ -28,13 +28,13 @@ func _input(event):
 static func get_info(model : towar_model, entry : String):
 	match entry:
 		"Name":
-			return catalog[model].instantiate().metadata.displayname
+			return catalog[model].displayname
 		"Description":
-			return catalog[model].instantiate().metadata.description
+			return catalog[model].description
 		"Cost":
-			return str(catalog[model].instantiate().metadata.cost)
+			return str(catalog[model].cost)
 		"Icon":
-			return catalog[model].instantiate().metadata.metadata.icon
+			return catalog[model].icon
 	
 
 #model constructor 

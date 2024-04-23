@@ -34,7 +34,7 @@ func _exited_range(entity):
 		#owner_entity.target_data.in_range.append(entity)
 
 @warning_ignore("shadowed_variable")
-func set_properties(detection_range : float, mode : detection_mode = detection_mode.ENEMIESONLY,):
+func set_properties(detection_range : float, mode : detection_mode = detection_mode.ENEMIESONLY):
 	radius = detection_range
 	get_node("CollisionShape2D").shape.radius = radius
 	self.mode = mode
