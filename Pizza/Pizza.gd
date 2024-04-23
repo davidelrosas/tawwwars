@@ -2,11 +2,16 @@ extends Node2D
 
 @export var pizza_properties : PizzaProperties
 
-var selector : Vector2i = Vector2i(-1,-1)
 var selected : Vector2i = Vector2i(-1,-1)
 
 var slices : Array[PizzaSlice] = []
-	
+
+func get_subslice_from_vector (mouse_vector : Vector2)-> Vector2i:
+	var relative = (mouse_vector-global_position).rotated(-global_rotation)
+	var x = min(slices.size()-1,floor(slices.size() as float*fposmod(relative.angle(),TAU)/pizza_properties.angle))
+	var y = clampi(0,slices[x].subslices.size()*2,inverse_lerp(pizza_properties.inner_radius,pizza_properties.radius,relative.length())*slices[x].subslices.size()*2)
+	return Vector2i(x,y)
+
 func _draw():
 	var col = Color(0,0,0)
 	for x in range(Timelord.tempo.division+int(!pizza_properties.is_full_circle())):
@@ -14,22 +19,11 @@ func _draw():
 		draw_line(position+dir*pizza_properties.inner_radius, position+dir*pizza_properties.radius,col,5,true)
 	draw_arc(position,pizza_properties.inner_radius,0,pizza_properties.angle,pizza_properties.get_arc_num_points(pizza_properties.inner_radius,pizza_properties.angle),Color(0,0,0),5)
 	
-func change_selection(selector_ : Vector2i = selector):
+func change_selection(selector : Vector2i):
 	slices[selected.x].deselect(selected.y)
-	selector = selector_
-	selector.x = (selector.x % Timelord.tempo.division) if pizza_properties.is_full_circle() else (clampi(selector.x,0,Timelord.tempo.division-1))
+	selector.x = (selector.x % slices.size()) if pizza_properties.is_full_circle() else (clampi(selector.x,0,slices.size()-1))
 	selector.y = clampi(selector.y,0, slices[selector.x].slots.size()*2)
 	selected= Vector2i(selector.x,slices[selector.x].select(selector.y))
-			
-func select_slice_from_vector(vec : Vector2):
-	var vector = vec-global_position
-	selector.x = floor(inverse_lerp(0,pizza_properties.angle,vector.angle())*(Timelord.tempo.division) as float)
-	selector.y = int(inverse_lerp(pizza_properties.inner_radius,pizza_properties.radius,vector.length())*slices[min(Timelord.tempo.division-1,selector.x)].slots.size()*2)
-	change_selection()
-			
-func start_selecting():
-	selector = Vector2(0,0)
-	selected = Vector2(0,slices[selector.x].select(selector.y))
 	
 func on_subbeat():
 	slices[back_beat()].subslices[Timelord.subbeat].on_subbeat()

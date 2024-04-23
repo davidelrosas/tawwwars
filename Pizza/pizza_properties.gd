@@ -8,7 +8,7 @@ extends Resource
 @export var circle_res : int = 128
 
 func get_arc_num_points(radius_ : float, angle_: float)->int:
-	return int(radius_==0) + int(radius_!=0)*(circle_res * (angle_ / angle) * (radius_/radius))
+	return int(radius_==0) + int(radius_!=0)*(circle_res as float * (angle_ / angle) * (radius_/radius))
 	
 func is_full_circle():
 	return is_equal_approx(angle,TAU)
