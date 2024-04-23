@@ -1,34 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsewkrv6pfjmr"]
+[gd_scene load_steps=8 format=3 uid="uid://dc3vhxmdealy3"]
 
-[ext_resource type="Texture2D" uid="uid://c4nbwtqt7tsve" path="res://Towars/Sprites/tower_round_flag.svg" id="1_r83kp"]
-[ext_resource type="PackedScene" uid="uid://ceogqelwduqjn" path="res://Components/healthbar.tscn" id="2_6yyny"]
-[ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_kqye3"]
+[ext_resource type="Script" path="res://Towars/scripts/Towar.gd" id="1_jf8lr"]
+[ext_resource type="Script" path="res://Components/Healthbar.gd" id="2_1fsah"]
+[ext_resource type="Texture2D" uid="uid://c4nbwtqt7tsve" path="res://Towars/Sprites/tower_round_flag.svg" id="3_cwlue"]
+[ext_resource type="Script" path="res://Components/HurtBox.gd" id="4_aotgt"]
+[ext_resource type="Script" path="res://Components/DetectionArea.gd" id="5_dvlrr"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q2i28"]
-radius = 21.0
-height = 78.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6u582"]
+radius = 23.0
+height = 108.0
 
-[node name="Healer" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0j1g1"]
+
+[node name="Towar" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "hurtbox", "det_area")]
+script = ExtResource("1_jf8lr")
+model = 1
+healthbar = NodePath("Healthbar")
+hurtbox = NodePath("HurtBox")
+det_area = NodePath("DetectionArea")
+
+[node name="Healthbar" type="TextureProgressBar" parent="."]
+offset_left = -75.0
+offset_top = -78.0
+offset_right = -35.0
+offset_bottom = -38.0
+script = ExtResource("2_1fsah")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.5, -13.5)
-scale = Vector2(0.992188, 0.789063)
-texture = ExtResource("1_r83kp")
+texture = ExtResource("3_cwlue")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-65, -33)
-polygon = PackedVector2Array(40, 55, 63, 75, 95, 62, 87, 35, 49, 39)
-
-[node name="Healthbar" parent="." instance=ExtResource("2_6yyny")]
-offset_left = -44.0
-offset_top = -85.0
-offset_right = 84.0
-offset_bottom = -69.0
-scale = Vector2(0.694191, 0.932402)
+polygon = PackedVector2Array(-23, 46, -4, 58, 27, 54, 26, 29, -20, 30)
 
 [node name="HurtBox" type="Area2D" parent="."]
-script = ExtResource("3_kqye3")
+script = ExtResource("4_aotgt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(5, 0)
-shape = SubResource("CapsuleShape2D_q2i28")
+position = Vector2(2, 7)
+shape = SubResource("CapsuleShape2D_6u582")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+script = ExtResource("5_dvlrr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_0j1g1")

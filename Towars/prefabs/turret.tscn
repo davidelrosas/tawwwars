@@ -1,32 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnxxof6gl7yal"]
+[gd_scene load_steps=8 format=3 uid="uid://kw37c4p2wwvl"]
 
-[ext_resource type="Texture2D" uid="uid://7le0wukijing" path="res://Towars/Sprites/obelisk.svg" id="1_s3km8"]
-[ext_resource type="PackedScene" uid="uid://ceogqelwduqjn" path="res://Components/healthbar.tscn" id="2_k5e3p"]
-[ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_6c7bm"]
+[ext_resource type="Script" path="res://Towars/scripts/Towar.gd" id="1_r77qj"]
+[ext_resource type="Script" path="res://Components/Healthbar.gd" id="2_03xr1"]
+[ext_resource type="Texture2D" uid="uid://7le0wukijing" path="res://Towars/Sprites/obelisk.svg" id="3_5uiej"]
+[ext_resource type="Script" path="res://Components/HurtBox.gd" id="4_8a457"]
+[ext_resource type="Script" path="res://Components/DetectionArea.gd" id="5_hwprd"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bj2qo"]
-radius = 21.0
-height = 84.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_begq5"]
+radius = 24.0
+height = 88.0
 
-[node name="Turret" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7kfeq"]
+
+[node name="Towar" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "hurtbox", "det_area")]
+script = ExtResource("1_r77qj")
+healthbar = NodePath("Healthbar")
+hurtbox = NodePath("HurtBox")
+det_area = NodePath("DetectionArea")
+
+[node name="Healthbar" type="TextureProgressBar" parent="."]
+offset_left = -67.0
+offset_top = -77.0
+offset_right = -27.0
+offset_bottom = -37.0
+script = ExtResource("2_03xr1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_s3km8")
+texture = ExtResource("3_5uiej")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-65, -33)
-polygon = PackedVector2Array(40, 55, 63, 75, 95, 62, 87, 35, 49, 39)
-
-[node name="Healthbar" parent="." instance=ExtResource("2_k5e3p")]
-offset_left = -43.0
-offset_top = -74.0
-offset_right = 85.0
-offset_bottom = -58.0
-scale = Vector2(0.694191, 0.932402)
+position = Vector2(4, 0)
+polygon = PackedVector2Array(-25, 23, -5, 38, 26, 25, 23, 14, -17, 9)
 
 [node name="HurtBox" type="Area2D" parent="."]
-script = ExtResource("3_6c7bm")
+script = ExtResource("4_8a457")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(4, -4)
-shape = SubResource("CapsuleShape2D_bj2qo")
+position = Vector2(5, -4)
+shape = SubResource("CapsuleShape2D_begq5")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+script = ExtResource("5_hwprd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_7kfeq")

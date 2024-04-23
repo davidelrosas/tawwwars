@@ -1,35 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx0o8i57nd6q0"]
+[gd_scene load_steps=8 format=3 uid="uid://f7icr6l1wimr"]
 
-[ext_resource type="Texture2D" uid="uid://dv2c4038n41nv" path="res://Towars/Sprites/tower_square.svg" id="1_yyab5"]
-[ext_resource type="PackedScene" uid="uid://ceogqelwduqjn" path="res://Components/healthbar.tscn" id="2_1tqvn"]
-[ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_2eitk"]
+[ext_resource type="Script" path="res://Towars/scripts/Towar.gd" id="1_rll5i"]
+[ext_resource type="Script" path="res://Components/Healthbar.gd" id="2_ai7fi"]
+[ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_1dsoj"]
+[ext_resource type="Texture2D" uid="uid://dv2c4038n41nv" path="res://Towars/Sprites/tower_square.svg" id="3_h7yhv"]
+[ext_resource type="Script" path="res://Components/DetectionArea.gd" id="4_s6sdj"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q2i28"]
-radius = 46.0752
-height = 98.0792
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x7vmq"]
+radius = 37.0
+height = 88.0
 
-[node name="Wall" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_muomo"]
+
+[node name="Towar" type="CharacterBody2D"]
+script = ExtResource("1_rll5i")
+model = 2
+
+[node name="Healthbar" type="TextureProgressBar" parent="."]
+offset_left = -81.0
+offset_top = -68.0
+offset_right = -41.0
+offset_bottom = -28.0
+script = ExtResource("2_ai7fi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.5, -13.5)
-scale = Vector2(0.992188, 0.789063)
-texture = ExtResource("1_yyab5")
+position = Vector2(-5, 3)
+scale = Vector2(0.78125, 0.671875)
+texture = ExtResource("3_h7yhv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-66, -42)
-polygon = PackedVector2Array(26, 56, 63, 76, 112, 56, 112, 19, 28, 34)
-
-[node name="Healthbar" parent="." instance=ExtResource("2_1tqvn")]
-offset_left = -44.0
-offset_top = -85.0
-offset_right = 84.0
-offset_bottom = -69.0
-scale = Vector2(0.694191, 0.932402)
+polygon = PackedVector2Array(-40, 31, -13, 39, 32, 28, 28, -12, -13, 5, -35, -13)
 
 [node name="HurtBox" type="Area2D" parent="."]
-script = ExtResource("3_2eitk")
+script = ExtResource("3_1dsoj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(2, -12)
-rotation = -1.60466
-shape = SubResource("CapsuleShape2D_q2i28")
+position = Vector2(-4, 2)
+shape = SubResource("CapsuleShape2D_x7vmq")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+script = ExtResource("4_s6sdj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_muomo")
