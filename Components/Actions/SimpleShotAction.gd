@@ -9,7 +9,7 @@ func action(target : Target, caster : BaseEntity):
 			shoot(target, caster)
 
 func shoot(target : Target, caster : BaseEntity):
-	var projectile = preload("res://Components/projectile.tscn").instantiate()
+	var projectile = preload("res://Work_in_progress/projectile.tscn").instantiate()
 	var hitbox = projectile.get_node("HitBox")
 	hitbox.set_layer(caster.team)
 	

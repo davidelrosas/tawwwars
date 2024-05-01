@@ -10,16 +10,12 @@ var mode : detection_mode
 func _entered_range(entity):
 	if entity != owner_entity:
 		owner_entity.target_data.in_range.append(entity)
-		print(str(owner_entity.model))
-		print(owner_entity.target_data.in_range)
 
 func _exited_range(entity):
 	if owner_entity.target_data.in_range.has(entity):
 		owner_entity.target_data.in_range.erase(entity)
 		if owner_entity.target_data.current == entity:
 			owner_entity.target_data.current = null 
-	print(str(owner_entity.model))
-	print(owner_entity.target_data.in_range)
 
 #func _check_overlap(entity):
 	#seems obsolete, entities are entering list despite being spawned on top of others  

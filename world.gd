@@ -7,6 +7,7 @@ func _ready():
 	var new_towar = towar.instantiate()
 	new_towar.position = Vector2(300,100)
 	add_child(new_towar)
+	$spawner.enemy_target.current = new_towar
 	
 	#target of the spawner set on specific lvl
 
