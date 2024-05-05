@@ -2,7 +2,7 @@ class_name HitBox
 
 extends Area2D
 
-var health_effect := HealthEffect.new()
+var effects_list : Array[CombatEffect]
 
 func _init():
 	collision_layer = 2

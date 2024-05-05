@@ -1,8 +1,7 @@
 class_name Projectile
 
-extends Node2D
+extends HBAbility
 
-@export var hitbox : HitBox
 @export var travel_mode_id : travel_mode
 @export var collision_mode_id : collision_mode
 @export var speed : float

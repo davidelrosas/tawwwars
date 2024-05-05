@@ -23,21 +23,23 @@ enum team_id {PLAYER, ENEMY}
 	#SignalBus.entity_entered_tree.emit(self)
 
 #region Health management functions
-func effect(health_effect : HealthEffect):
-	healthbar.value = min(healthbar.value - health_effect.power, healthbar.max_value)
-	if health_effect.power > 0:
-		takes_damage(health_effect)
+func effect(effects_list : Array[CombatEffect]):
+	for i in effects_list:
+		#probably later inside of takes functions depending on resistances and effects!!
+		healthbar.value = min(healthbar.value - i.effect_damage, healthbar.max_value)
+		if i.effect_damage > 0:
+			takes_damage(i)
 	
-	else:
-		receives_heal(health_effect)
+		else:
+			takes_heal(i)
 
 #damage function
-func takes_damage(attack: HealthEffect):
+func takes_damage(attack: CombatEffect):
 	if healthbar.value <= 0:
 		death()
 
 #heal function
-func receives_heal(heal: HealthEffect):
+func takes_heal(heal: CombatEffect):
 	pass
 
 # death function

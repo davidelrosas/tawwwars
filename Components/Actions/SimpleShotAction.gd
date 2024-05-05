@@ -1,6 +1,6 @@
 extends Action
 
-func action(target : Target, caster : BaseEntity):
+func cast(target : Target, caster : BaseEntity):
 	if target.current != null:
 			shoot(target, caster)
 	else:

@@ -22,7 +22,7 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("Use"): #temporary
-		active.action(target_data,self)
+		active.cast(target_data,self)
 
 #get metadata about a specific towar
 static func get_info(model : towar_model, entry : String):

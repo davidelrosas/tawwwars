@@ -12,7 +12,7 @@ func _on_area_entered(hitbox : HitBox):
 		return
 	
 	if owner_entity_ref.has_method("effect"):
-		owner_entity_ref.effect(hitbox.health_effect)
+		owner_entity_ref.effect(hitbox.effects_list)
 
 func _init():
 	collision_layer = 0
