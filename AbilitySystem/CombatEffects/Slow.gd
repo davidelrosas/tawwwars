@@ -1,13 +1,13 @@
-class_name Slow
+class_name SlowEffect
 
-extends HealthEffect
+extends CombatEffect
 
 @export var duration : float
 
 
 func apply(entity : BaseEntity):
 	var backup = entity.movement_speed
-	entity.movement_speed -= power
+	entity.movement_speed -= effect_power
 	var timer = Timer.new()
 	timer.wait_time = duration 
 	timer.timeout.connect(_on_timer_timeout(entity))

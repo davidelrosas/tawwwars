@@ -10,7 +10,7 @@ extends CharacterBody2D
 
 # Information about entity and functionality
 var stats : Stats
-var active : Action
+var active : PackedScene
 var passive : Action
 
 #Targeting System
@@ -27,6 +27,7 @@ func effect(effects_list : Array[CombatEffect]):
 	for i in effects_list:
 		#probably later inside of takes functions depending on resistances and effects!!
 		healthbar.value = min(healthbar.value - i.effect_damage, healthbar.max_value)
+		i.apply(self)
 		if i.effect_damage > 0:
 			takes_damage(i)
 	

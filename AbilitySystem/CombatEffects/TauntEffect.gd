@@ -1,8 +1,6 @@
-class_name KnockbackEffect
+class_name TauntEffect
 
 extends CombatEffect
-
-var attack_position : Vector2
 
 func apply(entity : BaseEntity):
 	pass

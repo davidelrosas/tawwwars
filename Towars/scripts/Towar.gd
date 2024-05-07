@@ -22,7 +22,8 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("Use"): #temporary
-		active.cast(target_data,self)
+		var ability_instance = active.instantiate()
+		ability_instance.cast(target_data, self)
 
 #get metadata about a specific towar
 static func get_info(model : towar_model, entry : String):
@@ -44,14 +45,14 @@ func construct(model_id : towar_model):
 		towar_model.TURRET:
 			stats = Stats.new(100,500,DetectionArea.detection_mode.ENEMIESONLY,20,10)
 			team = team_id.PLAYER
-			active = load(Action.script_paths[Action.action_list.SIMPLESHOT]).new()
+			active = preload("res://AbilitySystem/Complex/Shockwave.tscn")
 			
 		towar_model.HEALER:
 			stats = Stats.new(70,500,DetectionArea.detection_mode.ALLIESONLY,15,10)
 			team = team_id.PLAYER
-			active = load(Action.script_paths[Action.action_list.AREAHEAL]).new()
+			active = preload("res://AbilitySystem/Common/single_target_heal.tscn")
 			
 		towar_model.WALL:
 			stats = Stats.new(200,300,DetectionArea.detection_mode.ENEMIESONLY,50,10)
 			team = team_id.PLAYER
-			active = load(Action.script_paths[Action.action_list.TAUNT]).new()
+			active = preload("res://AbilitySystem/Common/single_target_heal.tscn")

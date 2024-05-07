@@ -5,14 +5,13 @@ extends Node2D
 @export var animation : AnimationPlayer
 @export var effects_list : Array[CombatEffect]
 @export var max_targets : int
-@export var cast_position_id : cast_position
 
 #var next_part_trigger_condition
-
-enum cast_position {ONTARGET, ONSELF}
+var abilitytree : Ability
 
 func _ready():
-	animation.play("anim_1")
+	playanimation()
+
 
 func _process(delta):
 	if animation.current_animation == "":
@@ -21,3 +20,8 @@ func _process(delta):
 func cast(target : Target, caster):
 	pass
 
+func playanimation():
+	if animation != null:
+		animation.play("run")
+		if animation.current_animation == "run":
+			print("hey")

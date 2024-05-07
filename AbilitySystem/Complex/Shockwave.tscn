@@ -4,24 +4,51 @@
 [ext_resource type="Script" path="res://Components/HitBox.gd" id="2_nxi10"]
 [ext_resource type="Texture2D" uid="uid://cnqa5b5afqqdf" path="res://assets/sprites/beams.png" id="3_6qya5"]
 
-[sub_resource type="Animation" id="Animation_3idil"]
+[sub_resource type="Animation" id="Animation_d65kj"]
+resource_name = "run"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitBox/CollisionPolygon2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01, 1),
+"transitions": PackedFloat32Array(5.27803, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -272)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionPolygon2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(4.92458, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="Animation" id="Animation_vovie"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HBAbility/HitBox/CollisionPolygon2D:position")
+tracks/0/path = NodePath("HitBox/CollisionPolygon2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, -272)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HBAbility/HitBox/CollisionPolygon2D:scale")
+tracks/1/path = NodePath("HitBox/CollisionPolygon2D:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -31,50 +58,24 @@ tracks/1/keys = {
 "values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_yx784"]
-resource_name = "new_animation"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBAbility/HitBox/CollisionPolygon2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(4.43828, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -256)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HBAbility/HitBox/CollisionPolygon2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(4.28709, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.5625, 1.4375)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_st4x2"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ixvuu"]
 _data = {
-"RESET": SubResource("Animation_3idil"),
-"anim_1": SubResource("Animation_yx784")
+"RESET": SubResource("Animation_vovie"),
+"run": SubResource("Animation_d65kj")
 }
 
 [node name="HBAbility" type="Node2D" node_paths=PackedStringArray("hitbox", "animation")]
 script = ExtResource("1_eqrd7")
+cast_position_id = 1
 hitbox = NodePath("HitBox")
 animation = NodePath("AnimationPlayer")
-max_targets = -1
 
 [node name="HitBox" type="Area2D" parent="."]
+rotation = 1.5708
 script = ExtResource("2_nxi10")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox"]
+position = Vector2(0, -272)
 polygon = PackedVector2Array(-8, 0, 8, 0, 24, 8, 32, -8, 16, -16, -16, -16, -32, -8, -24, 8)
 
 [node name="Sprite2D" type="Sprite2D" parent="HitBox/CollisionPolygon2D"]
@@ -85,7 +86,6 @@ region_enabled = true
 region_rect = Rect2(227, -1.01975, 65, 92.0272)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_st4x2")
+"": SubResource("AnimationLibrary_ixvuu")
 }
