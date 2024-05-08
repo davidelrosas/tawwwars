@@ -7,6 +7,7 @@ extends Resource
 #@export var radius : float = 200
 @export var circle_res : int = 128
 
+<<<<<<< HEAD
 @export_category("rythm")
 @export var division : int = 4
 @export var bpm : float = 120
@@ -16,6 +17,10 @@ var subdivisions : PackedByteArray = [1,1,1,1]
 
 func get_arc_num_points(radius : float, angle_: float)->int:
 	return floori(circle_res as float * (angle_ / self.angle) * radius / 100)
+=======
+func get_arc_num_points(radius_ : float, angle_: float)->int:
+	return int(radius_==0) + int(radius_!=0)*(circle_res as float * (angle_ / angle) * (radius_/radius))
+>>>>>>> 2cf07bc0a87c746fe1911ea2e59f5adf6695a2e1
 	
 func is_full_circle():
 	return is_equal_approx(angle,TAU)
