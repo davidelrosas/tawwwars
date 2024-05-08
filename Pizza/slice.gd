@@ -21,8 +21,11 @@ func _init(beat : int, pizza_properties : PizzaProperties):
 	self.pizza_properties = pizza_properties
 
 func update_subdivisions():
-	pizza_properties.subdivisions[beat] = subslices.size()
-	for x in range(subslices.size()): subslices[x].update_slot(Vector2i(beat,x))
+	var acc : int = subslices.size()
+	for x in range(subslices.size()):
+		subslices[x].update_slot(Vector2i(beat,x))
+		acc -= ((subslices[x].flags & Subslice.Slotflags.Temporary) as bool as int)
+	pizza_properties.subdivisions[beat] = acc
 
 func slot_insert(index, ss : Subslice):
 	subslices.insert(index,ss)

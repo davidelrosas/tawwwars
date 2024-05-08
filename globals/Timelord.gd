@@ -15,13 +15,13 @@ func is_paused() -> bool:
 	return !is_processing()
 	
 func get_swing_multiplier() -> float:
-	return pizza_properties.get_swing_multiplier(beat)
+	return pizza_properties.get_swing_multiplier(Timelord.beat)
 
 func interval() -> float:
-	return pizza_properties.interval(beat)
+	return pizza_properties.interval(Timelord.beat)
 
 func sub_interval() -> float:
-	return pizza_properties.sub_interval(beat)
+	return pizza_properties.sub_interval(Timelord.beat)
 	
 @warning_ignore("shadowed_variable")
 func set_pp(pizza_properties : PizzaProperties):
@@ -55,10 +55,12 @@ func _process(delta):
 		subbeat+=1
 		if (subbeat == pizza_properties.subdivisions[beat]):
 			subbeat = 0
-			beat+=1
-			if (beat == pizza_properties.division):
-				beat = 0
+			var reverse = pizza_properties.is_beat_reverse()
+			beat+= 1 - (reverse as int<<1)
+			if (beat == pizza_properties.division || beat == -1):
 				measure+=1
+				reverse = pizza_properties.is_beat_reverse()
+				beat = (reverse as int) * (pizza_properties.division-1)
 				advance_measure.emit()
 			advance_beat.emit()
 		advance_subbeat.emit()

@@ -31,14 +31,11 @@ func highlight(selector : Vector2i):
 	queue_redraw()
 	
 func on_subbeat():
-	slices[back_beat()].subslices[Timelord.subbeat].on_subbeat()
+	slices[Timelord.beat].subslices[Timelord.subbeat].on_subbeat()
 	
 func on_subbeat_hit(actionbits,timing):
 	if actionbits:
-		slices[back_beat()].subslices[Timelord.subbeat].on_activation(actionbits,timing)
-
-func back_beat() -> int:
-	return (int(pizza_properties.is_beat_reverse())*(pizza_properties.division-Timelord.beat-1))+(int(!pizza_properties.is_beat_reverse())*(Timelord.beat))
+		slices[Timelord.beat].subslices[Timelord.subbeat].on_activation(actionbits,timing)
 	
 func _ready():
 	Timelord.beat_change.connect(initialise)

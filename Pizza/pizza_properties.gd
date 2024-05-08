@@ -4,7 +4,7 @@ extends Resource
 @export_category("shape")
 @export var angle : float = TAU
 @export var inner_radius : int = 100
-#@export var radius : float = 200
+@export var slice_height : int = 200
 @export var circle_res : int = 128
 
 @export_category("rythm")
@@ -15,7 +15,7 @@ extends Resource
 var subdivisions : PackedByteArray = [1,1,1,1]
 
 func get_arc_num_points(radius : float, angle_: float)->int:
-	return floori(circle_res as float * (angle_ / self.angle) * radius / 100)
+	return floori(circle_res as float * (angle_ / self.angle) * radius / slice_height)
 	
 func is_full_circle():
 	return is_equal_approx(angle,TAU)
@@ -38,7 +38,6 @@ func selection_clampi(selector: Vector2i)->Vector2i:
 		x
 		,clampi(selector.y,0, subdivisions[x]*2))
 	
-	
 func slice_angle():
 	return angle / division
 	
@@ -47,7 +46,7 @@ func is_beat_reverse() -> bool:
 
 func get_radius(slot : Vector2i)->float:
 	return inner_radius + (slot.y as float * 100)
-	#return lerp(100, radius, slot.y as float / subdivisions[slot.x])
+	#return lerp(100, slice_height, slot.y as float / subdivisions[slot.x])
 
 func get_max_radius_x(slice_x : int) -> float:
 	var x = mod_clamp_slice(slice_x)

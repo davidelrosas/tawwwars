@@ -7,11 +7,12 @@
 
 [sub_resource type="Resource" id="Resource_r4wcc"]
 script = ExtResource("4_cmht1")
-angle = 6.28319
+angle = 6.0
 inner_radius = 100
+slice_height = 200
 circle_res = 128
 division = 4
-bpm = 120.0
+bpm = 60.0
 swing = 0.5
 
 [node name="Manapool" type="Node2D"]

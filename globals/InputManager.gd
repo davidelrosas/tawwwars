@@ -96,6 +96,7 @@ func _process(_delta):
 			)
 			if selector_delta:
 				pizza_selector= Player.pizza_properties.selection_clampi(pizza_selector + selector_delta)
+				print (pizza_selector.y, Timelord.pizza_properties.subdivisions[pizza_selector.x])
 				changed_pizza_highlight.emit(pizza_selector)
 	
 	for action in utilityActions.keys():

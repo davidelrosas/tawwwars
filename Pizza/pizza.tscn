@@ -5,8 +5,9 @@
 
 [sub_resource type="Resource" id="Resource_quhno"]
 script = ExtResource("2_omvuk")
-angle = 6.28319
+angle = 6.0
 inner_radius = 100
+slice_height = 200
 circle_res = 128
 division = 4
 bpm = 120.0
