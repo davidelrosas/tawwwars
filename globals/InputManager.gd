@@ -41,16 +41,12 @@ func process_action(action_index : int):
 #utility signals
 signal pause_play()
 
-<<<<<<< HEAD
 signal build_mode_activation()
 signal action_mode_activation()
 
 signal changed_pizza_highlight(selector : Vector2i)
 
 #signal select_subslice(selector : Vector2ie)
-=======
-signal toggle_pizza_selection()
->>>>>>> 2cf07bc0a87c746fe1911ea2e59f5adf6695a2e1
 
 #utility input
 
@@ -59,7 +55,6 @@ signal toggle_pizza_selection()
 
 var pizza_selector : Vector2i = Vector2i(0,0)
 
-<<<<<<< HEAD
 
 #mutually exclusive input profiles
 enum InputMode {
@@ -103,18 +98,6 @@ func _process(_delta):
 				pizza_selector= Player.pizza_properties.selection_clampi(pizza_selector + selector_delta)
 				changed_pizza_highlight.emit(pizza_selector)
 	
-=======
-var utilityActions : Dictionary = {
-	"Pause" : func(): pause_play.emit(),
-	"TogglePizzaSelection": func(): toggle_pizza_selection.emit()
-}
-
-func _process(_delta):
-	if !Timelord.is_paused():
-		for action in range(rythmActions.size()):
-			if Input.is_action_just_pressed(rythmActions[action]):
-				process_action(action)
->>>>>>> 2cf07bc0a87c746fe1911ea2e59f5adf6695a2e1
 	for action in utilityActions.keys():
 		if Input.is_action_just_pressed(action):
 			utilityActions[action].call()
