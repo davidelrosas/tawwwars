@@ -1,8 +1,6 @@
 extends Node2D
 const Subslice = preload("res://Pizza/subslice.gd")
 
-const Subslice = preload("res://Pizza/subslice.gd")
-
 var subslices : Array[Subslice]
 var beat : int = 0
 

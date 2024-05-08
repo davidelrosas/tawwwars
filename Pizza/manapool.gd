@@ -10,10 +10,6 @@ func on_pause_play():
 	var beam = $"Beam"
 	beam.set_process(!beam.is_processing())
 
-func on_pause_play():
-	var beam = $"Beam"
-	beam.set_process(!beam.is_processing())
-
 func _ready():
 	Timelord.advance_beat.connect(on_beat_advance)
 	Timelord.pause_rythm.connect(on_beat_advance.bind(0))
