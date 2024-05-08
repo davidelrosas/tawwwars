@@ -15,13 +15,13 @@ func is_paused() -> bool:
 	return !is_processing()
 	
 func get_swing_multiplier() -> float:
-	return pizza_properties.get_swing_multiplier(Timelord.beat)
+	return pizza_properties.get_swing_multiplier(beat)
 
 func interval() -> float:
-	return pizza_properties.interval(Timelord.beat)
+	return pizza_properties.interval(beat)
 
 func sub_interval() -> float:
-	return pizza_properties.sub_interval(Timelord.beat)
+	return pizza_properties.sub_interval(beat)
 	
 @warning_ignore("shadowed_variable")
 func set_pp(pizza_properties : PizzaProperties):
