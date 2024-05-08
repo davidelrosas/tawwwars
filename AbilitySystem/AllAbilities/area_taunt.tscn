@@ -1,15 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnowh4v5ndv8y"]
+[gd_scene load_steps=3 format=3 uid="uid://bnowh4v5ndv8y"]
 
 [ext_resource type="Script" path="res://AbilitySystem/AllAbilities/area_taunt.gd" id="1_ad1ak"]
 [ext_resource type="Script" path="res://AbilitySystem/CombatEffects/TauntEffect.gd" id="2_2popg"]
 
-[sub_resource type="Resource" id="Resource_gltu4"]
-script = ExtResource("2_2popg")
-duration = 3.0
-effect_damage = 0.0
-effect_power = 0.0
-
-[node name="AreaTaunt" type="Node2D"]
+[node name="AreaTaunt" type="Node2D" node_paths=PackedStringArray("effects_list")]
 script = ExtResource("1_ad1ak")
 max_targets = 3
-effects_list = Array[Resource("res://AbilitySystem/CombatEffects/CombatEffect.gd")]([SubResource("Resource_gltu4")])
+effects_list = [NodePath("Effects/TauntEffect")]
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="TauntEffect" type="Node" parent="Effects"]
+script = ExtResource("2_2popg")
+duration = 5.0

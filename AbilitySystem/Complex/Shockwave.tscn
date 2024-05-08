@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Components/HitBox.gd" id="2_nxi10"]
 [ext_resource type="Script" path="res://AbilitySystem/CombatEffects/Knockback.gd" id="2_vtpp3"]
 [ext_resource type="Texture2D" uid="uid://cnqa5b5afqqdf" path="res://assets/sprites/beams.png" id="3_6qya5"]
-[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/Slow.gd" id="3_c2nde"]
+[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/SlowEffect.gd" id="3_c2nde"]
 
 [sub_resource type="Resource" id="Resource_kdoxw"]
 script = ExtResource("2_vtpp3")

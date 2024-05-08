@@ -14,6 +14,7 @@ var active : PackedScene
 var passive : Action
 
 #resistances/ active effects
+#maybe make this a node that holds the effects? (on the scene or make the node in code)
 var active_effects : Array[CombatEffect]
 
 #Targeting System
@@ -27,24 +28,35 @@ enum team {PLAYER, ENEMY}
 
 #region Health management functions
 func effect(effects_list : Array[CombatEffect]):
-	initialize_combat_effects(effects_list, self)
+	#initialize_combat_effects(effects_list, self)
 	for i in effects_list:
 		#probably later inside of takes functions depending on resistances and effects!!
 		healthbar.value = min(healthbar.value - i.effect_damage, healthbar.max_value)
-		i.apply(self)
+		
+		print(self.stats.max_health)
+		print(active_effects)
+		if effect_not_active_or_greater(i) == true:
+			var effect = i.duplicate()
+			add_child(effect)
+			active_effects.append(effect)
+			effect.apply(self)
+
 		#if its just a regular combat_effect its bloathing, also when do we free them?
-		active_effects.append(i)
 		if i.effect_damage > 0:
 			takes_damage(i)
-	
+			
 		else:
 			takes_heal(i)
 
-#this one appears on abilities too, maybe it should be somewhere else
-#or actually maybe abilities should call it from here!!
-func initialize_combat_effects(effects : Array[CombatEffect], entity):
-	for i in effects:
-		i.casted_on = entity
+func effect_not_active_or_greater(effect) -> bool:
+	var acc = true
+	for i in active_effects:
+		if effect.effect_id != i.effect_id || effect.effect_id == i.effect_id && effect.power > i.power:
+			acc = true
+		else:
+			acc = false
+	return acc
+	
 
 #damage function
 func takes_damage(attack: CombatEffect):

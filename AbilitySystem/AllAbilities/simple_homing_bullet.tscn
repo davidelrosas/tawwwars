@@ -2,23 +2,19 @@
 
 [ext_resource type="Script" path="res://AbilitySystem/AllAbilities/simple_homing_bullet.gd" id="1_8hqxr"]
 [ext_resource type="Script" path="res://Components/HitBox.gd" id="1_vypa5"]
-[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/CombatEffect.gd" id="2_nt5mf"]
 [ext_resource type="Texture2D" uid="uid://cnqa5b5afqqdf" path="res://assets/sprites/beams.png" id="3_bhbo3"]
-
-[sub_resource type="Resource" id="Resource_cryaa"]
-script = ExtResource("2_nt5mf")
-effect_damage = 20.0
-effect_power = 0.0
+[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/SlowEffect.gd" id="3_o0avn"]
+[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/HealthEffect.gd" id="4_vjr5i"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uc80h"]
 radius = 5.0
 height = 14.1393
 
-[node name="SimpleHomingBullet" type="Node2D" node_paths=PackedStringArray("hitbox", "impact_detector")]
+[node name="SimpleHomingBullet" type="Node2D" node_paths=PackedStringArray("hitbox", "impact_detector", "effects_list")]
 script = ExtResource("1_8hqxr")
 hitbox = NodePath("HitBox")
 impact_detector = NodePath("Impact Detector")
-effects_list = Array[ExtResource("2_nt5mf")]([SubResource("Resource_cryaa")])
+effects_list = [NodePath("Effects/HealthEffect"), NodePath("Effects/SlowEffect")]
 speed = 200.0
 
 [node name="HitBox" type="Area2D" parent="."]
@@ -40,3 +36,14 @@ region_rect = Rect2(82, 111, 24, 29)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Impact Detector"]
 position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_uc80h")
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="HealthEffect" type="Node" parent="Effects"]
+script = ExtResource("4_vjr5i")
+effect_damage = 20.0
+
+[node name="SlowEffect" type="Node" parent="Effects"]
+script = ExtResource("3_o0avn")
+duration = 3.0
+effect_power = 60.0

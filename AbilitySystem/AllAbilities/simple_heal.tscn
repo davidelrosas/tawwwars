@@ -1,13 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://ulcagic0gfem"]
+[gd_scene load_steps=3 format=3 uid="uid://ulcagic0gfem"]
 
 [ext_resource type="Script" path="res://AbilitySystem/AllAbilities/simple_heal.gd" id="1_iw885"]
-[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/CombatEffect.gd" id="2_j2tk6"]
+[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/HealthEffect.gd" id="2_3uoyi"]
 
-[sub_resource type="Resource" id="Resource_cmrwg"]
-script = ExtResource("2_j2tk6")
-effect_damage = -20.0
-effect_power = 0.0
-
-[node name="SimpleHeal" type="Node2D"]
+[node name="SimpleHeal" type="Node2D" node_paths=PackedStringArray("effects_list")]
 script = ExtResource("1_iw885")
-effects_list = Array[ExtResource("2_j2tk6")]([SubResource("Resource_cmrwg")])
+effects_list = [NodePath("Effects/HealthEffect")]
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="HealthEffect" type="Node" parent="Effects"]
+script = ExtResource("2_3uoyi")
+effect_damage = -20.0

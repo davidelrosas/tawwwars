@@ -13,17 +13,13 @@ func cast(target_data : Target, caster : BaseEntity):
 	set_properties(caster, mode)
 	global_position = caster.global_position
 	caster.get_parent().add_child(self)
-	
-	
 
 func _on_entered_range(entity):
 	in_area.append(entity)
-	print(in_area)
 
 func _on_exited_range(entity):
 	if in_area.has(entity):
 		in_area.erase(entity)
-	print(in_area)
 
 @warning_ignore("shadowed_variable")
 func set_properties(caster, mode : detection_mode = detection_mode.ENEMIESONLY):
