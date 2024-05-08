@@ -4,9 +4,7 @@ var measure : int = 0
 var beat : int = 0
 var subbeat : int = 0
 
-var tempo : Tempo
-
-var subdivisions : PackedByteArray = [1,1,1,1]
+var pizza_properties : PizzaProperties
 
 signal beat_change()
 
@@ -15,23 +13,22 @@ func _ready():
 
 func is_paused() -> bool:
 	return !is_processing()
-
-func get_swing_multiplier(beat_in : int):
-	return 2*((1-tempo.swing) if 1 & beat_in else tempo.swing)
-
-func sync(tempo_in : Tempo):
-	self.tempo = tempo_in
-	subdivisions.resize(tempo.division)
-	subdivisions.fill(1)
-	if !InputManager.pause_play.is_connected(on_pause_play):
-		InputManager.pause_play.connect(on_pause_play)
-	beat_change.emit()
+	
+func get_swing_multiplier() -> float:
+	return pizza_properties.get_swing_multiplier(beat)
 
 func interval() -> float:
-	return 60 as float / tempo.bpm as float * get_swing_multiplier(beat)
+	return pizza_properties.interval(beat)
 
 func sub_interval() -> float:
-	return interval() / subdivisions[beat] as float
+	return pizza_properties.sub_interval(beat)
+	
+@warning_ignore("shadowed_variable")
+func set_pp(pizza_properties : PizzaProperties):
+	self.pizza_properties = pizza_properties
+	if !InputManager.pause_play.is_connected(on_pause_play):
+		InputManager.pause_play.connect(on_pause_play)
+	from_the_top()
 
 func to_closest_subbeat() -> float:
 	var halftime = sub_interval() / 2
@@ -56,10 +53,10 @@ func _process(delta):
 	if (elapsed >= sub_interval()):
 		elapsed -= sub_interval()
 		subbeat+=1
-		if (subbeat == subdivisions[beat]):
+		if (subbeat == pizza_properties.subdivisions[beat]):
 			subbeat = 0
 			beat+=1
-			if (beat == tempo.division):
+			if (beat == pizza_properties.division):
 				beat = 0
 				measure+=1
 				advance_measure.emit()

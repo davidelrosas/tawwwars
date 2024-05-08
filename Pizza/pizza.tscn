@@ -1,7 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dm5p42nxsryym"]
+[gd_scene load_steps=4 format=3 uid="uid://dm5p42nxsryym"]
 
-[ext_resource type="Script" path="res://Pizza/Pizza.gd" id="1_moaok"]
+[ext_resource type="Script" path="res://Pizza/pizza.gd" id="1_moaok"]
+[ext_resource type="Script" path="res://Pizza/pizza_properties.gd" id="2_omvuk"]
+
+[sub_resource type="Resource" id="Resource_quhno"]
+script = ExtResource("2_omvuk")
+angle = 6.28319
+inner_radius = 100
+circle_res = 128
+division = 4
+bpm = 120.0
+swing = 0.5
 
 [node name="Pizza" type="Node2D"]
-visible = false
 script = ExtResource("1_moaok")
+pizza_properties = SubResource("Resource_quhno")
