@@ -6,6 +6,7 @@ extends Ability
 
 func cast(target : Target, caster):
 	if max_targets == 1:
+		target.find(targeting, caster)
 		single_cast(target, caster)
 	else:
 		multi_cast(target, caster)

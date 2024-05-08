@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b63x4jb68aq01"]
+
+[ext_resource type="Script" path="res://AbilitySystem/AllAbilities/exploding_shot.gd" id="1_gpyxl"]
+
+[node name="ExplodingShot" type="Node2D"]
+script = ExtResource("1_gpyxl")

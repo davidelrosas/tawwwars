@@ -1,11 +1,11 @@
-extends Node
+extends Node2D
 
 var towar = preload("res://Towars/prefabs/turret.tscn")
 var healer = preload("res://Towars/prefabs/healer.tscn")
 
 func _ready():
 	var new_towar = towar.instantiate()
-	new_towar.position = Vector2(500,250)
+	new_towar.global_position = Vector2(500,500)
 	add_child(new_towar)
 	$spawner.enemy_target.current = new_towar
 	

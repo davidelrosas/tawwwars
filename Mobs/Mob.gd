@@ -16,7 +16,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	if target_data.current:
+	if target_data.current != null:
 		look_at(target_data.current.global_position)
 		direction = (target_data.current.global_position - global_position).normalized()
 		global_position += direction * movement_speed * delta
@@ -28,8 +28,8 @@ func construct(type : mob_type):
 	match type:
 		mob_type.ALLEN:
 			stats = Stats.new(20,100,DetectionArea.detection_mode.ENEMIESONLY,10,0)
-			team = team_id.ENEMY
+			team_id = team.ENEMY
 			
 		mob_type.BOSSMAN:
 			stats = Stats.new(200,500,DetectionArea.detection_mode.ENEMIESONLY,50,0)
-			team = team_id.ENEMY
+			team_id = team.ENEMY

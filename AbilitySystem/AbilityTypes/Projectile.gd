@@ -41,7 +41,6 @@ func _physics_process(delta: float):
 		position += direction * speed * delta
 	
 	else:
-		#appearence for now because node2d doesnt move only the appearence
 		look_at(target.global_position)
 		position = position.move_toward(target.global_position, speed*delta)
 

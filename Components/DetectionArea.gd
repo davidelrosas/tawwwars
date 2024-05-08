@@ -33,15 +33,16 @@ func _exited_range(entity):
 func set_properties(detection_range : float, mode : detection_mode = detection_mode.ENEMIESONLY):
 	radius = detection_range
 	get_node("CollisionShape2D").shape.radius = radius
+	collision_layer = 0
 	self.mode = mode
 	match mode:
 		detection_mode.ENEMIESONLY:
-			if owner_entity.team == BaseEntity.team_id.PLAYER:
+			if owner_entity.team_id == BaseEntity.team.PLAYER:
 				collision_mask = 16
 			else: 
 				collision_mask = 8
 		detection_mode.ALLIESONLY:
-			if owner_entity.team == BaseEntity.team_id.PLAYER:
+			if owner_entity.team_id == BaseEntity.team.PLAYER:
 				collision_mask = 8
 			else: 
 				collision_mask = 16

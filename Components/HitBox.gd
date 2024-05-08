@@ -9,12 +9,11 @@ func _init():
 	collision_mask = 0
 	monitoring = false
 
-func set_layer(team):
-	match team:
-		BaseEntity.team_id.PLAYER:
+func set_layer(team_id : BaseEntity.team):
+	match team_id:
+		BaseEntity.team.PLAYER:
 			collision_layer = 4
 			collision_mask = 0
-		BaseEntity.team_id.ENEMY:
+		BaseEntity.team.ENEMY:
 			collision_layer = 2
 			collision_mask = 0
-			pass

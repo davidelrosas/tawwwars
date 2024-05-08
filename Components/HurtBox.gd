@@ -19,13 +19,13 @@ func _init():
 	collision_mask = 2
 	monitorable = false
 
-func set_layer(team):
-	match team:
-		BaseEntity.team_id.PLAYER:
+func set_layer(team_id : BaseEntity.team):
+	match team_id:
+		BaseEntity.team.PLAYER:
 			collision_layer = 0
 			collision_mask = 2
-		BaseEntity.team_id.ENEMY:
+		BaseEntity.team.ENEMY:
 			collision_layer = 0
 			collision_mask = 4
-			pass
+
 
