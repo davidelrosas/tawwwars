@@ -1,6 +1,4 @@
 extends Node2D
-class_name PizzaSlice
-
 const Subslice = preload("res://Pizza/subslice.gd")
 
 var subslices : Array[Subslice]
@@ -12,28 +10,22 @@ func on_subdiv():
 	queue_redraw()
 	
 func angle():
-	return pizza_properties.angle / Timelord.tempo.division
+	return pizza_properties.angle / pizza_properties.division
 	
 func is_active()->bool:
 	return self.beat == Timelord.back_beat()
 
-func get_arc(radius) -> PackedVector2Array:
-	var num_points : int = pizza_properties.get_arc_num_points(radius,angle())
-	var points : PackedVector2Array = PackedVector2Array()
-	for x in range(num_points+1):
-		points.push_back(Vector2(radius,0).rotated(angle()*(float(x)/float(num_points)+beat)))
-	return points
-
-func _init(beat : int, pizza_props : PizzaProperties):
+@warning_ignore("shadowed_variable")
+func _init(beat : int, pizza_properties : PizzaProperties):
 	self.beat = beat
-	pizza_properties = pizza_props
-	
-func get_radius(subbeat : float):
-	return lerp(100, pizza_properties.radius, subbeat / subslices.size())
+	self.pizza_properties = pizza_properties
 
 func update_subdivisions():
-	Timelord.subdivisions[beat] = subslices.size()
-	for x in range(subslices.size()): subslices[x].subbeat = x
+	var acc : int = subslices.size()
+	for x in range(subslices.size()):
+		subslices[x].update_slot(Vector2i(beat,x))
+		acc -= ((subslices[x].flags & Subslice.Slotflags.Temporary) as bool as int)
+	pizza_properties.subdivisions[beat] = acc
 
 func slot_insert(index, ss : Subslice):
 	subslices.insert(index,ss)
@@ -48,18 +40,21 @@ func slot_delete(index):
 func select(selector : int) -> int:
 	var selection = clamp(selector,0,subslices.size() * 2)
 	if (!(1&selection)):
-		slot_insert(selection/2,Subslice.new(Subslice.Slotflags.Selected | Subslice.Slotflags.Temporary,selection/2,self))
+		slot_insert(selection/2,Subslice.new(Subslice.Slotflags.Selected | Subslice.Slotflags.Temporary,Vector2i(beat,selection/2),pizza_properties))
 	else:
 		subslices[selection/2].flags |= Subslice.Slotflags.Selected
-	queue_redraw()
+	update_subdivisions()
 	return selection / 2
 
 func deselect(index : int):
 	if Subslice.Slotflags.Temporary & subslices[index].flags:
 		slot_delete(index)
 	else:
-		subslices[index].flags ^= Subslice.Slotflags.Selected
-	queue_redraw()
+		subslices[index].flags &= ~Subslice.Slotflags.Selected
+	update_subdivisions()
+	
+func get_radius():
+	return pizza_properties.get_radius(Vector2i(beat,pizza_properties.subdivisions[beat]))
 
 func deselect_all():
 	var iter = range(subslices.size())
@@ -73,5 +68,5 @@ func _ready():
 	Timelord.advance_subbeat.connect(on_subdiv)
 	var how_many = beat+1
 	for x in range(how_many):
-		slot_insert(0,Subslice.new(2,x,self))
+		slot_insert(0,Subslice.new(2,Vector2(beat,x),pizza_properties))
 	z_index=-1

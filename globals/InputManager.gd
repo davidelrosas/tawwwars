@@ -41,7 +41,12 @@ func process_action(action_index : int):
 #utility signals
 signal pause_play()
 
-signal toggle_pizza_selection()
+signal build_mode_activation()
+signal action_mode_activation()
+
+signal changed_pizza_highlight(selector : Vector2i)
+
+#signal select_subslice(selector : Vector2ie)
 
 #utility input
 
@@ -50,16 +55,50 @@ signal toggle_pizza_selection()
 
 var pizza_selector : Vector2i = Vector2i(0,0)
 
+
+#mutually exclusive input profiles
+enum InputMode {
+	Build = 0,
+	Action = 1
+}
+
+var input_mode : InputMode = InputMode.Build
+
 var utilityActions : Dictionary = {
-	"Pause" : func(): pause_play.emit(),
-	"TogglePizzaSelection": func(): toggle_pizza_selection.emit()
+	"Pause" : func():
+		pause_play.emit()
+		input_mode = !(input_mode) as int as InputMode,
+	"BuildMode": func():
+		input_mode = InputMode.Build
+		build_mode_activation.emit(),
+	"ActionMode": func(): 
+		input_mode = InputMode.Action
+		action_mode_activation.emit()
+}
+
+var buildActions : Dictionary = {
+	"Select" : func():
+		pass
 }
 
 func _process(_delta):
-	if !Timelord.is_paused():
-		for action in range(rythmActions.size()):
-			if Input.is_action_just_pressed(rythmActions[action]):
-				process_action(action)
+	match (input_mode):
+		InputMode.Action:
+			if !Timelord.is_paused():
+				for action in range(rythmActions.size()):
+					if Input.is_action_just_pressed(rythmActions[action]):
+						process_action(action)
+			
+		InputMode.Build:
+			var selector_delta = Vector2i(
+				int(Input.is_action_just_pressed("Right"))-int(Input.is_action_just_pressed("Left")),
+				int(Input.is_action_just_pressed("Up"))-int(Input.is_action_just_pressed("Down"))
+			)
+			if selector_delta:
+				pizza_selector= Player.pizza_properties.selection_clampi(pizza_selector + selector_delta)
+				print (pizza_selector.y, Timelord.pizza_properties.subdivisions[pizza_selector.x])
+				changed_pizza_highlight.emit(pizza_selector)
+	
 	for action in utilityActions.keys():
 		if Input.is_action_just_pressed(action):
 			utilityActions[action].call()

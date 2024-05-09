@@ -3,8 +3,8 @@ extends Node2D
 func on_beat_advance():
 	var pizza = $"Pizza"
 	var beam = $"Beam"
-	beam.rotation = pizza.pizza_properties.get_beat_angle(pizza.back_beat()+int(pizza.pizza_properties.is_beat_reverse()))
-	beam.radians_ps = (1 - 2*int(pizza.pizza_properties.is_beat_reverse())) * (pizza.pizza_properties.angle / Timelord.tempo.division) / Timelord.interval()
+	beam.rotation = pizza.pizza_properties.get_beat_angle(Timelord.beat+int(pizza.pizza_properties.is_beat_reverse()))
+	beam.radians_ps = (1 - 2*int(pizza.pizza_properties.is_beat_reverse())) * (pizza.pizza_properties.angle / pizza.pizza_properties.division) / Timelord.interval()
 
 func on_pause_play():
 	var beam = $"Beam"
