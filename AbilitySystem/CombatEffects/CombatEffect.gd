@@ -4,7 +4,6 @@ extends Node
 
 #@export_flags("Knockback", "DOT", "Slow", "True") var effects = 0
 #@export var list : Array[effect_flags]
-@export var effect_damage : float
 @export var effect_power : float
 var casted_from : BaseEntity
 var casted_on : BaseEntity
@@ -20,3 +19,7 @@ func _ready():
 
 func apply(entity : BaseEntity):
 	pass
+
+func end_effect():
+	casted_on.active_effects.erase(self)
+	queue_free()

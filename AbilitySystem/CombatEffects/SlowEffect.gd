@@ -19,9 +19,11 @@ func apply(entity : BaseEntity):
 	timer.autostart = true
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
+	# once you apply then its added to active effects if it is gonna be active as an effect!
+	entity.active_effects.append(self)
+	entity.add_child(self)
 
 func _on_timer_timeout():
-	print(timer)
-	queue_free()
 	casted_on.movement_speed = backup
+	end_effect()
 	print(backup)

@@ -31,41 +31,24 @@ func effect(effects_list : Array[CombatEffect]):
 	#initialize_combat_effects(effects_list, self)
 	for i in effects_list:
 		#probably later inside of takes functions depending on resistances and effects!!
-		healthbar.value = min(healthbar.value - i.effect_damage, healthbar.max_value)
-		
-		print(self.stats.max_health)
-		print(active_effects)
 		if effect_not_active_or_greater(i) == true:
 			var effect = i.duplicate()
-			add_child(effect)
-			active_effects.append(effect)
 			effect.apply(self)
-
-		#if its just a regular combat_effect its bloathing, also when do we free them?
-		if i.effect_damage > 0:
-			takes_damage(i)
 			
-		else:
-			takes_heal(i)
+		print(self.stats.max_health)
+		print(active_effects)
+	if healthbar.value <= 0:
+		death()
 
 func effect_not_active_or_greater(effect) -> bool:
 	var acc = true
 	for i in active_effects:
-		if effect.effect_id != i.effect_id || effect.effect_id == i.effect_id && effect.power > i.power:
+		if effect.effect_id != i.effect_id || effect.effect_id == i.effect_id && effect.effect_power > i.effect_power:
 			acc = true
 		else:
 			acc = false
 	return acc
 	
-
-#damage function
-func takes_damage(attack: CombatEffect):
-	if healthbar.value <= 0:
-		death()
-
-#heal function
-func takes_heal(heal: CombatEffect):
-	pass
 
 # death function
 func death():

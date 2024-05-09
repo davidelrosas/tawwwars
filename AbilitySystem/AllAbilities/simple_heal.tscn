@@ -11,4 +11,4 @@ effects_list = [NodePath("Effects/HealthEffect")]
 
 [node name="HealthEffect" type="Node" parent="Effects"]
 script = ExtResource("2_3uoyi")
-effect_damage = -20.0
+effect_power = -20.0

@@ -9,6 +9,8 @@ script = ExtResource("1_opohq")
 
 [node name="spawner" parent="." instance=ExtResource("2_cqr1f")]
 position = Vector2(1114, 601)
+concurrent_spawns = 100
+spawn_schedule = "mob:0,mib:10#2/mob:0,mib:0#1"
 
 [node name="Mob" parent="." instance=ExtResource("3_fqckn")]
 position = Vector2(493, 221)
