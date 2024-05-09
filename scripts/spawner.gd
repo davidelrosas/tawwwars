@@ -34,7 +34,7 @@ func spawn_enemy(spawnlist, target : Target):
 			print("trying to spawn invalid enemy type")
 			pass
 		for y in range(min(spawngroup[1].to_int(),n_can_spawn())):
-			var newmob = Mob.new(Mob.mob_type.ALLEN)
+			var newmob = Mob.new()
 			newmob.global_position = spawnarea
 			newmob.target_data.current = enemy_target.current
 			spawned.push_back(newmob)
