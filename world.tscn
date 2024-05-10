@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://world.gd" id="1_opohq"]
 [ext_resource type="PackedScene" uid="uid://cxfyfybithh56" path="res://prefabs/spawner.tscn" id="2_cqr1f"]
-[ext_resource type="PackedScene" uid="uid://d13q4omrgcpxp" path="res://Mobs/bossman.tscn" id="3_fqckn"]
+[ext_resource type="PackedScene" uid="uid://f7icr6l1wimr" path="res://Towars/prefabs/wall.tscn" id="4_duunh"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_opohq")
@@ -10,10 +10,7 @@ script = ExtResource("1_opohq")
 [node name="spawner" parent="." instance=ExtResource("2_cqr1f")]
 position = Vector2(1114, 601)
 concurrent_spawns = 100
-spawn_schedule = "mob:0,mib:10#2/mob:0,mib:0#1"
+spawn_schedule = "mob:0,mib:1#2/mob:0,mib:0#1"
 
-[node name="Mob" parent="." instance=ExtResource("3_fqckn")]
-position = Vector2(493, 221)
-
-[node name="Mob2" parent="." instance=ExtResource("3_fqckn")]
-position = Vector2(307, 354)
+[node name="Towar" parent="." instance=ExtResource("4_duunh")]
+position = Vector2(933, 469)

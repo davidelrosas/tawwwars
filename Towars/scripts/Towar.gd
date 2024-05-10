@@ -39,6 +39,7 @@ static func get_info(model : towar_model, entry : String):
 	
 
 #model constructor 
+#maybe do this with dictionary instead of match
 func construct(model_id : towar_model):
 	#TOWAR MODELS
 	match model_id:

@@ -1,11 +1,13 @@
 extends Node2D
 
+@export var effects_list : Array[CombatEffect]
 @export var det_area : Area2D
 @export var mode : detection_mode
-var in_area : Array[BaseEntity]
 
+var in_area = {}
 enum detection_mode {ENEMIESONLY, ALLIESONLY, ALLENTITIES}
 
+#for abilities for the layer they are seen say if they are cast on ground or cast on air!
 func _ready():
 	pass
 	
@@ -15,10 +17,22 @@ func cast(target_data : Target, caster : BaseEntity):
 	caster.get_parent().add_child(self)
 
 func _on_entered_range(entity):
-	in_area.append(entity)
+	var effect_list_dup = []
+	for i in effects_list:
+		#probably later inside of takes functions depending on resistances and effects!!
+		#if effect_not_active_or_greater(i) == true:
+		var effect = i.duplicate()
+		effect.apply(entity)
+		effect_list_dup.append(effect)
+		
+	print(entity.active_effects)
+	in_area[entity] = effect_list_dup
 
 func _on_exited_range(entity):
 	if in_area.has(entity):
+		print(in_area[entity])
+		for i in in_area[entity]:
+			i.end_effect()
 		in_area.erase(entity)
 
 @warning_ignore("shadowed_variable")
