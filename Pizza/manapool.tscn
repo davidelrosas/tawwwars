@@ -7,16 +7,16 @@
 
 [sub_resource type="Resource" id="Resource_r4wcc"]
 script = ExtResource("4_cmht1")
-angle = 6.0
-inner_radius = 100
+angle = 6.28319
+inner_radius = 200
 slice_height = 200
-circle_res = 128
+circle_res = 10
 division = 4
 bpm = 60.0
 swing = 0.5
 
 [node name="Manapool" type="Node2D"]
-position = Vector2(426, 242)
+position = Vector2(550, 84)
 script = ExtResource("1_uhudf")
 
 [node name="Beam" parent="." instance=ExtResource("1_jrlky")]

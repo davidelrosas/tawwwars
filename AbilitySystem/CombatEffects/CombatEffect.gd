@@ -8,7 +8,7 @@ extends Node
 var casted_from : BaseEntity
 var applied_on : BaseEntity
 
-enum effect_type {HEALTH, KNOCKBACK, SLOW, TAUNT}
+enum effect_type {HEALTH, KNOCKBACK, MOVEMENT, TAUNT}
 #var flags : int
 
 func apply(entity : BaseEntity):
@@ -16,6 +16,7 @@ func apply(entity : BaseEntity):
 	pass
 
 func end_effect():
+	print(applied_on.active_effects)
 	applied_on.active_effects[self.effect_id].erase(self)
 	queue_free()
 
