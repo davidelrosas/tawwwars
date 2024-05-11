@@ -6,6 +6,9 @@ enum detection_mode {ENEMIESONLY, ALLIESONLY, ALLENTITIES}
 var owner_entity : BaseEntity
 var radius : float
 var mode : detection_mode
+# we are gonna need to rework this maybe combine it with hitbox maybe not
+# but definetely make some of this functionality available for abilities
+
 
 func _entered_range(entity):
 	if entity != owner_entity:

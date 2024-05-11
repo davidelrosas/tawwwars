@@ -5,6 +5,8 @@ extends Node2D
 @export var effects_list : Array[CombatEffect]
 @export var speed : float
 
+@export var ability_next : PackedScene
+
 var direction : Vector2
 var target : BaseEntity
 var caster : BaseEntity
@@ -43,4 +45,13 @@ func _physics_process(delta):
 func _on_impact_detection(body):
 	print("yo")
 	if hitbox.collision_layer == body.get_node("HurtBox").collision_mask:
-		queue_free()
+		end_ability()
+
+func end_ability():
+	if ability_next:
+		var next_part = ability_next.instantiate()
+		next_part.target = target
+		#this needs to be done after flushing queries
+		next_part.call_deferred("execute", caster)
+	
+	queue_free()

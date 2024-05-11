@@ -17,11 +17,11 @@ func _ready():
 func cast(target_data : Target, caster : BaseEntity):
 	target = target_data.find_closest(caster)
 	if target != null:
-		shoot(caster)
+		execute(caster)
 	else:
 		print("no target in sight")
 
-func shoot(caster):
+func execute(caster):
 	hitbox.effects_list = effects_list
 	hitbox.set_layer(caster.team_id)
 	# we need to think about this physics layer

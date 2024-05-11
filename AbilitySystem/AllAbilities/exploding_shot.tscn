@@ -2,19 +2,19 @@
 
 [ext_resource type="Script" path="res://AbilitySystem/AllAbilities/exploding_shot.gd" id="1_gpyxl"]
 [ext_resource type="Texture2D" uid="uid://cnqa5b5afqqdf" path="res://assets/sprites/beams.png" id="2_ddp7s"]
+[ext_resource type="PackedScene" uid="uid://dqg3nnd8a1clg" path="res://AbilitySystem/AllAbilities/explosion.tscn" id="2_m2yys"]
 [ext_resource type="Script" path="res://Components/HitBox.gd" id="3_ivi2d"]
-[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/HealthEffect.gd" id="4_a6wjx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bub8t"]
 radius = 6.0
 height = 14.1393
 
-[node name="ExplodingShot" type="Node2D" node_paths=PackedStringArray("hitbox", "impact_detector", "effects_list")]
+[node name="ExplodingShot" type="Node2D" node_paths=PackedStringArray("hitbox", "impact_detector")]
 script = ExtResource("1_gpyxl")
 hitbox = NodePath("HitBox")
 impact_detector = NodePath("Impact Detector")
-effects_list = [NodePath("Effects/HealthEffect")]
 speed = 500.0
+ability_next = ExtResource("2_m2yys")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.13745
@@ -37,6 +37,3 @@ position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_bub8t")
 
 [node name="Effects" type="Node" parent="."]
-
-[node name="HealthEffect" type="Node" parent="Effects"]
-script = ExtResource("4_a6wjx")

@@ -3,6 +3,8 @@ class_name HitBox
 extends Area2D
 
 var effects_list : Array[CombatEffect]
+# Hitbox having an enabled/disabled property or function would be usefull probably
+#maybe give it to hurtbox too later
 
 func _init():
 	collision_layer = 2

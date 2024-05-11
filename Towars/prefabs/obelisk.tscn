@@ -12,7 +12,7 @@ height = 88.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_deye3"]
 
-[node name="Obelisc" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "hurtbox", "det_area")]
+[node name="Obelisk" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "hurtbox", "det_area")]
 script = ExtResource("1_udu15")
 model = 3
 healthbar = NodePath("Healthbar")
