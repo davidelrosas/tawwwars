@@ -18,6 +18,11 @@ var ability_modifier : float
 #Temporary modified stats (stack)
 var movement_speed_backup = []
 
+func apply_modifier():
+	pass
+
+func remove_modifier():
+	pass
 
 @warning_ignore("shadowed_variable")
 func _init(max_health : float, detection_range : float, detection_mode : DetectionArea.detection_mode, armor : float, ability_modifier : float):
