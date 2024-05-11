@@ -14,6 +14,7 @@ height = 88.0
 
 [node name="Obelisc" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "hurtbox", "det_area")]
 script = ExtResource("1_udu15")
+model = 3
 healthbar = NodePath("Healthbar")
 hurtbox = NodePath("HurtBox")
 det_area = NodePath("DetectionArea")

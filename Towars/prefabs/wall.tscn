@@ -12,7 +12,7 @@ height = 88.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_muomo"]
 
-[node name="Towar" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "hurtbox", "det_area")]
+[node name="Wall" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "hurtbox", "det_area")]
 script = ExtResource("1_rll5i")
 model = 2
 healthbar = NodePath("Healthbar")

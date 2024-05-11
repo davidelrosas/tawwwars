@@ -15,7 +15,6 @@ func _ready():
 
 func cast(target_data : Target, caster : BaseEntity):
 	target = target_data.find_closest(caster)
-	direction = target.global_position - caster.global_position
 	if target != null:
 		shoot(caster)
 	else:
@@ -28,6 +27,7 @@ func shoot(caster):
 	impact_detector.collision_layer = 0
 	impact_detector.collision_mask = caster.det_area.collision_mask
 	
+	#wtf is this for
 	self.caster = caster
 	position = caster.global_position
 	direction = (target.global_position - caster.global_position).normalized()
@@ -36,12 +36,9 @@ func shoot(caster):
 
 
 func _physics_process(delta):
-	if not target:
-		global_position += direction * speed * delta
-	
-	else:
-		look_at(target.global_position)
-		global_position = global_position.move_toward(target.global_position, speed*delta)
+	look_at(target.global_position)
+	global_position += direction * speed * delta
+
 
 func _on_impact_detection(body):
 	print("yo")
