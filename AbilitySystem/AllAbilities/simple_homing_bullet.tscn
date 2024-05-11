@@ -17,19 +17,19 @@ impact_detector = NodePath("Impact Detector")
 effects_list = [NodePath("Effects/HealthEffect"), NodePath("Effects/SlowEffect")]
 speed = 200.0
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.13745
+scale = Vector2(1, 1.09483)
+texture = ExtResource("3_bhbo3")
+region_enabled = true
+region_rect = Rect2(82, 111, 24, 29)
+
 [node name="HitBox" type="Area2D" parent="."]
 script = ExtResource("1_vypa5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_uc80h")
-
-[node name="Sprite2D" type="Sprite2D" parent="HitBox"]
-rotation = -3.14574
-scale = Vector2(1, 1.09483)
-texture = ExtResource("3_bhbo3")
-region_enabled = true
-region_rect = Rect2(82, 111, 24, 29)
 
 [node name="Impact Detector" type="Area2D" parent="."]
 

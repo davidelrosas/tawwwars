@@ -11,7 +11,7 @@ size = Vector2(64, 64)
 script = ExtResource("1_yj2ol")
 effects_list = [NodePath("Eeffects/SlowEffect")]
 det_area = NodePath("Area2D")
-duration = 6.0
+duration = 15.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3.97396, 3.97009)

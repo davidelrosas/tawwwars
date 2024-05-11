@@ -6,7 +6,7 @@
 [node name="AreaTaunt" type="Node2D" node_paths=PackedStringArray("effects_list")]
 script = ExtResource("1_ad1ak")
 max_targets = 3
-effects_list = [null]
+effects_list = [NodePath("Effects/TauntEffect")]
 
 [node name="Effects" type="Node" parent="."]
 

@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://bg8yfxta24kbw"]
+
+[ext_resource type="Script" path="res://Towars/scripts/Towar.gd" id="1_vdb2x"]
+[ext_resource type="Script" path="res://Components/Healthbar.gd" id="2_8vgs6"]
+[ext_resource type="Texture2D" uid="uid://bi0m6rbato2nt" path="res://Towars/Sprites/water_tower.svg" id="3_6rm55"]
+[ext_resource type="Script" path="res://Components/HurtBox.gd" id="4_l3lua"]
+[ext_resource type="Script" path="res://Components/DetectionArea.gd" id="5_uhao1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpaft"]
+radius = 24.0
+height = 88.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_deye3"]
+
+[node name="Goo" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "hurtbox", "det_area")]
+script = ExtResource("1_vdb2x")
+healthbar = NodePath("Healthbar")
+hurtbox = NodePath("HurtBox")
+det_area = NodePath("DetectionArea")
+
+[node name="Healthbar" type="TextureProgressBar" parent="."]
+offset_left = -67.0
+offset_top = -77.0
+offset_right = -27.0
+offset_bottom = -37.0
+script = ExtResource("2_8vgs6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7, -5.00001)
+scale = Vector2(0.396, 0.367521)
+texture = ExtResource("3_6rm55")
+region_enabled = true
+region_rect = Rect2(258.318, 358.585, 125.99, 234.21)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(4, 0)
+polygon = PackedVector2Array(-25, 23, -5, 38, 26, 25, 23, 14, -17, 9)
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("4_l3lua")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(5, -4)
+shape = SubResource("CapsuleShape2D_xpaft")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+script = ExtResource("5_uhao1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_deye3")

@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://b80gxgk3woihh"]
+
+[ext_resource type="Script" path="res://Towars/scripts/Towar.gd" id="1_udu15"]
+[ext_resource type="Script" path="res://Components/Healthbar.gd" id="2_wmi1k"]
+[ext_resource type="Texture2D" uid="uid://7le0wukijing" path="res://Towars/Sprites/obelisk.svg" id="3_ivc1e"]
+[ext_resource type="Script" path="res://Components/HurtBox.gd" id="4_jt3op"]
+[ext_resource type="Script" path="res://Components/DetectionArea.gd" id="5_hk0eu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpaft"]
+radius = 24.0
+height = 88.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_deye3"]
+
+[node name="Obelisc" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "hurtbox", "det_area")]
+script = ExtResource("1_udu15")
+healthbar = NodePath("Healthbar")
+hurtbox = NodePath("HurtBox")
+det_area = NodePath("DetectionArea")
+
+[node name="Healthbar" type="TextureProgressBar" parent="."]
+offset_left = -67.0
+offset_top = -77.0
+offset_right = -27.0
+offset_bottom = -37.0
+script = ExtResource("2_wmi1k")
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_ivc1e")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(4, 0)
+polygon = PackedVector2Array(-25, 23, -5, 38, 26, 25, 23, 14, -17, 9)
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("4_jt3op")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(5, -4)
+shape = SubResource("CapsuleShape2D_xpaft")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+script = ExtResource("5_hk0eu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_deye3")
