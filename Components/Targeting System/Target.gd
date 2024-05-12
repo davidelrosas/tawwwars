@@ -42,10 +42,9 @@ func find(target_type_ids : Array[target_type], target_ammounts : Array[int]):
 
 #only lambda function changes
 func find_condition(ammount : int, custom_func : Callable):
-	print("call")
 	var target_list = in_range.duplicate()
 	target_list.sort_custom(custom_func)
-	while ammount > 0:
+	while ammount > 0 && target_list.size() > 0:
 		current_targets.append(target_list.pop_back())
 		ammount -=1
 	#targets_ready.append(false)

@@ -15,13 +15,16 @@ func apply(entity : BaseEntity):
 		set_timer(duration)
 	modify_stats()
 	activate_effect()
-	print(applied_on.active_effects)
 
 func end_effect():
-	applied_on.target_data.current = backup
+	applied_on.target_data.current_targets = backup
+	# and set var dont_change_target to FALSE again
 	#work on hierarchy later
 	super.end_effect()
 
 func modify_stats():
-	backup = applied_on.target_data.current
-	applied_on.target_data.current = casted_from
+	#obviously this has to change depending on the mob movement and so on
+	backup = applied_on.target_data.current_targets
+	applied_on.target_data.flush_current_targets()
+	applied_on.target_data.current_targets.append(casted_from)
+	#set a var in Target later called dont_change_target to TRUE

@@ -1,17 +1,17 @@
 [gd_scene load_steps=7 format=3 uid="uid://bbmxdu768thrm"]
 
-[ext_resource type="Script" path="res://AbilitySystem/AllAbilities/simple_homing_bullet.gd" id="1_8hqxr"]
-[ext_resource type="Script" path="res://Components/HitBox.gd" id="1_vypa5"]
-[ext_resource type="Texture2D" uid="uid://cnqa5b5afqqdf" path="res://assets/sprites/beams.png" id="3_bhbo3"]
-[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/HealthEffect.gd" id="4_vjr5i"]
-[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/SlowEffect.gd" id="5_1xxri"]
+[ext_resource type="Script" path="res://AbilitySystem/AllAbilities/simple_homing_bullet.gd" id="1_mnfv8"]
+[ext_resource type="Texture2D" uid="uid://cnqa5b5afqqdf" path="res://assets/sprites/beams.png" id="2_pop1b"]
+[ext_resource type="Script" path="res://Components/HitBox.gd" id="3_rl4la"]
+[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/HealthEffect.gd" id="4_1fxf8"]
+[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/SlowEffect.gd" id="5_717fl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uc80h"]
 radius = 5.0
 height = 14.1393
 
 [node name="SimpleHomingBullet" type="Node2D" node_paths=PackedStringArray("hitbox", "impact_detector", "effects_list")]
-script = ExtResource("1_8hqxr")
+script = ExtResource("1_mnfv8")
 hitbox = NodePath("HitBox")
 impact_detector = NodePath("Impact Detector")
 effects_list = [NodePath("Effects/HealthEffect"), NodePath("Effects/SlowEffect")]
@@ -20,12 +20,12 @@ speed = 200.0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.13745
 scale = Vector2(1, 1.09483)
-texture = ExtResource("3_bhbo3")
+texture = ExtResource("2_pop1b")
 region_enabled = true
 region_rect = Rect2(82, 111, 24, 29)
 
 [node name="HitBox" type="Area2D" parent="."]
-script = ExtResource("1_vypa5")
+script = ExtResource("3_rl4la")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -3)
@@ -40,10 +40,10 @@ shape = SubResource("CapsuleShape2D_uc80h")
 [node name="Effects" type="Node" parent="."]
 
 [node name="HealthEffect" type="Node" parent="Effects"]
-script = ExtResource("4_vjr5i")
+script = ExtResource("4_1fxf8")
 effect_power = 20.0
 
 [node name="SlowEffect" type="Node" parent="Effects"]
-script = ExtResource("5_1xxri")
+script = ExtResource("5_717fl")
 duration = 4.0
 effect_power = 80.0

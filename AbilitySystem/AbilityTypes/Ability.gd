@@ -20,11 +20,11 @@ func cast(target_data : Target, caster : BaseEntity):
 		#execute(target_data)
 	#else:
 	target_data.find(targeting, target_ammounts)
-	print(target_data.in_range)
 	if target_data.current_targets != []:  
-		print(target_data.current_targets)
+		print(target_data.in_range)
 		execute(target_data, caster)
-	print("no targets in sight")
+	else:
+		print("no targets in sight")
 	#when does it get add as a child of the caster?
 
 func execute(target_data : Target, caster : BaseEntity):

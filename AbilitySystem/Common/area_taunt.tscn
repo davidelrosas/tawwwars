@@ -1,14 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://csgytl7dgx5cq"]
+[gd_scene load_steps=3 format=3 uid="uid://csgytl7dgx5cq"]
 
 [ext_resource type="Script" path="res://AbilitySystem/AbilityTypes/DirectAbility.gd" id="1_vmnir"]
 [ext_resource type="Script" path="res://AbilitySystem/CombatEffects/TauntEffect.gd" id="2_jn5cl"]
 
-[sub_resource type="Resource" id="Resource_ku2cg"]
-script = ExtResource("2_jn5cl")
-effect_damage = 0.0
-effect_power = 0.0
-
-[node name="DircetAbility" type="Node2D"]
+[node name="DirectAbility" type="Node2D" node_paths=PackedStringArray("effects_list")]
 script = ExtResource("1_vmnir")
-effects_list = Array[Resource("res://AbilitySystem/CombatEffects/CombatEffect.gd")]([SubResource("Resource_ku2cg")])
-max_targets = -1
+text = "taunt"
+effects_list = [NodePath("Effects/TauntEffect")]
+targeting = Array[int]([0])
+target_ammounts = PackedInt32Array(3)
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="TauntEffect" type="Node" parent="Effects"]
+script = ExtResource("2_jn5cl")
+duration = 3.0

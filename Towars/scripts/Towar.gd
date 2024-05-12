@@ -59,7 +59,7 @@ func construct(model_id : towar_model):
 		towar_model.WALL:
 			stats = Stats.new(200,200,DetectionArea.detection_mode.ENEMIESONLY,50,10)
 			team_id = team.PLAYER
-			active = preload("res://AbilitySystem/AllAbilities/area_taunt.tscn")
+			active = preload("res://AbilitySystem/Common/area_taunt.tscn")
 			
 		towar_model.OBELISK:
 			stats = Stats.new(150,200,DetectionArea.detection_mode.ENEMIESONLY,15,10)
