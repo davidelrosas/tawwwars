@@ -1,7 +1,7 @@
 extends Control
 
-var towar_model : Towar.towar_model
-var towar = preload("res://Towars/prefabs/base_towar.tscn")
+#var towar_model : Towar.towar_model
+#var towar = preload("res://Towars/prefabs/base_towar.tscn")
 
 #Sets metadata of towar into card
 func set_info(towar_model : Towar.towar_model):
@@ -10,7 +10,7 @@ func set_info(towar_model : Towar.towar_model):
 	$frontside/Sprite2D.texture = Towar.get_info(towar_model, "Icon")
 	$frontside/PriceTag.text = Towar.get_info(towar_model, "Cost")
 	
-	self.towar_model = towar_model
+	#self.towar_model = towar_model
 
 #maybe use has_method()
 func _on_create_pressed():
