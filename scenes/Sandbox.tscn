@@ -1,16 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dscg372ko23ay"]
+[gd_scene load_steps=3 format=3 uid="uid://dscg372ko23ay"]
 
 [ext_resource type="Script" path="res://scenes/Sandbox.gd" id="1_xvcll"]
-[ext_resource type="PackedScene" uid="uid://cxfyfybithh56" path="res://prefabs/spawner.tscn" id="2_xkbqp"]
 [ext_resource type="PackedScene" uid="uid://dc3vhxmdealy3" path="res://Towars/prefabs/healer.tscn" id="4_dtq4s"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xvcll")
 
-[node name="spawner" parent="." instance=ExtResource("2_xkbqp")]
-position = Vector2(123, 112)
-concurrent_spawns = 3
-spawn_schedule = "mob:1,mib:2#2/mob:1,mib:1#1"
-
 [node name="Healer" parent="." instance=ExtResource("4_dtq4s")]
-position = Vector2(587, 263)
+position = Vector2(436, 266)

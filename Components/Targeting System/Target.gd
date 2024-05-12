@@ -21,11 +21,10 @@ func targets_ready() -> bool:
 	return true
 
 func find(target_type_ids : Array[target_type], target_ammounts : Array[int]):
-	current_targets = []
-	print(target_ammounts)
+	if in_range == []:
+		return
 	for i in target_type_ids:
 		var ammount = target_ammounts.pop_front()
-		print(ammount)
 		functions[i].bind(ammount).call()
 
 func find_caster():
@@ -56,8 +55,10 @@ func find_lowest_health(ammount):
 	var target_list = in_range
 	target_list.sort_custom((func(a, b): a.current_health > b.current_health))
 	while ammount > 0:
+		print("balls")
 		current_targets.append(target_list.pop_back())
 		ammount -=1
+	print(current_targets)
 	#targets_ready.append(false)
 
 func multi_find_closest() -> Array[BaseEntity]:

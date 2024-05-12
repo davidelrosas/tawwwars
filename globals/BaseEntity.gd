@@ -23,8 +23,9 @@ var team_id : team
 
 enum team {PLAYER, ENEMY}
 
-func _enter_tree():
-	SignalBus.entity_entered_tree.emit(self)
+func _ready():
+	print("hey")
+	SignalBus.entity_entered_scene.emit(self)
 
 #region Health management functions
 func effect(effects_list : Array[CombatEffect]):

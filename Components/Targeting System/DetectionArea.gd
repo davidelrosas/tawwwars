@@ -25,9 +25,11 @@ func _exited_range(entity):
 			# the death signal
 
 func _check_overlap(entity):
-	print("hello")
 	var dif_vector = global_position - entity.global_position
+	#+ find good arbitrary number
 	var condition_1 = sqrt(pow((dif_vector).x,2) + pow((dif_vector).y,2)) < radius
+	#some shit is not working here
+	print(get_overlapping_bodies(),"hello")
 	var condition_2 = has_overlapping_bodies() && get_overlapping_bodies().has(entity) && !owner_entity.target_data.in_range.has(entity)
 	print(dif_vector)
 	print(condition_1)
@@ -57,4 +59,4 @@ func set_properties(detection_range : float, mode : detection_mode = detection_m
 			
 	body_entered.connect(_entered_range)
 	body_exited.connect(_exited_range)
-	SignalBus.entity_entered_tree.connect(_check_overlap)
+	SignalBus.entity_entered_scene.connect(_check_overlap)

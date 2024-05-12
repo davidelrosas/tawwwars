@@ -14,6 +14,7 @@ func _ready():
 	construct(type)
 	current_speed = stats.movement_speed
 	super.set_properties()
+	super._ready()
 
 #temporary af
 func _physics_process(delta):
@@ -22,6 +23,7 @@ func _physics_process(delta):
 			direction = Vector2(randf_range(-1,1),randf_range(-1,1))
 		else:
 			direction = (target_data.current_targets.back().global_position - global_position).normalized()
+		#needs to be fixed
 		look_at(target_data.current_targets.back().global_position)
 		global_position += direction * current_speed * delta
 

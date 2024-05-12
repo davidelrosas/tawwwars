@@ -37,7 +37,7 @@ func spawn_enemy(spawnlist, target : Target):
 			var newmob = newmob_type.instantiate()
 			newmob.global_position = spawnarea
 			#temporary fix
-			newmob.target_data.current_targets.append(enemy_target.current_targets.back())
+			newmob.target_data.current_targets.append(enemy_target.current_targets.pop_back())
 			spawned.push_back(newmob)
 			add_child(newmob)
 	
