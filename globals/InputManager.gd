@@ -44,9 +44,13 @@ signal pause_play()
 signal build_mode_activation()
 signal action_mode_activation()
 
+<<<<<<< HEAD
 signal change_pizza_highlight(selector : Vector2i)
 signal build_on_selection()
 #signal build_on_pizza(slot : Vector2i)
+=======
+signal changed_pizza_highlight(selector : Vector2i)
+>>>>>>> 4979ca26d1c0dff09055db62cdc8cc4cbb4d8dab
 
 #signal select_subslice(selector : Vector2ie)
 
@@ -57,11 +61,38 @@ signal build_on_selection()
 
 var pizza_selector : Vector2i = Vector2i(0,0)
 
+<<<<<<< HEAD
 #mutually exclusive input profiles
 enum InputMode {
 	Build = 0,
 	Action = 1,
 	Shop = 2
+=======
+
+#mutually exclusive input profiles
+enum InputMode {
+	Build = 0,
+	Action = 1
+}
+
+var input_mode : InputMode = InputMode.Build
+
+var utilityActions : Dictionary = {
+	"Pause" : func():
+		pause_play.emit()
+		input_mode = !(input_mode) as int as InputMode,
+	"BuildMode": func():
+		input_mode = InputMode.Build
+		build_mode_activation.emit(),
+	"ActionMode": func(): 
+		input_mode = InputMode.Action
+		action_mode_activation.emit()
+}
+
+var buildActions : Dictionary = {
+	"Select" : func():
+		pass
+>>>>>>> 4979ca26d1c0dff09055db62cdc8cc4cbb4d8dab
 }
 
 var input_mode : InputMode = InputMode.Build
@@ -112,6 +143,7 @@ func _process(_delta):
 			if selector_delta:
 				pizza_selector= Player.pizza_properties.selection_clampi(pizza_selector + selector_delta)
 				print (pizza_selector.y, Timelord.pizza_properties.subdivisions[pizza_selector.x])
+<<<<<<< HEAD
 				change_pizza_highlight.emit(pizza_selector)
 			buildActions.process()
 		InputMode.Shop:
@@ -120,6 +152,13 @@ func _process(_delta):
 				input_mode = InputMode.Build if Timelord.is_paused() else InputMode.Action
 				
 	utilityActions.process()
+=======
+				changed_pizza_highlight.emit(pizza_selector)
+	
+	for action in utilityActions.keys():
+		if Input.is_action_just_pressed(action):
+			utilityActions[action].call()
+>>>>>>> 4979ca26d1c0dff09055db62cdc8cc4cbb4d8dab
 			
 
 func _ready():

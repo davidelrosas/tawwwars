@@ -58,9 +58,12 @@ func mod_clamp_slice(slice_x : int) -> int:
 func get_arc(slot : Vector2i):
 	return get_arc_from_radius(get_radius(slot),slot.x)
 
+<<<<<<< HEAD
 func get_relative_slot_middle(slot : Vector2i):
 	return Vector2.from_angle(slice_angle()*(slot.x as float+0.5)) * lerp(get_radius(slot),get_radius(slot+Vector2i(0,1)),0.5)
 
+=======
+>>>>>>> 4979ca26d1c0dff09055db62cdc8cc4cbb4d8dab
 @warning_ignore("shadowed_variable")
 func get_arc_from_radius(radius:float,beat:int) -> PackedVector2Array:
 	var num_points : int = get_arc_num_points(radius,slice_angle())

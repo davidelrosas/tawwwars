@@ -23,6 +23,10 @@ func _draw():
 			max(pizza_properties.get_max_radius_x(x-1),	pizza_properties.get_max_radius_x(x)),
 			col,5,true)
 	draw_arc(position,pizza_properties.inner_radius,0,pizza_properties.angle,pizza_properties.get_arc_num_points(pizza_properties.inner_radius,pizza_properties.angle),Color(0,0,0),5)
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 4979ca26d1c0dff09055db62cdc8cc4cbb4d8dab
 
 func highlight(selector : Vector2i):
 	slices[selected.x].deselect(selected.y)
@@ -41,6 +45,7 @@ func _ready():
 	Timelord.beat_change.connect(initialise)
 	Timelord.advance_subbeat.connect(on_subbeat)
 	InputManager.subbeat_hit.connect(on_subbeat_hit)
+<<<<<<< HEAD
 	InputManager.change_pizza_highlight.connect(highlight)
 	#InputManager.build_on_pizza.connect(on_build_on_pizza)
 	InputManager.build_on_selection.connect(on_build_on_selection)
@@ -51,6 +56,11 @@ func on_build_on_selection():
 	var towar
 	SignalBus.open_shop.emit()
 	SignalBus.build_towar.connect(slices[selected.x].subslices[selected.y].place_towar)
+=======
+	InputManager.changed_pizza_highlight.connect(highlight)
+	if (!pizza_properties): print("Pizza properties not set!!!")
+	initialise(pizza_properties)
+>>>>>>> 4979ca26d1c0dff09055db62cdc8cc4cbb4d8dab
 		
 func initialise(properties : PizzaProperties):
 	pizza_properties = properties

@@ -28,6 +28,7 @@ func reset_next()->void:
 	active_subbeat = false
 	queue_redraw()
 	
+<<<<<<< HEAD
 func place_towar(towar : Towar)->void:
 	self.towar = towar
 	towar.position = pizza_properties.get_relative_slot_middle(slot)
@@ -39,6 +40,8 @@ func place_towar(towar : Towar)->void:
 func clear_towar()->void:
 	towar.queue_free()
 	
+=======
+>>>>>>> 4979ca26d1c0dff09055db62cdc8cc4cbb4d8dab
 @warning_ignore("shadowed_variable")
 func update_slot(slot : Vector2i):
 	self.slot = slot
