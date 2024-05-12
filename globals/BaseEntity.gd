@@ -26,9 +26,6 @@ enum team {PLAYER, ENEMY}
 #func _ready():
 	#SignalBus.entity_entered_scene.emit(self)
 
-func _process(delta):
-	print(target_data.in_range)
-
 #region Health management functions
 func effect(effects_list : Array[CombatEffect]):
 	#initialize_combat_effects(effects_list, self)
