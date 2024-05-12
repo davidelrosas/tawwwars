@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cnqa5b5afqqdf" path="res://assets/sprites/beams.png" id="2_pop1b"]
 [ext_resource type="Script" path="res://Components/HitBox.gd" id="3_rl4la"]
 [ext_resource type="Script" path="res://AbilitySystem/CombatEffects/HealthEffect.gd" id="4_1fxf8"]
-[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/SlowEffect.gd" id="5_717fl"]
+[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/MovementEffect.gd" id="5_51fqc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uc80h"]
 radius = 5.0
@@ -44,6 +44,6 @@ script = ExtResource("4_1fxf8")
 effect_power = 20.0
 
 [node name="SlowEffect" type="Node" parent="Effects"]
-script = ExtResource("5_717fl")
+script = ExtResource("5_51fqc")
 duration = 4.0
 effect_power = 80.0

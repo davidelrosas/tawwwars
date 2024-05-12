@@ -4,7 +4,7 @@ extends Ability
 
 @export var cast_position_id : cast_position
 @export var hitbox : HitBox
-
+@export var impact_detector : Area2D
 
 enum cast_position {ONTARGET, ONSELF}
 

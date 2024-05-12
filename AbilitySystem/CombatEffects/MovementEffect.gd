@@ -1,4 +1,4 @@
-class_name SlowEffect
+class_name MovementEffect
 
 extends CombatEffect
 
@@ -12,8 +12,8 @@ func apply(entity : BaseEntity):
 	applied_on = entity
 	if duration as bool:
 		set_timer(duration)
-	modify_stats()
 	activate_effect()
+	modify_stats()
 	print(applied_on.active_effects)
 
 func end_effect():
@@ -29,9 +29,7 @@ func end_effect():
 	super.end_effect()
 
 func modify_stats():
-	#when applying it also recalculates all same type effects
-	# How do we check instead which of the effects is stronger
-	# this is gonna have to change if we want stackable movement speed
-	var modified_speed = applied_on.stats.movement_speed * max((100-effect_power)/100, 0)
-	if modified_speed < applied_on.current_speed:
-		applied_on.current_speed = modified_speed
+	var same_type_effects = get_effects(effect_id)
+	applied_on.entity.stats.fill_modifiers(same_type_effects.map(func(x):((100 + x.effect_power)/100)-1))
+	applied_on.entity.stats.apply_modifier(effect_id)
+
