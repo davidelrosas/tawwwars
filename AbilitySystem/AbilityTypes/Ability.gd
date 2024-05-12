@@ -4,8 +4,10 @@ extends Node2D
 
 @export var animation : AnimationPlayer
 @export var effects_list : Array[CombatEffect]
+
+#make class
 @export var targeting : Array[Target.target_type]
-@export var target_ammounts : Array[int]
+@export var target_ammounts : PackedInt32Array
 
 #var next_part_trigger_condition
 var ability_next : Ability

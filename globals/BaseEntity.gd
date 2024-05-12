@@ -23,9 +23,11 @@ var team_id : team
 
 enum team {PLAYER, ENEMY}
 
-func _ready():
-	print("hey")
-	SignalBus.entity_entered_scene.emit(self)
+#func _ready():
+	#SignalBus.entity_entered_scene.emit(self)
+
+func _process(delta):
+	print(target_data.in_range)
 
 #region Health management functions
 func effect(effects_list : Array[CombatEffect]):

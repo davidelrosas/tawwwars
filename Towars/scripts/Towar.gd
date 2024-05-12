@@ -21,7 +21,7 @@ static var catalog = {
 func _ready():
 	construct(model)
 	super.set_properties()
-	super._ready()
+	#super._ready()
 
 func _input(event):
 	if event.is_action_pressed("Use"): #temporary

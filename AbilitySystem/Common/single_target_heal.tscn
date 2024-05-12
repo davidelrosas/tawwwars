@@ -8,7 +8,7 @@ script = ExtResource("1_2snrv")
 text = "heal"
 effects_list = [NodePath("Effects/HealthEffect")]
 targeting = Array[int]([2])
-target_ammounts = Array[int]([1])
+target_ammounts = PackedInt32Array(1)
 
 [node name="Effects" type="Node" parent="."]
 

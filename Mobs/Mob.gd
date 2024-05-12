@@ -14,7 +14,7 @@ func _ready():
 	construct(type)
 	current_speed = stats.movement_speed
 	super.set_properties()
-	super._ready()
+	#super._ready()
 
 #temporary af
 func _physics_process(delta):
