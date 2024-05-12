@@ -23,6 +23,8 @@ var detection_mode : DetectionArea.detection_mode
 var armor : float
 var ability_modifier : float
 
+
+#we need to think about how this will work with different kinds of stats etc
 func apply_modifier(effect_id : CombatEffect.effect_type):
 	modifiers.sort()
 	# 30 should be a number that somone else gives
