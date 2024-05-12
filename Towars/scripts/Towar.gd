@@ -53,7 +53,7 @@ func construct(model_id : towar_model):
 		towar_model.HEALER:
 			stats = Stats.new(70,200,DetectionArea.detection_mode.ALLIESONLY,15,10)
 			team_id = team.PLAYER
-			active = preload("res://AbilitySystem/AllAbilities/simple_heal.tscn")
+			active = preload("res://AbilitySystem/Common/single_target_heal.tscn")
 			
 		towar_model.WALL:
 			stats = Stats.new(200,200,DetectionArea.detection_mode.ENEMIESONLY,50,10)

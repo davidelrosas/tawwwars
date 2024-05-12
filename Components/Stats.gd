@@ -1,6 +1,8 @@
 class_name Stats
 
 var max_health : float
+var current_health : float
+
 var detection_range : float
 
 #for mobs only?
@@ -27,6 +29,7 @@ func remove_modifier():
 @warning_ignore("shadowed_variable")
 func _init(max_health : float, detection_range : float, detection_mode : DetectionArea.detection_mode, armor : float, ability_modifier : float):
 	self.max_health = max_health
+	self.current_health = max_health
 	self.detection_range = detection_range
 	self.detection_mode = detection_mode
 	self.armor = armor

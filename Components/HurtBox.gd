@@ -2,7 +2,7 @@ class_name HurtBox
 
 extends Area2D
 
-var owner_entity_ref : BaseEntity
+var owner_entity : BaseEntity
 
 func _ready():
 	self.area_entered.connect(_on_area_entered)
@@ -11,8 +11,8 @@ func _on_area_entered(hitbox : HitBox):
 	if hitbox == null:
 		return
 	
-	if owner_entity_ref.has_method("effect"):
-		owner_entity_ref.effect(hitbox.effects_list)
+	if owner_entity.has_method("effect"):
+		owner_entity.effect(hitbox.effects_list)
 
 func _init():
 	collision_layer = 0

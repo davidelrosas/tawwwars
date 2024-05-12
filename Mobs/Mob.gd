@@ -15,14 +15,14 @@ func _ready():
 	current_speed = stats.movement_speed
 	super.set_properties()
 
-
+#temporary af
 func _physics_process(delta):
-	if target_data.current != null:
+	if target_data.current_targets != null:
 		if move_and_slide():
 			direction = Vector2(randf_range(-1,1),randf_range(-1,1))
 		else:
-			direction = (target_data.current.global_position - global_position).normalized()
-		look_at(target_data.current.global_position)
+			direction = (target_data.current_targets.back().global_position - global_position).normalized()
+		look_at(target_data.current_targets.back().global_position)
 		global_position += direction * current_speed * delta
 
 #class constructor 

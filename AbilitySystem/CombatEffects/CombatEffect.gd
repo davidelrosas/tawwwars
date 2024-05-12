@@ -39,7 +39,9 @@ func activate_effect():
 # why cant it be array of combat effects but it has to be specific to the subclass???
 func get_effects(effect_type : CombatEffect.effect_type) -> Array:
 	return applied_on.active_effects[effect_type]
-	
+
+func initialize_effect(caster : BaseEntity):
+	casted_from = caster
 
 func _on_timer_timeout():
 	end_effect()

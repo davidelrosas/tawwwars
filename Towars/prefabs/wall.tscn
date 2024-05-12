@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Components/Healthbar.gd" id="2_ai7fi"]
 [ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_1dsoj"]
 [ext_resource type="Texture2D" uid="uid://dv2c4038n41nv" path="res://Towars/Sprites/tower_square.svg" id="3_h7yhv"]
-[ext_resource type="Script" path="res://Components/DetectionArea.gd" id="4_s6sdj"]
+[ext_resource type="Script" path="res://Components/Targeting System/DetectionArea.gd" id="4_s6sdj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x7vmq"]
 radius = 37.0

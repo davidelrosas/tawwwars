@@ -2,36 +2,12 @@ class_name DirectAbility
 
 extends Ability
 
-@export var cast_on_self := false
+@export var text : String
 
-func cast(target : Target, caster):
-	if max_targets == 1:
-		target.find(targeting, caster)
-		single_cast(target, caster)
-	else:
-		multi_cast(target, caster)
+func cast(target_data, caster):
+	super.cast(target_data, caster)
 
-# 0 max_targets for unlimited targets
-func multi_cast(target, caster):
-	var counter = max_targets
-	var targets = target.in_range
-	if cast_on_self == true:
-		targets.push_front(caster)
-		
-	for i in targets:
+func execute(target_data, caster):
+	for i in target_data.current_targets:
 		i.effect(effects_list)
-		counter -= 1
-		if counter == 0:
-			return
-
-func single_cast(target, caster):
-	if target.current != null:
-		target.current.effect(effects_list)
-	else:
-		if cast_on_self == true:
-			target.current = caster
-		else:
-			target.current = target.find_closest(caster)
-			if target.current == null:
-				return
-		target.current.effect(effects_list)
+	print(text)

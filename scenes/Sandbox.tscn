@@ -1,12 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dscg372ko23ay"]
+[gd_scene load_steps=4 format=3 uid="uid://dscg372ko23ay"]
 
 [ext_resource type="Script" path="res://scenes/Sandbox.gd" id="1_xvcll"]
 [ext_resource type="PackedScene" uid="uid://cxfyfybithh56" path="res://prefabs/spawner.tscn" id="2_xkbqp"]
-[ext_resource type="PackedScene" uid="uid://kw37c4p2wwvl" path="res://Towars/prefabs/turret.tscn" id="3_m48ug"]
 [ext_resource type="PackedScene" uid="uid://dc3vhxmdealy3" path="res://Towars/prefabs/healer.tscn" id="4_dtq4s"]
-[ext_resource type="PackedScene" uid="uid://b80gxgk3woihh" path="res://Towars/prefabs/obelisk.tscn" id="5_ecffa"]
-[ext_resource type="PackedScene" uid="uid://f7icr6l1wimr" path="res://Towars/prefabs/wall.tscn" id="6_igotf"]
-[ext_resource type="PackedScene" uid="uid://bg8yfxta24kbw" path="res://Towars/prefabs/goo.tscn" id="7_l4g5a"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xvcll")
@@ -16,17 +12,5 @@ position = Vector2(123, 112)
 concurrent_spawns = 3
 spawn_schedule = "mob:1,mib:2#2/mob:1,mib:1#1"
 
-[node name="Turret" parent="." instance=ExtResource("3_m48ug")]
-position = Vector2(814, 494)
-
 [node name="Healer" parent="." instance=ExtResource("4_dtq4s")]
-position = Vector2(904, 318)
-
-[node name="Obelisk" parent="." instance=ExtResource("5_ecffa")]
-position = Vector2(517, 322)
-
-[node name="Wall" parent="." instance=ExtResource("6_igotf")]
-position = Vector2(588, 472)
-
-[node name="Goo" parent="." instance=ExtResource("7_l4g5a")]
-position = Vector2(697, 218)
+position = Vector2(587, 263)

@@ -9,7 +9,6 @@ extends CharacterBody2D
 #exports
 
 # Entity stats and abilities
-# Maybe It would be good to give the entity a Base stats, and then a current stats Object!!
 var stats : Stats
 
 var active : PackedScene
@@ -24,8 +23,8 @@ var team_id : team
 
 enum team {PLAYER, ENEMY}
 
-#func _enter_tree():
-	#SignalBus.entity_entered_tree.emit(self)
+func _enter_tree():
+	SignalBus.entity_entered_tree.emit(self)
 
 #region Health management functions
 func effect(effects_list : Array[CombatEffect]):
@@ -36,9 +35,9 @@ func effect(effects_list : Array[CombatEffect]):
 		effect.apply(self)
 			
 		print(active_effects)
-	if healthbar.value <= 0:
+	if stats.current_health <= 0:
 		death()
-
+	healthbar.value = stats.current_health
 
 # death function
 func death():
@@ -52,7 +51,7 @@ func set_properties():
 	healthbar.value = stats.max_health
 	
 	#connecting Hurtbox
-	hurtbox.owner_entity_ref = self
+	hurtbox.owner_entity = self
 	hurtbox.set_layer(team_id)
 	
 	if team_id == team.PLAYER:
@@ -63,3 +62,6 @@ func set_properties():
 	#creating detection range radius
 	det_area.owner_entity = self
 	det_area.set_properties(stats.detection_range, stats.detection_mode)
+	
+	#setting Targeting
+	target_data.owner_entity = self

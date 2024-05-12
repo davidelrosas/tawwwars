@@ -36,7 +36,8 @@ func spawn_enemy(spawnlist, target : Target):
 		for _y in range(min(spawngroup[1].to_int(),n_can_spawn())):
 			var newmob = newmob_type.instantiate()
 			newmob.global_position = spawnarea
-			newmob.target_data.current = enemy_target.current
+			#temporary fix
+			newmob.target_data.current_targets.append(enemy_target.current_targets.back())
 			spawned.push_back(newmob)
 			add_child(newmob)
 	

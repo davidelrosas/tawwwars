@@ -6,7 +6,7 @@ const effect_id = effect_type.HEALTH
 
 func apply(entity : BaseEntity):
 	#this might change, becouse I might detach the healthbar functionality from stats!
-	entity.healthbar.value = min(entity.healthbar.value - effect_power, entity.healthbar.max_value)
+	entity.stats.current_health = min(entity.stats.current_health - effect_power, entity.stats.max_health)
 	applied_on = entity
 	if effect_power > 0:
 		takes_damage()
