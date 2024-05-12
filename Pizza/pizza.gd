@@ -23,10 +23,6 @@ func _draw():
 			max(pizza_properties.get_max_radius_x(x-1),	pizza_properties.get_max_radius_x(x)),
 			col,5,true)
 	draw_arc(position,pizza_properties.inner_radius,0,pizza_properties.angle,pizza_properties.get_arc_num_points(pizza_properties.inner_radius,pizza_properties.angle),Color(0,0,0),5)
-<<<<<<< HEAD
-=======
-	
->>>>>>> 4979ca26d1c0dff09055db62cdc8cc4cbb4d8dab
 
 func highlight(selector : Vector2i):
 	slices[selected.x].deselect(selected.y)
