@@ -5,10 +5,12 @@ var card = preload("res://Shop/shop_card.tscn")
 
 
 func _ready():
+	SignalBus.open_shop.connect(_on_shop_pressed)
 	switch()
 	pass
 
 func switch():
+	return
 	var new_card = card.instantiate()
 	new_card.set_info(Towar.towar_model.HEALER)
 	add_child(new_card)

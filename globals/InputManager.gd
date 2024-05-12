@@ -44,7 +44,9 @@ signal pause_play()
 signal build_mode_activation()
 signal action_mode_activation()
 
-signal changed_pizza_highlight(selector : Vector2i)
+signal change_pizza_highlight(selector : Vector2i)
+signal build_on_selection()
+#signal build_on_pizza(slot : Vector2i)
 
 #signal select_subslice(selector : Vector2ie)
 
@@ -55,16 +57,26 @@ signal changed_pizza_highlight(selector : Vector2i)
 
 var pizza_selector : Vector2i = Vector2i(0,0)
 
-
 #mutually exclusive input profiles
 enum InputMode {
 	Build = 0,
-	Action = 1
+	Action = 1,
+	Shop = 2
 }
 
 var input_mode : InputMode = InputMode.Build
 
-var utilityActions : Dictionary = {
+class InputSet:
+	var actions : Dictionary
+	func process() -> void:
+		for action in actions.keys():
+			if(Input.is_action_just_pressed(action)):
+				actions[action].call()
+	func _init(actions : Dictionary):
+		self.actions = actions
+
+
+var utilityActions : InputSet = InputSet.new( {
 	"Pause" : func():
 		pause_play.emit()
 		input_mode = !(input_mode) as int as InputMode,
@@ -74,12 +86,15 @@ var utilityActions : Dictionary = {
 	"ActionMode": func(): 
 		input_mode = InputMode.Action
 		action_mode_activation.emit()
-}
+})
 
-var buildActions : Dictionary = {
+var buildActions : InputSet = InputSet.new({
 	"Select" : func():
-		pass
-}
+		pass,
+	"Use" : func():
+		build_on_selection.emit()
+		input_mode = InputMode.Shop
+})
 
 func _process(_delta):
 	match (input_mode):
@@ -97,11 +112,14 @@ func _process(_delta):
 			if selector_delta:
 				pizza_selector= Player.pizza_properties.selection_clampi(pizza_selector + selector_delta)
 				print (pizza_selector.y, Timelord.pizza_properties.subdivisions[pizza_selector.x])
-				changed_pizza_highlight.emit(pizza_selector)
-	
-	for action in utilityActions.keys():
-		if Input.is_action_just_pressed(action):
-			utilityActions[action].call()
+				change_pizza_highlight.emit(pizza_selector)
+			buildActions.process()
+		InputMode.Shop:
+			if Input.is_action_just_pressed("Use"):
+				SignalBus.open_shop.emit()
+				input_mode = InputMode.Build if Timelord.is_paused() else InputMode.Action
+				
+	utilityActions.process()
 			
 
 func _ready():

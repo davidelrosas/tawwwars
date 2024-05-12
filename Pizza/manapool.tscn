@@ -2,17 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://2sa5dmxtcggh" path="res://Pizza/beam.tscn" id="1_jrlky"]
 [ext_resource type="Script" path="res://Pizza/manapool.gd" id="1_uhudf"]
-[ext_resource type="PackedScene" uid="uid://dm5p42nxsryym" path="res://Pizza/pizza.tscn" id="2_i7qwp"]
+[ext_resource type="Script" path="res://Pizza/pizza.gd" id="3_428ju"]
 [ext_resource type="Script" path="res://Pizza/pizza_properties.gd" id="4_cmht1"]
 
-[sub_resource type="Resource" id="Resource_r4wcc"]
+[sub_resource type="Resource" id="Resource_ny2se"]
 script = ExtResource("4_cmht1")
 angle = 6.0
 inner_radius = 100
 slice_height = 200
-circle_res = 128
+circle_res = 10
 division = 4
-bpm = 60.0
+bpm = 120.0
 swing = 0.5
 
 [node name="Manapool" type="Node2D"]
@@ -20,5 +20,6 @@ script = ExtResource("1_uhudf")
 
 [node name="Beam" parent="." instance=ExtResource("1_jrlky")]
 
-[node name="Pizza" parent="." instance=ExtResource("2_i7qwp")]
-pizza_properties = SubResource("Resource_r4wcc")
+[node name="Pizza" type="Node2D" parent="."]
+script = ExtResource("3_428ju")
+pizza_properties = SubResource("Resource_ny2se")
