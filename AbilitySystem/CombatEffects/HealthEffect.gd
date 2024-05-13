@@ -4,6 +4,8 @@ extends CombatEffect
 
 const effect_id = effect_type.HEALTH
 
+# this effect needs to be expanded with DOT and so on
+# maybe this should be inside BaseEntity after all
 func apply(entity : BaseEntity):
 	#this might change, becouse I might detach the healthbar functionality from stats!
 	entity.stats.current_health = min(entity.stats.current_health - effect_power, entity.stats.max_health)

@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbmxdu768thrm"]
+
+[ext_resource type="Script" path="res://AbilitySystem/AbilityTypes/HBAbility.gd" id="1_3quck"]
+[ext_resource type="Script" path="res://AbilitySystem/AllAbilities/simple_homing_bullet.gd" id="1_8hqxr"]
+[ext_resource type="Script" path="res://Components/HitBox.gd" id="1_vypa5"]
+[ext_resource type="Texture2D" uid="uid://cnqa5b5afqqdf" path="res://assets/sprites/beams.png" id="3_bhbo3"]
+[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/HealthEffect.gd" id="4_vjr5i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uc80h"]
+radius = 5.0
+height = 14.1393
+
+[node name="HBAbility" type="Node2D"]
+script = ExtResource("1_3quck")
+mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.13745
+scale = Vector2(1, 1.09483)
+texture = ExtResource("3_bhbo3")
+region_enabled = true
+region_rect = Rect2(82, 111, 24, 29)
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("1_vypa5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_uc80h")
+
+[node name="Impact Detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Impact Detector"]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_uc80h")
+
+[node name="SimpleHomingBullet" type="Node2D" parent="." node_paths=PackedStringArray("hitbox", "impact_detector", "effects_list")]
+script = ExtResource("1_8hqxr")
+hitbox = NodePath("../HitBox")
+impact_detector = NodePath("../Impact Detector")
+effects_list = [null, null]
+speed = 200.0
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="HealthEffect" type="Node" parent="Effects"]
+script = ExtResource("4_vjr5i")
+effect_power = 20.0
+
+[node name="SlowEffect" type="Node" parent="Effects"]

@@ -28,6 +28,7 @@ func cast(target_data : Target, caster : BaseEntity):
 	#when does it get add as a child of the caster?
 
 func execute(target_data : Target, caster : BaseEntity):
+	initialize_effects(caster)
 	pass
 
 func playanimation():
@@ -38,6 +39,8 @@ func _process(delta):
 	if animation != null && animation.current_animation == "":
 		queue_free()
 
+#This should also probably add the caster Ability damage modifiers!!
 func initialize_effects(caster):
 	for i in effects_list:
+		#inside this function!!!
 		i.initialize_effect(caster)

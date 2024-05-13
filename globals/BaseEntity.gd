@@ -46,10 +46,11 @@ func death():
 #endregion
 
 func set_properties():
+	#setting stats
+	stats.owner_entity = self
 	#Setting Healthbar
 	healthbar.max_value = stats.max_health
 	healthbar.value = stats.max_health
-	
 	#connecting Hurtbox
 	hurtbox.owner_entity = self
 	hurtbox.set_layer(team_id)
@@ -59,9 +60,7 @@ func set_properties():
 	else:
 		collision_layer = 0b10001
 		
-	#creating detection range radius
+	#setting targeting system
+	target_data.owner_entity = self
 	det_area.owner_entity = self
 	det_area.set_properties(stats.detection_range, stats.detection_mode)
-	
-	#setting Targeting
-	target_data.owner_entity = self
