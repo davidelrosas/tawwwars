@@ -28,6 +28,17 @@ func reset_next()->void:
 	active_subbeat = false
 	queue_redraw()
 	
+func place_towar(towar : Towar)->void:
+	self.towar = towar
+	towar.position = pizza_properties.get_relative_slot_middle(slot)
+	add_child(towar)
+	if (SignalBus.build_towar.is_connected(place_towar)):
+		SignalBus.build_towar.disconnect(place_towar)
+	flags &= ~(Slotflags.Temporary | Slotflags.Rest)
+	
+func clear_towar()->void:
+	towar.queue_free()
+	
 @warning_ignore("shadowed_variable")
 func update_slot(slot : Vector2i):
 	self.slot = slot
