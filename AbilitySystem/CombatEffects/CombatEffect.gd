@@ -31,12 +31,6 @@ func activate_effect():
 		applied_on.active_effects[self.effect_id].append(self)
 	applied_on.add_child(self)
 
-#to get the list of active effects of a certain type
-# why cant it be array of combat effects but it has to be specific to the subclass???
-#probably delete this useless shit
-static func get_effects(effect_id : CombatEffect.effect_type, entity : BaseEntity) -> Array:
-	return entity.active_effects[effect_id]
-
 func initialize_effect(caster : BaseEntity):
 	casted_from = caster
 
