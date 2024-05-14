@@ -14,7 +14,7 @@ enum target_type {CLOSEST,TARGETSELF,LOWESTHEALTH}
 var find_functions = {
 	target_type.CLOSEST :  
 		Callable(self,"find_condition").bind(
-			(func(a, b):(owner_entity.global_position - a.global_position).length() < (owner_entity.global_position - b.global_position).length())),
+			(func(a, b):(a.global_position - owner_entity.global_position).length() < (b.global_position - owner_entity.global_position).length())),
 			
 	target_type.LOWESTHEALTH: 
 		Callable(self,"find_condition").bind(
@@ -38,12 +38,18 @@ func find(target_type_ids : Array[target_type], target_amounts : Array[int]):
 	for i in target_type_ids:
 		var amount = target_amounts.pop_front()
 		find_functions[i].call(amount)
-		
+	remove_duplicates(current_targets)
 
-#only lambda function changes
-func find_condition(amount : int, custom_func : Callable):
+func remove_duplicates(list : Array):
+	var unique = []
+	for item in list:
+		if not unique.has(item):
+			unique.append(item)
+	list = unique
+
+func find_condition(amount : int, sort_func : Callable):
 	var target_list = in_range.duplicate()
-	target_list.sort_custom(custom_func)
+	target_list.sort_custom(sort_func)
 	while amount > 0 && target_list.size() > 0:
 		current_targets.append(target_list.pop_back())
 		amount -=1

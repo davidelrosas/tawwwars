@@ -3,10 +3,9 @@
 [ext_resource type="Script" path="res://AbilitySystem/AbilityTypes/DirectAbility.gd" id="1_vmnir"]
 [ext_resource type="Script" path="res://AbilitySystem/CombatEffects/TauntEffect.gd" id="2_jn5cl"]
 
-[node name="DirectAbility" type="Node2D" node_paths=PackedStringArray("effects_list")]
+[node name="DirectAbility" type="Node2D"]
 script = ExtResource("1_vmnir")
 text = "taunt"
-effects_list = [NodePath("Effects/TauntEffect")]
 targeting = Array[int]([0])
 target_ammounts = PackedInt32Array(3)
 

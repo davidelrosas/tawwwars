@@ -11,10 +11,9 @@
 radius = 5.0
 height = 14.1393
 
-[node name="simple_blast_homing" type="Node2D" node_paths=PackedStringArray("hitbox", "impact_detector", "movement_engine", "effects_list")]
+[node name="simple_blast_homing" type="Node2D" node_paths=PackedStringArray("hitbox", "movement_engine", "effects_list")]
 script = ExtResource("1_evrwp")
 hitbox = NodePath("HitBox")
-impact_detector = NodePath("Impact Detector")
 movement_engine = NodePath("HomingMovement")
 cast_position_id = 1
 mode = 2
@@ -35,12 +34,6 @@ region_rect = Rect2(82, 111, 24, 29)
 script = ExtResource("3_x7w5e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(0, -3)
-shape = SubResource("CapsuleShape2D_uc80h")
-
-[node name="Impact Detector" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Impact Detector"]
 position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_uc80h")
 

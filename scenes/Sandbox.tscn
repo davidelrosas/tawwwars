@@ -11,6 +11,7 @@ script = ExtResource("1_xvcll")
 position = Vector2(346, 224)
 
 [node name="Mob" parent="." instance=ExtResource("3_fi0q4")]
-position = Vector2(166, 141)
+position = Vector2(218, 118)
 
 [node name="Mob2" parent="." instance=ExtResource("3_fi0q4")]
+position = Vector2(21, 13)

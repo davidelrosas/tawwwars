@@ -7,9 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvbql"]
 size = Vector2(64, 64)
 
-[node name="GooPuddle" type="Node2D" node_paths=PackedStringArray("effects_list", "det_area")]
+[node name="GooPuddle" type="Node2D" node_paths=PackedStringArray("det_area")]
 script = ExtResource("1_yj2ol")
-effects_list = [null]
 det_area = NodePath("Area2D")
 duration = 15.0
 

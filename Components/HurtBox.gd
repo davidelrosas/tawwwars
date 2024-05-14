@@ -13,6 +13,7 @@ func _on_area_entered(hitbox : HitBox):
 	
 	if owner_entity.has_method("effect"):
 		owner_entity.effect(hitbox.effects_list)
+		hitbox.hitbox_hit.emit(owner_entity)
 
 func _init():
 	collision_layer = 0

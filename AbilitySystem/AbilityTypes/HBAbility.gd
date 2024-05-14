@@ -3,7 +3,6 @@ class_name HBAbility
 extends Ability
 
 @export var hitbox : HitBox
-@export var impact_detector : Area2D
 @export var movement_engine : AbilityMovement
 @export var cast_position_id : cast_position
 # para el explosive shot hacer que trigeree la siguiente habilidad cuando llegue a un vector
@@ -51,12 +50,10 @@ func set_hitbox(caster : BaseEntity):
 	pass
 
 func set_impact_detection(caster : BaseEntity):
-	impact_detector.collision_layer = 0
-	impact_detector.collision_mask = caster.det_area.collision_mask
-	impact_detector.body_entered.connect(_on_impact_detection)
-	pass
+	hitbox.hitbox_hit.connect(_on_impact_detection)
 
 func _on_impact_detection(body : BaseEntity):
+	print("poopypants")
 	if hitbox.collision_layer == body.hurtbox.collision_mask:
 		max_impacts -= 1
 		if max_impacts <= 0:
