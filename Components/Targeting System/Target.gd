@@ -1,7 +1,5 @@
 class_name Target
 
-extends Node
-
 var owner_entity : BaseEntity
 var in_range : Array[BaseEntity]
 
@@ -14,7 +12,7 @@ enum target_type {CLOSEST,TARGETSELF,LOWESTHEALTH}
 var find_functions = {
 	target_type.CLOSEST: 
 		find_condition.bind(
-			(func(a, b):(a.global_position - owner_entity.global_position).length() < (b.global_position - owner_entity.global_position).length())),
+			(func(a, b):(a.global_position - owner_entity.global_position).length_squared() < (b.global_position - owner_entity.global_position).length_squared())),
 			
 	target_type.LOWESTHEALTH: 
 		find_condition.bind(
