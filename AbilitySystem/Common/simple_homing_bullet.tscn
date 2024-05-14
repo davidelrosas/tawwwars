@@ -21,7 +21,7 @@ max_impacts = 1
 speed = 200.0
 effects_list = [NodePath("Effects/HealthEffect"), NodePath("Effects/MovementEffect")]
 targeting = Array[int]([0])
-target_ammounts = PackedInt32Array(1)
+target_ammounts = PackedInt32Array(2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.13745

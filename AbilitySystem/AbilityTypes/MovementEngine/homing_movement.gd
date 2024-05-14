@@ -1,6 +1,6 @@
 class_name HomingMovement
 
-extends AbilityMovement
+extends MovementEngine
 
 var position_prev_frame : Vector2
 
@@ -9,10 +9,7 @@ var position_prev_frame : Vector2
 func _physics_process(delta):
 	if not target:
 		# how do we get this direction
-		
-		print(position_prev_frame)
-		print(ability.position)
-		direction = (ability.position - position_prev_frame).normalized()
+		direction  = (ability.position - position_prev_frame).normalized()
 		ability.global_position += direction * speed * delta
 	else:
 		position_prev_frame = ability.position

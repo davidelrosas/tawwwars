@@ -12,7 +12,7 @@ var current_targets : Array[BaseEntity]
 enum target_type {CLOSEST,TARGETSELF,LOWESTHEALTH}
 
 var find_functions = {
-	target_type.CLOSEST :  
+	target_type.CLOSEST: 
 		Callable(self,"find_condition").bind(
 			(func(a, b):(a.global_position - owner_entity.global_position).length() < (b.global_position - owner_entity.global_position).length())),
 			
@@ -55,7 +55,7 @@ func find_condition(amount : int, sort_func : Callable):
 		amount -=1
 	#targets_ready.append(false)
 
-func find_caster(amount):
+func find_caster(_amount):
 	current_targets.append(owner_entity)
 	#targets_ready.append(true)
 

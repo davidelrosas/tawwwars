@@ -28,7 +28,7 @@ func cast(target_data : Target, caster : BaseEntity):
 		print("no targets in sight")
 	#when does it get add as a child of the caster?
 
-func execute(target_data : Target, caster : BaseEntity):
+func execute(_target_data : Target, caster : BaseEntity):
 	initialize_effects(caster)
 	pass
 
@@ -36,7 +36,7 @@ func playanimation():
 	if animation != null:
 		animation.play("run")
 
-func _process(delta):
+func _process(_delta):
 	if animation != null && animation.current_animation == "":
 		queue_free()
 

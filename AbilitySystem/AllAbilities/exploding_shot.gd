@@ -15,6 +15,7 @@ func _ready():
 	impact_detector.body_entered.connect(_on_impact_detection)
 	set_as_top_level(true)
 
+@warning_ignore("shadowed_variable")
 func cast(target_data : Target, caster : BaseEntity):
 	target = target_data.find_closest(caster)
 	if target != null:
@@ -22,6 +23,7 @@ func cast(target_data : Target, caster : BaseEntity):
 	else:
 		print("no target in sight")
 
+@warning_ignore("shadowed_variable")
 func shoot(caster):
 	hitbox.effects_list = effects_list
 	hitbox.set_layer(caster.team_id)
