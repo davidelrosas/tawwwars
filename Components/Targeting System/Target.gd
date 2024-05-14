@@ -13,11 +13,11 @@ enum target_type {CLOSEST,TARGETSELF,LOWESTHEALTH}
 
 var find_functions = {
 	target_type.CLOSEST: 
-		Callable(self,"find_condition").bind(
+		find_condition.bind(
 			(func(a, b):(a.global_position - owner_entity.global_position).length() < (b.global_position - owner_entity.global_position).length())),
 			
 	target_type.LOWESTHEALTH: 
-		Callable(self,"find_condition").bind(
+		find_condition.bind(
 			(func(a, b): a.stats.current_health > b.stats.current_health)),
 			
 	target_type.TARGETSELF: 

@@ -31,15 +31,14 @@ func apply_modifier(effect_id : CombatEffect.effect_type, reduction_factor : flo
 		mul_modifiers.sort()
 		var incremental_modifiers = mul_modifiers.filter(func(x): return x > 0)
 		var decremental_modifiers = mul_modifiers.filter(func(x): return x < 0)
-		var max = incremental_modifiers.pop_back() if incremental_modifiers != [] else 0
-		var min = decremental_modifiers.pop_front() if decremental_modifiers != [] else 0
+		var max_mod = incremental_modifiers.pop_back() if incremental_modifiers != [] else 0
+		var min_mod = decremental_modifiers.pop_front() if decremental_modifiers != [] else 0
 		
 		var modifier_function = func(acc, x): return acc + ((x + (acc*x)) * reduction_factor)
-		compound_modifier = incremental_modifiers.reduce(modifier_function, max) + decremental_modifiers.reduce(modifier_function, min)
+		compound_modifier = incremental_modifiers.reduce(modifier_function, max_mod) + decremental_modifiers.reduce(modifier_function, min_mod)
 		print(compound_modifier,"hello")
 	match effect_id:
 		CombatEffect.effect_type.MOVEMENT:
-			
 			current_speed = movement_speed * (1 + compound_modifier) + add_modifiers.reduce((func(acc,b): acc + b), 0)
 			print(current_speed)
 	
@@ -49,6 +48,7 @@ func fill_modifiers(effect_id : CombatEffect.effect_type):
 	add_modifiers = same_type_effects.filter(func(x): return x.modifier == CombatEffect.modifier_type.ADDITIVE).map(func(x): return x.effect_power)
 
 func remove_modifier():
+	#remove just erases an element of the modifier array so modifiers.erase(effect.effect_power/100)
 	pass
 
 @warning_ignore("shadowed_variable")
