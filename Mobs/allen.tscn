@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Components/Healthbar.gd" id="2_0wxyc"]
 [ext_resource type="Texture2D" uid="uid://8wjv06v5lrrj" path="res://assets/sprites/D28D7E3F-8FED-4903-A4FB-11C7031F8CF0.jpg" id="2_kxcbb"]
 [ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_7d0xc"]
-[ext_resource type="Script" path="res://Components/DetectionArea.gd" id="5_enyhm"]
+[ext_resource type="Script" path="res://Components/Targeting System/DetectionArea.gd" id="5_enyhm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klre2"]
 size = Vector2(28, 30)

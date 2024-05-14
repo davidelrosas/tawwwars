@@ -8,5 +8,5 @@ signal death(ref)
 
 signal towar_info()
 
-signal entity_entered_tree(ref : BaseEntity)
+signal entity_entered_scene(ref : BaseEntity)
 

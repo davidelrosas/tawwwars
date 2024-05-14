@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dscg372ko23ay"]
+
+[ext_resource type="Script" path="res://scenes/Sandbox.gd" id="1_xvcll"]
+[ext_resource type="PackedScene" uid="uid://kw37c4p2wwvl" path="res://Towars/prefabs/turret.tscn" id="2_cdpjy"]
+[ext_resource type="PackedScene" uid="uid://d13q4omrgcpxp" path="res://Mobs/bossman.tscn" id="3_fi0q4"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_xvcll")
+
+[node name="Turret" parent="." instance=ExtResource("2_cdpjy")]
+position = Vector2(346, 224)
+
+[node name="Mob" parent="." instance=ExtResource("3_fi0q4")]
+position = Vector2(236, 81)
+
+[node name="Mob2" parent="." instance=ExtResource("3_fi0q4")]
+position = Vector2(102, 245)

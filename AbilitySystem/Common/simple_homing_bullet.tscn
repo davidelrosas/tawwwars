@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbmxdu768thrm"]
+
+[ext_resource type="Script" path="res://AbilitySystem/AbilityTypes/HBAbility.gd" id="1_evrwp"]
+[ext_resource type="Texture2D" uid="uid://cnqa5b5afqqdf" path="res://assets/sprites/beams.png" id="2_06jno"]
+[ext_resource type="Script" path="res://Components/HitBox.gd" id="3_x7w5e"]
+[ext_resource type="Script" path="res://AbilitySystem/AbilityTypes/MovementEngine/homing_movement.gd" id="4_hg3p2"]
+[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/HealthEffect.gd" id="5_a52dx"]
+[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/MovementEffect.gd" id="6_udmyk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uc80h"]
+radius = 5.0
+height = 14.1393
+
+[node name="simple_blast_homing" type="Node2D" node_paths=PackedStringArray("hitbox", "movement_engine", "effects_list")]
+script = ExtResource("1_evrwp")
+hitbox = NodePath("HitBox")
+movement_engine = NodePath("HomingMovement")
+cast_position_id = 1
+mode = 2
+max_impacts = 1
+speed = 200.0
+effects_list = [NodePath("Effects/HealthEffect"), NodePath("Effects/MovementEffect")]
+targeting = Array[int]([0])
+target_ammounts = PackedInt32Array(2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.13745
+scale = Vector2(1, 1.09483)
+texture = ExtResource("2_06jno")
+region_enabled = true
+region_rect = Rect2(82, 111, 24, 29)
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("3_x7w5e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_uc80h")
+
+[node name="HomingMovement" type="Node" parent="."]
+script = ExtResource("4_hg3p2")
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="HealthEffect" type="Node" parent="Effects"]
+script = ExtResource("5_a52dx")
+effect_power = 20.0
+
+[node name="MovementEffect" type="Node" parent="Effects"]
+script = ExtResource("6_udmyk")
+duration = 3.0
+modifier = 1
+effect_power = -40.0

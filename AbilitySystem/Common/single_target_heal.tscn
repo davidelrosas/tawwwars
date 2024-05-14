@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwf1wxaw41lua"]
+
+[ext_resource type="Script" path="res://AbilitySystem/AbilityTypes/DirectAbility.gd" id="1_2snrv"]
+[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/HealthEffect.gd" id="2_tpf17"]
+
+[node name="DirectAbility" type="Node2D"]
+script = ExtResource("1_2snrv")
+text = "heal"
+targeting = Array[int]([2])
+target_ammounts = PackedInt32Array(1)
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="HealthEffect" type="Node" parent="Effects"]
+script = ExtResource("2_tpf17")
+effect_power = -20.0

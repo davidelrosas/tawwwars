@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Components/Healthbar.gd" id="2_ai7fi"]
 [ext_resource type="Script" path="res://Components/HurtBox.gd" id="3_1dsoj"]
 [ext_resource type="Texture2D" uid="uid://dv2c4038n41nv" path="res://Towars/Sprites/tower_square.svg" id="3_h7yhv"]
-[ext_resource type="Script" path="res://Components/DetectionArea.gd" id="4_s6sdj"]
+[ext_resource type="Script" path="res://Components/Targeting System/DetectionArea.gd" id="4_s6sdj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x7vmq"]
 radius = 37.0
@@ -12,9 +12,12 @@ height = 88.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_muomo"]
 
-[node name="Towar" type="CharacterBody2D"]
+[node name="Wall" type="CharacterBody2D" node_paths=PackedStringArray("healthbar", "hurtbox", "det_area")]
 script = ExtResource("1_rll5i")
 model = 2
+healthbar = NodePath("Healthbar")
+hurtbox = NodePath("HurtBox")
+det_area = NodePath("DetectionArea")
 
 [node name="Healthbar" type="TextureProgressBar" parent="."]
 offset_left = -81.0

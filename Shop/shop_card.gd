@@ -1,7 +1,8 @@
 extends Control
 
+
 #var towar_model : Towar.towar_model
-#var towar = preload("res://Towars/prefabs/base_towar.tscn")
+#var towar = preload("res://Towars/prefabs/turret.tscn")
 
 #Sets metadata of towar into card
 func set_info(towar_model : Towar.towar_model):
