@@ -1,19 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dscg372ko23ay"]
+[gd_scene load_steps=4 format=3 uid="uid://dscg372ko23ay"]
 
 [ext_resource type="Script" path="res://scenes/Sandbox.gd" id="1_xvcll"]
+[ext_resource type="PackedScene" uid="uid://kw37c4p2wwvl" path="res://Towars/prefabs/turret.tscn" id="2_cdpjy"]
 [ext_resource type="PackedScene" uid="uid://d13q4omrgcpxp" path="res://Mobs/bossman.tscn" id="3_fi0q4"]
-[ext_resource type="PackedScene" uid="uid://dc3vhxmdealy3" path="res://Towars/prefabs/healer.tscn" id="4_dtq4s"]
-[ext_resource type="PackedScene" uid="uid://f7icr6l1wimr" path="res://Towars/prefabs/wall.tscn" id="4_h3cs1"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xvcll")
 
-[node name="Wall" parent="." instance=ExtResource("4_h3cs1")]
-position = Vector2(438, 170)
-
-[node name="Healer" parent="." instance=ExtResource("4_dtq4s")]
-position = Vector2(304, 288)
+[node name="Turret" parent="." instance=ExtResource("2_cdpjy")]
+position = Vector2(346, 224)
 
 [node name="Mob" parent="." instance=ExtResource("3_fi0q4")]
+position = Vector2(166, 141)
 
 [node name="Mob2" parent="." instance=ExtResource("3_fi0q4")]

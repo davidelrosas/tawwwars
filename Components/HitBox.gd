@@ -6,6 +6,7 @@ var effects_list : Array[CombatEffect]
 # Hitbox having an enabled/disabled property or function would be usefull probably
 #maybe give it to hurtbox too later
 
+#make hitbox be able to hit every one as well!! we need to merge collision layers of hurtbox and detection range!!
 func _init():
 	collision_layer = 2
 	collision_mask = 0

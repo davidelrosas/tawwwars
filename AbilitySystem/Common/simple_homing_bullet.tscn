@@ -1,18 +1,27 @@
 [gd_scene load_steps=7 format=3 uid="uid://bbmxdu768thrm"]
 
 [ext_resource type="Script" path="res://AbilitySystem/AbilityTypes/HBAbility.gd" id="1_3quck"]
-[ext_resource type="Script" path="res://AbilitySystem/AllAbilities/simple_homing_bullet.gd" id="1_8hqxr"]
 [ext_resource type="Script" path="res://Components/HitBox.gd" id="1_vypa5"]
 [ext_resource type="Texture2D" uid="uid://cnqa5b5afqqdf" path="res://assets/sprites/beams.png" id="3_bhbo3"]
+[ext_resource type="Script" path="res://AbilitySystem/AbilityTypes/MovementEngine/homing_movement.gd" id="4_swdro"]
 [ext_resource type="Script" path="res://AbilitySystem/CombatEffects/HealthEffect.gd" id="4_vjr5i"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uc80h"]
 radius = 5.0
 height = 14.1393
 
-[node name="HBAbility" type="Node2D"]
+[node name="simple_blast_homing" type="Node2D" node_paths=PackedStringArray("hitbox", "impact_detector", "movement_engine", "effects_list")]
 script = ExtResource("1_3quck")
-mode = 0
+hitbox = NodePath("HitBox")
+impact_detector = NodePath("Impact Detector")
+movement_engine = NodePath("HomingMovement")
+cast_position_id = 1
+mode = 2
+max_impacts = 1
+speed = 200.0
+effects_list = [NodePath("Effects/HealthEffect")]
+targeting = Array[int]([0])
+target_ammounts = PackedInt32Array(1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.13745
@@ -34,17 +43,11 @@ shape = SubResource("CapsuleShape2D_uc80h")
 position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_uc80h")
 
-[node name="SimpleHomingBullet" type="Node2D" parent="." node_paths=PackedStringArray("hitbox", "impact_detector", "effects_list")]
-script = ExtResource("1_8hqxr")
-hitbox = NodePath("../HitBox")
-impact_detector = NodePath("../Impact Detector")
-effects_list = [null, null]
-speed = 200.0
+[node name="HomingMovement" type="Node" parent="."]
+script = ExtResource("4_swdro")
 
 [node name="Effects" type="Node" parent="."]
 
 [node name="HealthEffect" type="Node" parent="Effects"]
 script = ExtResource("4_vjr5i")
 effect_power = 20.0
-
-[node name="SlowEffect" type="Node" parent="Effects"]

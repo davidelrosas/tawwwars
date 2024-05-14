@@ -24,4 +24,4 @@ func end_effect():
 	super.end_effect()
 
 func modify_stats():
-	applied_on.entity.stats.apply_modifier(effect_id, subsequent_reduction_factor)
+	applied_on.stats.apply_modifier(effect_id, subsequent_reduction_factor)

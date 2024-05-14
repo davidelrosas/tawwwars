@@ -7,12 +7,11 @@ extends BaseEntity
 enum mob_type {ALLEN, BOSSMAN}
 
 var ai
-var current_speed : float = 50
 var direction : Vector2
 
 func _ready():
 	construct(type)
-	current_speed = stats.movement_speed
+	stats.current_speed = stats.movement_speed
 	super.set_properties()
 	#super._ready()
 
@@ -27,18 +26,16 @@ func _physics_process(delta):
 			direction = (target_data.in_range.back().global_position - global_position).normalized()
 		#needs to be fixed
 		look_at(target_data.in_range.back().global_position)
-		global_position += direction * current_speed * delta
+		global_position += direction * stats.current_speed * delta
 
 #class constructor 
 func construct(type : mob_type):
 	#MOB TYPES
 	match type:
 		mob_type.ALLEN:
-			stats = Stats.new(20,2000,DetectionArea.detection_mode.ENEMIESONLY,10,0)
+			stats = Stats.new(20,2000,DetectionArea.detection_mode.ENEMIESONLY,10,0,100)
 			team_id = team.ENEMY
-			stats.movement_speed = 100
 			
 		mob_type.BOSSMAN:
-			stats = Stats.new(200,2000,DetectionArea.detection_mode.ENEMIESONLY,50,0)
+			stats = Stats.new(200,2000,DetectionArea.detection_mode.ENEMIESONLY,50,0,50)
 			team_id = team.ENEMY
-			stats.movement_speed = 50

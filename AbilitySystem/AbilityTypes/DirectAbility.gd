@@ -12,3 +12,6 @@ func execute(target_data, caster):
 	for i in target_data.current_targets:
 		i.effect(effects_list)
 	print(text)
+
+
+#make a timed multicast option
