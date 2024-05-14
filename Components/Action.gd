@@ -8,5 +8,9 @@ const script_paths = {
 	action_list.TAUNT : "res://Components/Actions/TauntAction.gd"
 }
 
-func action(target : Target,caster):
-	pass
+#func cast(target : Target, caster, ability):
+	#if target.current != null:
+	#else:
+		#target.current = target.find_closest(caster)
+		#if target.current != null:
+	#pass
