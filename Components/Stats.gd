@@ -20,13 +20,11 @@ var current_speed : float
 var mul_modifiers : Array
 var add_modifiers : Array
 
-#we need to think about how this will work with different kinds of stats etc
-# the maths are wrong, remake them
+
 func apply_modifier(effect_id : CombatEffect.effect_type, reduction_factor : float):
 	fill_modifiers(effect_id)
 	
 	var compound_modifier = 0
-	print(mul_modifiers)
 	if mul_modifiers != []:
 		mul_modifiers.sort()
 		var incremental_modifiers = mul_modifiers.filter(func(x): return x > 0)
@@ -36,11 +34,9 @@ func apply_modifier(effect_id : CombatEffect.effect_type, reduction_factor : flo
 		
 		var modifier_function = func(acc, x): return acc + ((x + (acc*x)) * reduction_factor)
 		compound_modifier = incremental_modifiers.reduce(modifier_function, max_mod) + decremental_modifiers.reduce(modifier_function, min_mod)
-		print(compound_modifier,"hello")
 	match effect_id:
 		CombatEffect.effect_type.MOVEMENT:
 			current_speed = movement_speed * (1 + compound_modifier) + add_modifiers.reduce((func(acc,b): acc + b), 0)
-			print(current_speed)
 	
 func fill_modifiers(effect_id : CombatEffect.effect_type):
 	var same_type_effects = owner_entity.active_effects[effect_id]
