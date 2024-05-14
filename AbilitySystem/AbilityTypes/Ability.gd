@@ -37,7 +37,6 @@ func playanimation():
 		animation.play("run")
 
 func _process(delta):
-	print("nuts")
 	if animation != null && animation.current_animation == "":
 		queue_free()
 

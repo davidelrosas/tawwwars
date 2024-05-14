@@ -30,26 +30,26 @@ func targets_ready() -> bool:
 func flush_current_targets():
 	current_targets = []
 
-func find(target_type_ids : Array[target_type], target_ammounts : Array[int]):
+func find(target_type_ids : Array[target_type], target_amounts : Array[int]):
 	#later its probably gonna check if current targets are valid still something like that
 	flush_current_targets()
 	if in_range == []:
 		return
 	for i in target_type_ids:
-		var ammount = target_ammounts.pop_front()
-		find_functions[i].call(ammount)
+		var amount = target_amounts.pop_front()
+		find_functions[i].call(amount)
 		
 
 #only lambda function changes
-func find_condition(ammount : int, custom_func : Callable):
+func find_condition(amount : int, custom_func : Callable):
 	var target_list = in_range.duplicate()
 	target_list.sort_custom(custom_func)
-	while ammount > 0 && target_list.size() > 0:
+	while amount > 0 && target_list.size() > 0:
 		current_targets.append(target_list.pop_back())
-		ammount -=1
+		amount -=1
 	#targets_ready.append(false)
 
-func find_caster(ammount):
+func find_caster(amount):
 	current_targets.append(owner_entity)
 	#targets_ready.append(true)
 

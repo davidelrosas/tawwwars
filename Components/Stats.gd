@@ -17,34 +17,36 @@ var current_speed : float
 #modifier dictionary
 
 #modifier lists
-var mul_modifiers : Array[float]
-var add_modifiers : Array[float]
+var mul_modifiers : Array
+var add_modifiers : Array
 
 #we need to think about how this will work with different kinds of stats etc
 # the maths are wrong, remake them
 func apply_modifier(effect_id : CombatEffect.effect_type, reduction_factor : float):
 	fill_modifiers(effect_id)
 	
-	mul_modifiers.sort()
-	var incremental_modifiers = mul_modifiers.filter(func(x): x > 0)
-	var decremental_modifiers = mul_modifiers.filter(func(x): x < 0)
-	var max = incremental_modifiers.pop_back()
-	var min = decremental_modifiers.pop_front()
-	
-	var modifier_function = func(acc, x): acc * (1 + (x*reduction_factor))
-	# can pop be done inside reduce? will it pop first and then eliminate it out of modifier_lists?
-	var compound_modifier = incremental_modifiers.reduce(modifier_function, (1 + max)) - incremental_modifiers.reduce(modifier_function, (1 + min))
+	var compound_modifier = 0
+	print(mul_modifiers)
+	if mul_modifiers != []:
+		mul_modifiers.sort()
+		var incremental_modifiers = mul_modifiers.filter(func(x): return x > 0)
+		var decremental_modifiers = mul_modifiers.filter(func(x): return x < 0)
+		var max = incremental_modifiers.pop_back() if incremental_modifiers != [] else 0
+		var min = decremental_modifiers.pop_front() if decremental_modifiers != [] else 0
+		
+		var modifier_function = func(acc, x): return acc + ((x + (acc*x)) * reduction_factor)
+		compound_modifier = incremental_modifiers.reduce(modifier_function, max) + decremental_modifiers.reduce(modifier_function, min)
+		print(compound_modifier,"hello")
 	match effect_id:
 		CombatEffect.effect_type.MOVEMENT:
-			current_speed = movement_speed * compound_modifier + add_modifiers.reduce((func(acc,b): acc + b), 0)
+			
+			current_speed = movement_speed * (1 + compound_modifier) + add_modifiers.reduce((func(acc,b): acc + b), 0)
+			print(current_speed)
 	
 func fill_modifiers(effect_id : CombatEffect.effect_type):
 	var same_type_effects = owner_entity.active_effects[effect_id]
-	#something going on here
-	print(same_type_effects.filter(func(x): x.modifier == CombatEffect.modifier_type.MULTIPLICATIVE).map(func(x): x.effect_power),"herro")
-	mul_modifiers = same_type_effects.filter(func(x): x.modifier == CombatEffect.modifier_type.MULTIPLICATIVE).map(func(x): x.effect_power)
-	add_modifiers = same_type_effects.filter(func(x): x.modifier == CombatEffect.modifier_type.ADDITIVE).map(func(x): x.effect_power)
-	mul_modifiers.map(func(x):(x.effect_power/100))
+	mul_modifiers = same_type_effects.filter(func(x): return x.modifier == CombatEffect.modifier_type.MULTIPLICATIVE).map(func(x): return x.effect_power/100)
+	add_modifiers = same_type_effects.filter(func(x): return x.modifier == CombatEffect.modifier_type.ADDITIVE).map(func(x): return x.effect_power)
 
 func remove_modifier():
 	pass

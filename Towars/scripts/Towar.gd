@@ -49,7 +49,7 @@ func construct(model_id : towar_model):
 		towar_model.TURRET:
 			stats = Stats.new(100,200,DetectionArea.detection_mode.ENEMIESONLY,20,10)
 			team_id = team.PLAYER
-			active = preload("res://AbilitySystem/AllAbilities/simple_homing_bullet.tscn")
+			active = preload("res://AbilitySystem/Common/simple_homing_bullet.tscn")
 			
 		towar_model.HEALER:
 			stats = Stats.new(70,200,DetectionArea.detection_mode.ALLIESONLY,15,10)
