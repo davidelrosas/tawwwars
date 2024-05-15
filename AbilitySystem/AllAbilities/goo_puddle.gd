@@ -9,14 +9,16 @@ extends Node2D
 var in_area = {}
 enum detection_mode {ENEMIESONLY, ALLIESONLY, ALLENTITIES}
 
+var owner_entity : BaseEntity
+
 #for abilities for the layer they are seen say if they are cast on ground or cast on air!
 func _ready():
 	z_index = -1
 	pass
 	
-func cast(target_data : Target, caster : BaseEntity):
+func cast(target_data = owner_entity.target_data, caster = owner_entity):
 	set_properties(caster, mode)
-	global_position = caster.global_position
+	global_position = caster.position
 	set_timer(duration)
 	caster.get_parent().add_child(self)
 

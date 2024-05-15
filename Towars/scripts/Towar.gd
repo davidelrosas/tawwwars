@@ -16,13 +16,10 @@ func _ready():
 	super.set_properties()
 	#super._ready()
 
-func _input(event):
-	if event.is_action_pressed("Use"): #temporary
-		var ability_instance = active.instantiate()
-		ability_instance.cast(target_data, self)
-
-
-	
+func cast():
+	var ability_cast = active.instantiate()
+	ability_cast.owner_entity = self
+	ability_cast.cast()
 
 #model constructor 
 #maybe do this with dictionary instead of match

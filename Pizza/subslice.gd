@@ -8,6 +8,8 @@ var baseColor : Color
 var active_subbeat : bool = false
 var towar : Towar = null
 
+var pos : Vector2
+
 var slot : Vector2i
 
 @warning_ignore("shadowed_variable")
@@ -30,7 +32,7 @@ func reset_next()->void:
 	
 func place_towar(towar : Towar)->void:
 	self.towar = towar
-	towar.position = pizza_properties.get_relative_slot_middle(slot)
+	towar.position = pos
 	add_child(towar)
 	if (SignalBus.build_towar.is_connected(place_towar)):
 		SignalBus.build_towar.disconnect(place_towar)
@@ -45,10 +47,16 @@ func update_slot(slot : Vector2i):
 	bottom_arc = pizza_properties.get_arc(slot)
 	bottom_arc.reverse()   #polygon point order
 	top_arc = pizza_properties.get_arc(slot + Vector2i(0,1))
+	pos = pizza_properties.get_relative_slot_middle(slot)
+	if towar:
+		towar.position = pos
 	queue_redraw()
 
-func on_activation(actionbits:int,timing:float)->void:
+func on_activation(actionbits:int)->void:
 	baseColor = Color(actionbits&1,actionbits&2,actionbits&4)
+	if (towar):
+		towar.cast()
+		
 	queue_redraw()
 	reset_next()
 	
