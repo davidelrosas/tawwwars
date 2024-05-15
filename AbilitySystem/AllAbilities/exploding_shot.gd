@@ -17,8 +17,8 @@ func _ready():
 
 @warning_ignore("shadowed_variable")
 func cast(target_data : Target, caster : BaseEntity):
-	target = target_data.find_closest(caster)
-	if target != null:
+	target_data.find([Target.target_type.CLOSEST],[1])
+	if target_data.current_targets != []:
 		shoot(caster)
 	else:
 		print("no target in sight")
@@ -34,6 +34,7 @@ func shoot(caster):
 	#wtf is this for
 	self.caster = caster
 	position = caster.global_position
+	var target = caster.target_data.target_list.pop_back()
 	direction = (target.global_position - caster.global_position).normalized()
 	
 	caster.get_parent().add_child(self)

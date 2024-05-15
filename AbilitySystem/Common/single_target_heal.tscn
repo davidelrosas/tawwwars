@@ -3,9 +3,10 @@
 [ext_resource type="Script" path="res://AbilitySystem/AbilityTypes/DirectAbility.gd" id="1_2snrv"]
 [ext_resource type="Script" path="res://AbilitySystem/CombatEffects/HealthEffect.gd" id="2_tpf17"]
 
-[node name="DirectAbility" type="Node2D"]
+[node name="DirectAbility" type="Node2D" node_paths=PackedStringArray("effects_list")]
 script = ExtResource("1_2snrv")
 text = "heal"
+effects_list = [NodePath("Effects/HealthEffect")]
 targeting = Array[int]([2])
 target_ammounts = PackedInt32Array(1)
 
@@ -13,4 +14,4 @@ target_ammounts = PackedInt32Array(1)
 
 [node name="HealthEffect" type="Node" parent="Effects"]
 script = ExtResource("2_tpf17")
-effect_power = -20.0
+effect_power = 20.99
