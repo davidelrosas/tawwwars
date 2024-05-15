@@ -8,7 +8,10 @@ extends Node2D
 var target : BaseEntity
 var caster : BaseEntity
 
-func cast(target_data : Target, caster : BaseEntity):
+var owner_entity : BaseEntity
+
+
+func cast(target_data = owner_entity.target_data, caster = owner_entity):
 	target = target_data.find_closest(caster)
 	if target != null:
 		execute(caster)

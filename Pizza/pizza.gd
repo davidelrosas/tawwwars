@@ -33,9 +33,9 @@ func highlight(selector : Vector2i):
 func on_subbeat():
 	slices[Timelord.beat].subslices[Timelord.subbeat].on_subbeat()
 	
-func on_subbeat_hit(actionbits,timing):
+func on_subbeat_hit(actionbits):
 	if actionbits:
-		slices[Timelord.beat].subslices[Timelord.subbeat].on_activation(actionbits,timing)
+		slices[Timelord.beat].subslices[Timelord.subbeat].on_activation(actionbits)
 	
 func _ready():
 	Timelord.beat_change.connect(initialise)
