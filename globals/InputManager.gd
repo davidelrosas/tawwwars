@@ -7,36 +7,24 @@ class Combo:
 var rythmActions : PackedStringArray = ["ActionSet1","ActionSet2","ActionSet3","ActionSet4"] 
 
 const simultaneous_press : float = 0.03
-var time_tolerance : float = 0.2
 
-func on_beat_change():
-	time_tolerance = min (time_tolerance,Timelord.interval()/8)
-
-signal subbeat_hit(actionBits : int, timing : float)
+signal subbeat_hit(actionBits : int)
 
 signal miss()
 
 var __action_bits : int = 0
-var __action_timing : float = 0
+#var __action_timing : float = 0
 
-var rest_timer : Timer = Timer.new()
-
-func rest_timer_timeout() -> void:
-	subbeat_hit.emit(__action_bits,__action_timing)
-	__action_bits = 0
+var simul_timer : Timer = Timer.new()
 	
-func on_subbeat():
-	rest_timer.start(time_tolerance)
+func simul_timer_timeout():
+	subbeat_hit.emit(__action_bits)
+	__action_bits = 0
 
 func process_action(action_index : int):
-	var timetobeat = Timelord.to_closest_subbeat()
-	if time_tolerance<abs(timetobeat) || (__action_bits&& abs(__action_timing - timetobeat)>simultaneous_press):
-		miss.emit()
-		return
-	elif !__action_bits:
-		__action_timing = timetobeat
-		print(__action_timing)
-	__action_bits |= 1<<action_index
+	if (simul_timer.is_stopped() && !__action_bits):
+		simul_timer.start(simultaneous_press)
+	__action_bits |= 1 << action_index
 
 #utility signals
 signal pause_play()
@@ -46,9 +34,6 @@ signal action_mode_activation()
 
 signal change_pizza_highlight(selector : Vector2i)
 signal build_on_selection()
-#signal build_on_pizza(slot : Vector2i)
-
-#signal select_subslice(selector : Vector2ie)
 
 #utility input
 
@@ -65,16 +50,26 @@ enum InputMode {
 }
 
 var input_mode : InputMode = InputMode.Build
-
-class InputSet:
-	var actions : Dictionary
+		
+class InputDelegator:
+	var actions : PackedStringArray
+	signal input(action : String)
 	func process() -> void:
-		for action in actions.keys():
-			if(Input.is_action_just_pressed(action)):
-				actions[action].call()
-	func _init(actions : Dictionary):
+		for a in actions:
+			if (Input.is_action_just_pressed(a)):
+				input.emit(a)
+	@warning_ignore("shadowed_variable")
+	func _init(actions : PackedStringArray):
 		self.actions = actions
-
+		
+class InputSet extends InputDelegator:
+	var actionSet : Dictionary
+	func on_input(action : String):
+		actionSet[action].call()
+	func _init(actionSet : Dictionary):
+		self.actionSet = actionSet
+		super(actionSet.keys())
+		input.connect(on_input)
 
 var utilityActions : InputSet = InputSet.new( {
 	"Pause" : func():
@@ -94,6 +89,10 @@ var buildActions : InputSet = InputSet.new({
 		input_mode = InputMode.Shop
 })
 
+var shopActions : InputDelegator = InputDelegator.new([
+	"Left", "Right", "Up", "Down"
+])
+
 func _input(event):
 	match (input_mode):
 		InputMode.Action:
@@ -106,7 +105,7 @@ func _input(event):
 				int(Input.is_action_just_pressed("Right"))-int(Input.is_action_just_pressed("Left")),
 				int(Input.is_action_just_pressed("Up"))-int(Input.is_action_just_pressed("Down"))
 			)
-			if selector_delta:
+			if selector_delta && Player.pizza_properties:
 				pizza_selector= Player.pizza_properties.selection_clampi(pizza_selector + selector_delta)
 				print (pizza_selector.y, Timelord.pizza_properties.subdivisions[pizza_selector.x])
 				change_pizza_highlight.emit(pizza_selector)
@@ -120,8 +119,6 @@ func _input(event):
 			
 
 func _ready():
-	Timelord.advance_subbeat.connect(on_subbeat)
-	Timelord.beat_change.connect(on_beat_change)
-	rest_timer.one_shot = true
-	rest_timer.timeout.connect(rest_timer_timeout)
-	add_child(rest_timer)
+	simul_timer.one_shot = true
+	simul_timer.timeout.connect(simul_timer_timeout)
+	add_child(simul_timer)
