@@ -89,21 +89,18 @@ var utilityActions : InputSet = InputSet.new( {
 })
 
 var buildActions : InputSet = InputSet.new({
-	"Select" : func():
-		pass,
 	"Use" : func():
 		build_on_selection.emit()
 		input_mode = InputMode.Shop
 })
 
-func _process(_delta):
+func _input(event):
 	match (input_mode):
 		InputMode.Action:
 			if !Timelord.is_paused():
 				for action in range(rythmActions.size()):
 					if Input.is_action_just_pressed(rythmActions[action]):
 						process_action(action)
-			
 		InputMode.Build:
 			var selector_delta = Vector2i(
 				int(Input.is_action_just_pressed("Right"))-int(Input.is_action_just_pressed("Left")),

@@ -10,13 +10,6 @@ enum towar_model {TURRET,HEALER,WALL,OBELISK,GOO}
 var key_bind : InputManager.Combo
 
 #catalog with metadata for shop or others
-static var catalog = {
-	towar_model.TURRET : Metadata.new(&"Basic Turret", "It shoots", 200, preload("res://Towars/Sprites/watch_tower.svg")),
-	towar_model.HEALER : Metadata.new(&"Healer", "It Heals", 400, preload("res://Towars/Sprites/tower_round_flag.svg")),
-	towar_model.WALL : Metadata.new(&"Basic Wall", "It's just there", 300, preload("res://Towars/Sprites/tower_square.svg")),
-	towar_model.OBELISK : Metadata.new(&"ObelisK", "shoots exploding bullet", 800, preload("res://Towars/Sprites/tower_round_flag.svg")),
-	towar_model.GOO : Metadata.new(&"Goo Towar", "sets a puddle of goo", 500, preload("res://Towars/Sprites/tower_square.svg"))
-	}
 
 func _ready():
 	construct(model)
@@ -28,17 +21,7 @@ func _input(event):
 		var ability_instance = active.instantiate()
 		ability_instance.cast(target_data, self)
 
-#get metadata about a specific towar
-static func get_info(model : towar_model, entry : String):
-	match entry:
-		"Name":
-			return catalog[model].displayname
-		"Description":
-			return catalog[model].description
-		"Cost":
-			return str(catalog[model].cost)
-		"Icon":
-			return catalog[model].icon
+
 	
 
 #model constructor 

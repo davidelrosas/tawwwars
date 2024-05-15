@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dw0f5yqral76y"]
+[gd_scene load_steps=8 format=3 uid="uid://dw0f5yqral76y"]
 
-[ext_resource type="Script" path="res://Shop/shop_v3.gd" id="1_a3kr5"]
+[ext_resource type="Script" path="res://Shop/shop.gd" id="1_a3kr5"]
 [ext_resource type="Texture2D" uid="uid://ipxddgupjuh1" path="res://assets/sprites/Menu.png" id="2_sj4i4"]
 
 [sub_resource type="Animation" id="Animation_16mfx"]
@@ -55,6 +55,8 @@ _data = {
 "open": SubResource("Animation_hxg4s")
 }
 
+[sub_resource type="Theme" id="Theme_omgjh"]
+
 [node name="CanvasLayer" type="CanvasLayer"]
 offset = Vector2(0, 190)
 transform = Transform2D(1, 0, 0, 1, 0, 190)
@@ -77,14 +79,4 @@ offset_left = 576.0
 offset_top = 458.0
 offset_right = 1152.0
 offset_bottom = 658.0
-
-[node name="Offensive" type="Control" parent="TabContainer"]
-layout_mode = 2
-
-[node name="Defense" type="Control" parent="TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Support" type="Control" parent="TabContainer"]
-visible = false
-layout_mode = 2
+theme = SubResource("Theme_omgjh")
