@@ -12,7 +12,7 @@ var owner_entity : BaseEntity
 
 
 func cast(target_data = owner_entity.target_data, caster = owner_entity):
-	target = target_data.find_closest(caster)
+	target_data.find([Target.target_type.CLOSEST],[1])
 	if target != null:
 		execute(caster)
 	else:
