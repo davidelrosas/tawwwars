@@ -1,3 +1,5 @@
+class_name NaviMap
+
 extends Polygon2D
 
 @onready var region : RID = NavigationServer2D.region_create()
