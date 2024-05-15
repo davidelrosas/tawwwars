@@ -66,7 +66,5 @@ func deselect_all():
 func _ready():
 	modulate.a = 0.3
 	Timelord.advance_subbeat.connect(on_subdiv)
-	var how_many = beat+1
-	for x in range(how_many):
-		slot_insert(0,Subslice.new(2,Vector2(beat,x),pizza_properties))
+	slot_insert(0,Subslice.new(2,Vector2(beat,0),pizza_properties))
 	z_index=-1
