@@ -13,10 +13,12 @@ extends Node2D
 #var next_part_trigger_condition
 var ability_next : Ability
 
+var owner_entity : BaseEntity
+
 func _ready():
 	playanimation()
 
-func cast(target_data : Target, caster : BaseEntity):
+func cast(target_data : Target = owner_entity.target_data, caster : BaseEntity = owner_entity):
 	#if target_data.targets_ready():
 		#execute(target_data)
 	#else:

@@ -11,12 +11,14 @@ var direction : Vector2
 var target : BaseEntity
 var caster : BaseEntity
 
+var owner_entity : BaseEntity
+
 func _ready():
 	impact_detector.body_entered.connect(_on_impact_detection)
 	set_as_top_level(true)
 
 @warning_ignore("shadowed_variable")
-func cast(target_data : Target, caster : BaseEntity):
+func cast(target_data = owner_entity.target_data, caster = owner_entity):
 	target_data.find([Target.target_type.CLOSEST],[1])
 	if target_data.current_targets != []:
 		shoot(caster)

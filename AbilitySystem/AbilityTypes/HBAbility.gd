@@ -16,7 +16,7 @@ enum cast_position {ONTARGET, ONSELF}
 func _ready():
 	super._ready()
 
-func cast(target_data, caster):
+func cast(target_data = owner_entity.target_data, caster = owner_entity):
 	super.cast(target_data, caster)
 
 func execute(target_data, caster):

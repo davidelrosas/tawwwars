@@ -64,3 +64,4 @@ func set_properties():
 	target_data.owner_entity = self
 	det_area.owner_entity = self
 	det_area.set_properties(stats.detection_range, stats.detection_mode)
+	#active
