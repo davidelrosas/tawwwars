@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dw0f5yqral76y"]
+[gd_scene load_steps=8 format=3 uid="uid://dw0f5yqral76y"]
 
 [ext_resource type="Script" path="res://Shop/shop.gd" id="1_a3kr5"]
 [ext_resource type="Texture2D" uid="uid://ipxddgupjuh1" path="res://assets/sprites/Menu.png" id="2_sj4i4"]
-[ext_resource type="Script" path="res://Shop/removeInput.gd" id="3_kukl8"]
 
 [sub_resource type="Animation" id="Animation_16mfx"]
 length = 0.001
@@ -81,4 +80,3 @@ offset_top = 458.0
 offset_right = 1152.0
 offset_bottom = 658.0
 theme = SubResource("Theme_omgjh")
-script = ExtResource("3_kukl8")
