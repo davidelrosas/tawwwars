@@ -11,21 +11,16 @@ font_color = Color(0, 0, 0, 1)
 
 [node name="Shop Card" type="Control"]
 layout_mode = 3
-anchor_left = 0.007
-anchor_right = 0.007
-offset_left = -8.064
-offset_right = 1143.94
-offset_bottom = 648.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+scale = Vector2(0.557053, 0.543791)
 script = ExtResource("1_vrr1x")
 
 [node name="frontside" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 448.0
-offset_top = 192.0
-offset_right = 640.0
-offset_bottom = 448.0
+offset_left = 43.0839
+offset_top = 32.0
+offset_right = 235.084
+offset_bottom = 288.0
 texture = ExtResource("2_b1kfi")
 
 [node name="Name" type="Label" parent="frontside"]
@@ -61,10 +56,10 @@ position = Vector2(96, 128)
 [node name="backside" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 448.0
-offset_top = 192.0
-offset_right = 640.0
-offset_bottom = 448.0
+offset_left = 43.0839
+offset_top = 29.4231
+offset_right = 235.084
+offset_bottom = 285.423
 texture = ExtResource("2_b1kfi")
 
 [node name="VScrollBar" type="VScrollBar" parent="backside"]
@@ -86,10 +81,9 @@ fit_content = true
 
 [node name="Flip" type="Button" parent="."]
 layout_mode = 0
-offset_left = 584.0
-offset_top = 192.0
-offset_right = 640.0
-offset_bottom = 216.0
+offset_left = 179.084
+offset_right = 235.084
+offset_bottom = 31.0
 text = "info"
 
 [connection signal="pressed" from="frontside/Create" to="." method="_on_create_pressed"]
