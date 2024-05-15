@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://doel2885lyd1f"]
 
 [ext_resource type="PackedScene" uid="uid://bka2fncbyl472" path="res://Pizza/manapool.tscn" id="3_0nw0j"]
-[ext_resource type="PackedScene" uid="uid://dw0f5yqral76y" path="res://Shop/shop_v3.tscn" id="3_3ehvc"]
+[ext_resource type="PackedScene" uid="uid://dw0f5yqral76y" path="res://Shop/shop.tscn" id="3_3ehvc"]
 
 [node name="World" type="Node"]
 
