@@ -1,1 +1,0 @@
-extends NavigationServer2D
