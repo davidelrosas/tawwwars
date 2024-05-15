@@ -2,7 +2,7 @@ extends Node2D
 
 var elapsed = 0
 var spawnarea = global_position
-@export var enemy_target := Target.new()
+var enemy_target := Target.new()
 @export var concurrent_spawns : int = 10
 
 @export var spawn_schedule : String = "mob:3,mib:1#2/mob:1,mib:1#1"
