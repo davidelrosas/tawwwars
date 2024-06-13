@@ -54,6 +54,7 @@ func set_properties():
 	#connecting Hurtbox
 	hurtbox.owner_entity = self
 	hurtbox.set_layer(team_id)
+	#actually i can put it standard as enemiesonly!
 	
 	if team_id == team.PLAYER:
 		collision_layer = 0b01001
@@ -61,7 +62,9 @@ func set_properties():
 		collision_layer = 0b10001
 		
 	#setting targeting system
-	target_data.owner_entity = self
 	det_area.owner_entity = self
-	det_area.set_properties(stats.detection_range, stats.detection_mode)
+	det_area.set_layer(team_id, stats.detection_mode)
+	det_area.set_range(stats.detection_range)
+	target_data.owner_entity = self
+	target_data.connect_det_range()
 	#active

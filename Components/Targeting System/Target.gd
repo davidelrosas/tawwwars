@@ -1,7 +1,10 @@
 class_name Target
 
 var owner_entity : BaseEntity
+
 var in_range : Array[BaseEntity]
+#var allies_in_range : Array[BaseEntity]
+#var enemies_in_range : Array[BaseEntity]
 
 #var ready_bools := [false]
 #var keep_current_targets := true
@@ -9,6 +12,27 @@ var current_targets : Array[BaseEntity]
 
 enum target_type {CLOSEST,TARGETSELF,LOWESTHEALTH}
 
+#region DETECTION LOGIC
+func connect_det_range():
+	owner_entity.det_area.entity_entered_range.connect(_store_entity)
+	owner_entity.det_area.entity_exited_range.connect(_delete_entity)
+
+func _store_entity(entity : BaseEntity):
+	if entity != owner_entity:
+		in_range.append(entity)
+
+func _delete_entity(entity : BaseEntity):
+	if in_range.has(entity):
+		in_range.erase(entity)
+		if current_targets.has(entity):
+			current_targets.erase(entity)
+			#and here probably run the Target function targets_ready(): again
+			#or also if a target Dies inside the detection range, we should connect to
+			# the death signal
+
+#endregion
+
+#region FIND FUNCTIONS
 var find_functions = {
 	target_type.CLOSEST: 
 		find_condition.bind(
@@ -65,3 +89,4 @@ func find_last_entered():
 
 func find_random():
 	pass
+#endregion

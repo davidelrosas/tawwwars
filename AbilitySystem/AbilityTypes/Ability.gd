@@ -9,6 +9,8 @@ extends Node2D
 #make class
 @export var targeting : Array[Target.target_type]
 @export var target_ammounts : PackedInt32Array
+#@export var target_team : Array[BaseEntity.team]
+# I should add here to choose from which team!!!!!! how can we make this a sort of exportable thing?
 
 #var next_part_trigger_condition
 var ability_next : Ability
@@ -24,7 +26,6 @@ func cast(target_data : Target = owner_entity.target_data, caster : BaseEntity =
 	#else:
 	target_data.find(targeting, target_ammounts)
 	if target_data.current_targets != []:  
-		print(target_data.in_range)
 		execute(target_data, caster)
 	else:
 		print("no targets in sight")

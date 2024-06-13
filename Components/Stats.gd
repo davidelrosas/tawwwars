@@ -6,7 +6,7 @@ var max_health : float
 var movement_speed : float
 
 var detection_range : float
-var detection_mode : DetectionArea.detection_mode
+var detection_mode : AreaComponent.mode
 # these ones will be more specific eventually
 var armor : float
 var ability_damage : float
@@ -48,7 +48,7 @@ func remove_modifier():
 	pass
 
 @warning_ignore("shadowed_variable")
-func _init(max_health : float, detection_range : float, detection_mode : DetectionArea.detection_mode, armor : float, ability_damage : float, movement_speed : float = 0):
+func _init(max_health : float, detection_range : float, detection_mode : AreaComponent.mode, armor : float, ability_damage : float, movement_speed : float = 0):
 	self.max_health = max_health
 	self.current_health = max_health
 	self.detection_range = detection_range

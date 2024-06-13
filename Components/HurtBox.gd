@@ -1,6 +1,6 @@
 class_name HurtBox
 
-extends Area2D
+extends AreaComponent
 
 var owner_entity : BaseEntity
 
@@ -15,18 +15,6 @@ func _on_area_entered(hitbox : HitBox):
 		owner_entity.effect(hitbox.effects_list)
 		hitbox.hitbox_hit.emit(owner_entity)
 
-func _init():
-	collision_layer = 0
-	collision_mask = 2
+func set_layer(team_id, mode_id = mode.ENEMIESONLY, layer_1 = 0, layer_2 = 0, mask_1 = 2, mask_2 = 4):
+	super.set_layer(team_id, mode_id, layer_1, layer_2, mask_1, mask_2)
 	monitorable = false
-
-func set_layer(team_id : BaseEntity.team):
-	match team_id:
-		BaseEntity.team.PLAYER:
-			collision_layer = 0
-			collision_mask = 2
-		BaseEntity.team.ENEMY:
-			collision_layer = 0
-			collision_mask = 4
-
-

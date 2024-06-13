@@ -3,6 +3,7 @@ class_name HBAbility
 extends Ability
 
 @export var hitbox : HitBox
+@export var hitbox_mode : HitBox.mode
 @export var movement_engine : MovementEngine
 @export var cast_position_id : cast_position
 # para el explosive shot hacer que trigeree la siguiente habilidad cuando llegue a un vector
@@ -48,7 +49,8 @@ func execute(target_data, caster):
 
 func set_hitbox(caster : BaseEntity):
 	hitbox.effects_list = self.effects_list
-	hitbox.set_layer(caster.team_id)
+	hitbox.set_layer(caster.team_id, hitbox_mode)
+	#set_hitbox behaviour so (mode)
 
 func set_impact_detection(caster : BaseEntity):
 	hitbox.hitbox_hit.connect(_on_impact_detection)

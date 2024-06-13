@@ -28,7 +28,7 @@ func cast(target_data = owner_entity.target_data, caster = owner_entity):
 @warning_ignore("shadowed_variable")
 func shoot(caster):
 	hitbox.effects_list = effects_list
-	hitbox.set_layer(caster.team_id)
+	hitbox.set_layer(caster.team_id, 0)
 	# we need to think about this physics layer
 	impact_detector.collision_layer = 0
 	impact_detector.collision_mask = caster.det_area.collision_mask
@@ -36,7 +36,7 @@ func shoot(caster):
 	#wtf is this for
 	self.caster = caster
 	position = caster.global_position
-	var target = caster.target_data.target_list.pop_back()
+	target = caster.target_data.current_targets.pop_back()
 	direction = (target.global_position - caster.global_position).normalized()
 	
 	caster.get_parent().add_child(self)
