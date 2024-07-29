@@ -11,7 +11,6 @@ size = Vector2(256, 256)
 [node name="GooPuddle" type="Node2D" node_paths=PackedStringArray("det_area", "effects_list")]
 script = ExtResource("1_1hrx6")
 det_area = NodePath("DetectionArea")
-cast_position_id = 1
 mode = 1
 effects_list = [NodePath("Eeffects/SlowEffect")]
 duration = 10.0
