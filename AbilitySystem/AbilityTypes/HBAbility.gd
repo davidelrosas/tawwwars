@@ -21,7 +21,6 @@ func cast(target_data = owner_entity.target_data, caster = owner_entity):
 	super.cast(target_data, caster)
 
 func execute(target_data, caster):
-	#this has to go in for loop
 	
 	var pack_ability = PackedScene.new()
 	pack_ability.pack(self)

@@ -1,7 +1,6 @@
 extends Node2D
 
-var towar = preload("res://Towars/prefabs/turret.tscn")
-var healer = preload("res://Towars/prefabs/healer.tscn")
+var allen = preload("res://Mobs/allen.tscn")
 
 func _ready():
 	pass
@@ -13,6 +12,7 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("click"):
-		var new_towar = healer.instantiate()
-		new_towar.position = get_viewport().get_mouse_position()
-		add_child(new_towar)
+		return
+		var new_enemy = allen.instantiate()
+		new_enemy.position = get_viewport().get_mouse_position()
+		add_child(new_enemy)

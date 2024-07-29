@@ -33,11 +33,11 @@ func construct(type : mob_type):
 	#MOB TYPES ALSO CREATE DICTIONARY
 	match type:
 		mob_type.ALLEN:
-			stats = Stats.new(20,2000,AreaComponent.mode.ENEMIESONLY,10,0,100)
+			stats = Stats.new(20,2000,DetectionArea.mode.ENEMIESONLY,10,0,100)
 			team_id = team.ENEMY
 			active = preload("res://AbilitySystem/Common/alien_blast.tscn")
 			
 		mob_type.BOSSMAN:
-			stats = Stats.new(200,2000,AreaComponent.mode.ENEMIESONLY,50,0,50)
+			stats = Stats.new(200,2000,DetectionArea.mode.ENEMIESONLY,50,0,50)
 			team_id = team.ENEMY
 			active = preload("res://AbilitySystem/Common/alien_blast.tscn")

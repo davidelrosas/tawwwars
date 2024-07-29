@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cakwtxx5pudiu"]
+
+[ext_resource type="Script" path="res://AbilitySystem/AbilityTypes/DRAbility.gd" id="1_1hrx6"]
+[ext_resource type="Texture2D" uid="uid://cpnwbh14vxb57" path="res://assets/sprites/tiles/grass_random_grid.png" id="2_disqq"]
+[ext_resource type="Script" path="res://Components/Targeting System/DetectionArea.gd" id="3_u8ims"]
+[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/MovementEffect.gd" id="4_54lbl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yag2h"]
+size = Vector2(256, 256)
+
+[node name="GooPuddle" type="Node2D" node_paths=PackedStringArray("det_area", "effects_list")]
+script = ExtResource("1_1hrx6")
+det_area = NodePath("DetectionArea")
+cast_position_id = 1
+mode = 1
+effects_list = [NodePath("Eeffects/SlowEffect")]
+duration = 10.0
+targeting = Array[int]([1])
+target_ammounts = PackedInt32Array(0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(3.97396, 3.97009)
+texture = ExtResource("2_disqq")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+script = ExtResource("3_u8ims")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("RectangleShape2D_yag2h")
+
+[node name="Eeffects" type="Node" parent="."]
+
+[node name="SlowEffect" type="Node" parent="Eeffects"]
+script = ExtResource("4_54lbl")
+duration = 999.0
+modifier = 1
+effect_power = 40.0

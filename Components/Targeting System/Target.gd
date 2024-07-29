@@ -55,7 +55,8 @@ func flush_current_targets():
 func find(target_type_ids : Array[target_type], target_amounts : Array[int]):
 	#later its probably gonna check if current targets are valid still something like that
 	flush_current_targets()
-	if in_range == []:
+	#not the prettiest solution think about this
+	if in_range == [] && !target_type_ids.has(target_type.TARGETSELF):
 		return
 	for i in target_type_ids:
 		var amount = target_amounts.pop_front()

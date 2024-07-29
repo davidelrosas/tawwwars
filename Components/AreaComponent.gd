@@ -6,7 +6,7 @@ enum mode {ENEMIESONLY, ALLIESONLY, ALLENTITIES}
 
 var mode_id : mode
 
-func set_layer( team_id : BaseEntity. team, mode_id : mode, layer_1 : int, layer_2 : int, mask_1 : int, mask_2 : int ):
+func set_layer( team_id : BaseEntity.team, mode_id : mode, layer_1 : int, layer_2 : int, mask_1 : int, mask_2 : int ):
 	self.mode_id = mode_id
 	match mode_id:
 		mode.ENEMIESONLY:

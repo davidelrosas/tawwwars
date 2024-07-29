@@ -1,12 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpejgoucba07i"]
+[gd_scene load_steps=12 format=3 uid="uid://dpejgoucba07i"]
 
 [ext_resource type="PackedScene" uid="uid://bka2fncbyl472" path="res://Pizza/manapool.tscn" id="1_esnww"]
 [ext_resource type="Script" path="res://Level/NaviMap.gd" id="1_kfqrt"]
+[ext_resource type="Script" path="res://scenes/Sandbox.gd" id="1_mpacc"]
 [ext_resource type="Texture2D" uid="uid://dj5a85gpdy68q" path="res://assets/sprites/tiles/desert.png" id="1_qinnl"]
 [ext_resource type="Script" path="res://Pizza/pizza_properties.gd" id="2_pv7re"]
 [ext_resource type="PackedScene" uid="uid://dw0f5yqral76y" path="res://Shop/shop.tscn" id="4_cku28"]
-[ext_resource type="PackedScene" uid="uid://cwde7meq2eur4" path="res://Mobs/allen.tscn" id="6_6h24i"]
-[ext_resource type="PackedScene" uid="uid://d13q4omrgcpxp" path="res://Mobs/bossman.tscn" id="7_8gukw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d5pjl"]
 resource_name = "cliffs"
@@ -254,6 +253,7 @@ bpm = 60.0
 swing = 0.5
 
 [node name="Level 1" type="Node2D"]
+script = ExtResource("1_mpacc")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_8w1df")
@@ -281,14 +281,5 @@ pizza_properties = SubResource("Resource_nn4nn")
 [node name="CanvasLayer" parent="." instance=ExtResource("4_cku28")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Mob" parent="." instance=ExtResource("6_6h24i")]
-position = Vector2(-296, -104)
-
-[node name="Mob2" parent="." instance=ExtResource("7_8gukw")]
-position = Vector2(368, -144)
-
-[node name="Mob3" parent="." instance=ExtResource("7_8gukw")]
-position = Vector2(288, -104)
 
 [editable path="Manapool"]
