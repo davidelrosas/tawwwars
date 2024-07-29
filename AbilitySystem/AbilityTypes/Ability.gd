@@ -14,6 +14,8 @@ extends Node2D
 # I should add here to choose from which team!!!!!! how can we make this a sort of exportable thing?
 
 #var next_part_trigger_condition
+# also maybe I should make Ability next a List of packed scenes or implement it differently to allow for more
+#reusability and deptht of nested abilities? how would
 @export var ability_next : PackedScene
 var owner_entity : BaseEntity
 
