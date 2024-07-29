@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://b63x4jb68aq01"]
+
+[ext_resource type="Script" path="res://AbilitySystem/AbilityTypes/HBAbility.gd" id="1_8y5rm"]
+[ext_resource type="Texture2D" uid="uid://cnqa5b5afqqdf" path="res://assets/sprites/beams.png" id="2_x80jt"]
+[ext_resource type="Script" path="res://Components/HitBox.gd" id="3_dqttt"]
+[ext_resource type="PackedScene" uid="uid://dqg3nnd8a1clg" path="res://AbilitySystem/Common/explosion.tscn" id="4_anf2r"]
+[ext_resource type="Script" path="res://AbilitySystem/AbilityTypes/MovementEngine/simple_movement.gd" id="5_01nhw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bub8t"]
+radius = 6.0
+height = 14.1393
+
+[node name="HBAbility" type="Node2D" node_paths=PackedStringArray("hitbox", "movement_engine")]
+script = ExtResource("1_8y5rm")
+hitbox = NodePath("HitBox")
+movement_engine = NodePath("SimpleMovement")
+cast_position_id = 1
+mode = 3
+max_impacts = 1
+speed = 5.0
+duration = 0.8
+targeting = Array[int]([0])
+target_ammounts = PackedInt32Array(1)
+ability_next = ExtResource("4_anf2r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.13745
+scale = Vector2(1, 1.09483)
+texture = ExtResource("2_x80jt")
+region_enabled = true
+region_rect = Rect2(34, 116, 22, 20)
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("3_dqttt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_bub8t")
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="SimpleMovement" type="Node" parent="."]
+script = ExtResource("5_01nhw")

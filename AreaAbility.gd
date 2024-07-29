@@ -10,7 +10,7 @@ extends Ability
 @export var max_impacts : int
 @export var speed : float
 
-enum cast_position {ONTARGET, ONSELF}
+enum cast_position {ONTARGET, ONSELF, ABSOLUTE}
 #var vector_offset
 
 func cast(target_data = owner_entity.target_data, caster = owner_entity):
@@ -19,10 +19,14 @@ func cast(target_data = owner_entity.target_data, caster = owner_entity):
 
 func execute(target_data, caster):
 	
+	print(owner_entity)
 	var pack_ability = PackedScene.new()
 	pack_ability.pack(self)
 	for i in target_data.current_targets:
 		var duplicate = pack_ability.instantiate()
+		
+		#owner_entity is not being copied because its set in code!! what to do about it?
+		duplicate.owner_entity = self.owner_entity
 		
 		duplicate.initialize_effects(caster)
 		duplicate.set_area_component(caster)
@@ -34,12 +38,15 @@ func execute(target_data, caster):
 		
 		match cast_position_id:
 			cast_position.ONTARGET:
-				duplicate.global_position = i.global_position
+				duplicate.global_position = i.global_position #what if we want offset
 			cast_position.ONSELF:
 				duplicate.global_position = caster.global_position
+			cast_position.ABSOLUTE:
+				duplicate.global_position = abs_cast_position
 		#Abilities will move in the level above casters, sometimes tho be attached to EntitiesItself
 		if movement_engine != null:
 			duplicate.movement_engine.set_properties(speed,i.global_position - duplicate.global_position, i, duplicate)
+		#Probably make the ability child of a more specific layer
 		caster.get_parent().add_child(duplicate)
 		# maybe add a timed multicast option as wellduplicate
 

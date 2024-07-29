@@ -15,3 +15,5 @@ func execute(target_data, caster):
 
 
 #make a timed multicast option
+
+#make a special end_ability for this one!

@@ -1,27 +1,30 @@
 [gd_scene load_steps=6 format=3 uid="uid://dqg3nnd8a1clg"]
 
-[ext_resource type="Script" path="res://AbilitySystem/AllAbilities/explosion.gd" id="1_ducac"]
-[ext_resource type="Texture2D" uid="uid://se4cfdbipjhx" path="res://assets/sprites/tiles/DesertTile.png" id="2_ppmd5"]
-[ext_resource type="Script" path="res://Components/HitBox.gd" id="2_sawhc"]
-[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/HealthEffect.gd" id="4_e6nh0"]
+[ext_resource type="Script" path="res://AbilitySystem/AbilityTypes/HBAbility.gd" id="1_0umpp"]
+[ext_resource type="Texture2D" uid="uid://se4cfdbipjhx" path="res://assets/sprites/tiles/DesertTile.png" id="2_5ck8u"]
+[ext_resource type="Script" path="res://Components/HitBox.gd" id="3_bx5wf"]
+[ext_resource type="Script" path="res://AbilitySystem/CombatEffects/HealthEffect.gd" id="4_6f84y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6ljv"]
 size = Vector2(144, 140)
 
 [node name="Explosion" type="Node2D" node_paths=PackedStringArray("hitbox", "effects_list")]
-script = ExtResource("1_ducac")
-duration = 0.2
+script = ExtResource("1_0umpp")
 hitbox = NodePath("HitBox")
+cast_position_id = 2
+mode = 1
 effects_list = [NodePath("Effects/HealthEffect")]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+duration = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4.48438, 4.3125)
-texture = ExtResource("2_ppmd5")
+texture = ExtResource("2_5ck8u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
 
 [node name="HitBox" type="Area2D" parent="."]
-script = ExtResource("2_sawhc")
+script = ExtResource("3_bx5wf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, 2)
@@ -30,5 +33,5 @@ shape = SubResource("RectangleShape2D_n6ljv")
 [node name="Effects" type="Node" parent="."]
 
 [node name="HealthEffect" type="Node" parent="Effects"]
-script = ExtResource("4_e6nh0")
+script = ExtResource("4_6f84y")
 effect_power = 50.0

@@ -16,5 +16,5 @@ func set_impact_detection(caster : BaseEntity):
 func _on_impact_detection(body : BaseEntity):
 	if hitbox.collision_layer == body.hurtbox.collision_mask:
 		max_impacts -= 1
-		if max_impacts <= 0:
-			queue_free()
+		if max_impacts == 0:
+			end_ability()

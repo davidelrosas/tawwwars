@@ -1,9 +1,11 @@
-extends Node2D
+class_name SimpleMovement
 
-var speed : float
-var direction : Vector2
-var target : BaseEntity
+extends MovementEngine
+
+func _ready():
+	direction = target.position - ability.position
 
 func _physics_process(delta):
+	ability.position += direction * speed * delta
 	pass
 

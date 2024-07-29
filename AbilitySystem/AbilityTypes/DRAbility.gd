@@ -28,3 +28,10 @@ func _delete_entity(entity : BaseEntity):
 		for i in in_area[entity]:
 			i.end_effect()
 		in_area.erase(entity)
+
+#If Ability ends we need to erase all active effects first
+func end_ability():
+	for i in in_area:
+		for j in in_area[i]:
+			j.end_effect()
+	super.end_ability()

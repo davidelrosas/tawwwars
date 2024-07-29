@@ -2,6 +2,7 @@ class_name CombatEffect
 
 extends Node
 
+#what if i make a spread combateffect instead of making it part of ability functionality?
 @export var effect_power : float
 var casted_from : BaseEntity
 var applied_on : BaseEntity

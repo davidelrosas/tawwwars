@@ -5,6 +5,7 @@ extends Node2D
 @export var animation : AnimationPlayer
 @export var effects_list : Array[CombatEffect]
 @export var duration : float
+@export var abs_cast_position : Vector2
 
 #make class
 @export var targeting : Array[Target.target_type]
@@ -13,8 +14,7 @@ extends Node2D
 # I should add here to choose from which team!!!!!! how can we make this a sort of exportable thing?
 
 #var next_part_trigger_condition
-var ability_next : Ability
-
+@export var ability_next : PackedScene
 var owner_entity : BaseEntity
 
 func _ready():
@@ -58,4 +58,13 @@ func set_timer(duration : float):
 	add_child(timer)
 
 func _on_timer_timeout():
+	end_ability()
+
+func end_ability():
+	if ability_next:
+		var next_part = ability_next.instantiate()
+		next_part.owner_entity = self.owner_entity
+		next_part.abs_cast_position = self.position
+		next_part.call_deferred("execute", owner_entity.target_data, owner_entity)
+	
 	queue_free()

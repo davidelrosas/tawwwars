@@ -19,7 +19,6 @@ func cast(target_data = owner_entity.target_data, caster = owner_entity):
 		print("no target in sight")
 
 func execute(caster):
-	print("balls")
 	set_timer(duration)
 	hitbox.effects_list = effects_list
 	hitbox.set_layer(caster.team_id, 0)

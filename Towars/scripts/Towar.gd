@@ -44,7 +44,7 @@ func construct(model_id : towar_model):
 		towar_model.OBELISK:
 			stats = Stats.new(150,200,DetectionArea.mode.ENEMIESONLY,15,10)
 			team_id = team.PLAYER
-			active = preload("res://AbilitySystem/AllAbilities/exploding_shot.tscn")
+			active = preload("res://AbilitySystem/Common/exploding_shot.tscn")
 			
 		towar_model.GOO:
 			stats = Stats.new(200,0,DetectionArea.mode.ENEMIESONLY,20,10)

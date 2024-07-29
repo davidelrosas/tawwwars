@@ -14,6 +14,7 @@ func _physics_process(delta):
 	else:
 		position_prev_frame = ability.position
 		ability.look_at(target.global_position)
+		#should it be target.global_position? or target.position, when the target moves what is moving?
 		ability.position = ability.position.move_toward(target.global_position, speed*delta)
 	
 
