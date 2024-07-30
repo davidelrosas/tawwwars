@@ -2,13 +2,16 @@ extends Node2D
 
 var elapsed = 0
 var spawnarea = global_position
-@export var enemy_target := Target.new()
+
+var navimap : RID
+
 @export var concurrent_spawns : int = 10
 
-@export var spawn_schedule : String = "mob:3,mib:1#2/mob:1,mib:1#1"
+@export var spawn_schedule : String = "mob:1#1" #"mob:3,mib:1#2/mob:1,mib:1#1"
 @export var loop_spawns : bool
 
 var sp_sch
+var posManapool : Vector2
 
 var schedule_index = 0
 
@@ -23,7 +26,7 @@ func n_can_spawn() -> int:
 	return concurrent_spawns - spawned.size()
 
 # spawnlist example: "mob:3,orc:2"
-func spawn_enemy(spawnlist, target : Target):
+func process_spawnlist(spawnlist):
 	spawnlist = spawnlist.split(",")
 	var newmob_type
 	for x in spawnlist:
@@ -34,10 +37,16 @@ func spawn_enemy(spawnlist, target : Target):
 			print("trying to spawn invalid enemy type")
 			pass
 		for _y in range(min(spawngroup[1].to_int(),n_can_spawn())):
+			#spawn enemy
 			var newmob = newmob_type.instantiate()
 			newmob.global_position = spawnarea
 			#temporary fix
-			newmob.target_data.current_targets.append(enemy_target.current_targets.pop_back())
+			#newmob.target_data.current_targets.append(enemy_target.current_targets.pop_back())
+			
+			if (navimap):
+				newmob.navAgent.set_navigation_map(navimap)
+				newmob.posManapool = posManapool
+			
 			spawned.push_back(newmob)
 			add_child(newmob)
 	
@@ -59,5 +68,5 @@ func _process(delta):
 		var curperiod = cur[1].to_float()
 		if curperiod < elapsed:
 			elapsed -= curperiod
-			spawn_enemy(cur[0],enemy_target)
+			process_spawnlist(cur[0])
 			schedule_index += 1 - (int(loop_spawns and schedule_index >= sp_sch.size())*sp_sch.size())
