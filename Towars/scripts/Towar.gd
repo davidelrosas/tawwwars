@@ -25,6 +25,9 @@ func cast():
 #maybe do this with dictionary instead of match
 func construct(model_id : towar_model):
 	#TOWAR MODELS NEED TO BE IN A DICTIONARY SOMEWHERE PROBABLY
+	var Catalog = preload("res://Shop/catalog.gd")
+	#stats = Catalog.entity_database[model_id]
+	
 	match model_id:
 		towar_model.TURRET:
 			stats = Stats.new(100,200,DetectionArea.mode.ENEMIESONLY,20,10)

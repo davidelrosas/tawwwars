@@ -1,5 +1,24 @@
 const classi = Metadata.Classification
 
+class EntityData:
+	var stats : Stats
+	var team_id : BaseEntity.team
+	var active : PackedScene
+
+
+static var towar_database = {
+	Towar.towar_model.TURRET : EntityData.new(),
+	Towar.towar_model.HEALER : EntityData.new(),
+	Towar.towar_model.WALL : EntityData.new(),
+	Towar.towar_model.OBELISK : EntityData.new(),
+	Towar.towar_model.GOO : EntityData.new()
+	}
+
+static var mob_database =  {
+	Mob.mob_type.ALLEN : EntityData.new(),
+	Mob.mob_type.BOSSMAN : EntityData.new()
+}
+
 static var catalog = {
 	Towar.towar_model.TURRET : Metadata.new(&"Basic Turret", classi.Offense, "It shoots", 200, preload("res://Towars/Sprites/watch_tower.svg"),preload("res://Towars/prefabs/turret.tscn")),
 	Towar.towar_model.HEALER : Metadata.new(&"Healer", classi.Support, "It Heals", 400, preload("res://Towars/Sprites/tower_round_flag.svg"),preload("res://Towars/prefabs/healer.tscn")),
